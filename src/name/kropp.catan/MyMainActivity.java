@@ -24,6 +24,9 @@ public class MyMainActivity extends Activity
                 RollDice();
             }
         });
+
+        final TextView textView = (TextView) findViewById(R.id.text);
+        textView.setTextSize(20);
     }
 
     private void RollDice() {
@@ -33,8 +36,12 @@ public class MyMainActivity extends Activity
 
         final TextView textView = (TextView) findViewById(R.id.text);
 
-        CharSequence text = textView.getText();
-        CharSequence newText = white + " [" + red + "] = " + (white+red) + " " + event + "\n" + text;
+        String[] lines = textView.getText().toString().split("\n", -1);
+        StringBuilder old = new StringBuilder();
+        for(int i = 0; i<10; i++)
+            old.append(lines[i]).append("\n");
+
+        CharSequence newText = white + " [" + red + "] = " + (white+red) + " " + event + "\n" + old.toString();
         textView.setText(newText);
     }
 }
