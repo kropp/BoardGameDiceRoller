@@ -7,8 +7,8 @@ package name.kropp.catan;
 public class EventDice {
     private Dice myDice;
 
-    public EventDice(Dice myDice) {
-        this.myDice = myDice;
+    public EventDice(Dice dice) {
+        myDice = dice;
     }
 
     public Event roll() {

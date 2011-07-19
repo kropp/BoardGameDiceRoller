@@ -9,8 +9,8 @@ import java.util.Random;
 public class Dice {
     private Random myRandomizer;
 
-    public Dice() {
-        myRandomizer = new Random();
+    public Dice(long seed) {
+        myRandomizer = new Random(seed);
     }
 
     public int roll() {

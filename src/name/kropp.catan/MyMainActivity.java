@@ -8,8 +8,16 @@ import android.widget.TextView;
 
 public class MyMainActivity extends Activity
 {
-    private Dice myDice = new Dice();
-    private EventDice myEventDice = new EventDice(myDice);
+    private Dice myWhiteDice;
+    private Dice myRedDice;
+    private EventDice myEventDice;
+
+    public MyMainActivity() {
+        long seed = System.currentTimeMillis();
+        myWhiteDice = new Dice(seed);
+        myRedDice = new Dice(seed * System.currentTimeMillis());
+        myEventDice = new EventDice(new Dice(seed * seed * System.currentTimeMillis()));
+    }
 
     /** Called when the activity is first created. */
     @Override
@@ -30,8 +38,8 @@ public class MyMainActivity extends Activity
     }
 
     private void RollDice() {
-        int white = myDice.roll();
-        int red = myDice.roll();
+        int white = myWhiteDice.roll();
+        int red = myRedDice.roll();
         Event event = myEventDice.roll();
 
         final TextView textView = (TextView) findViewById(R.id.text);
