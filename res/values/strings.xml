@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Catan Dice Roller</string>
+    <string name="app_name">Board Game Dice Roller</string>
     <string name="roll_dice">Roll dice!</string>
 </resources>

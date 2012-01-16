@@ -1,4 +1,4 @@
-package name.kropp.catan;
+package name.kropp.diceroller;
 
 import android.app.Activity;
 import android.os.Bundle;

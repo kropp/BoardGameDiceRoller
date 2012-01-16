@@ -1,4 +1,4 @@
-package name.kropp.catan;
+package name.kropp.diceroller;
 
 import java.util.Random;
 
