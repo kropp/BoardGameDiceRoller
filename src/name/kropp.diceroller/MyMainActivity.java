@@ -16,6 +16,7 @@ public class MyMainActivity extends Activity
     private Dice6 myWhiteDice;
     private RedDice6 myRedDice;
     private SettlersOfCatanCitiesAndKnightsEventDice myEventDice;
+    private ShakeListener myShaker;
 
     public MyMainActivity() {
         long seed = System.currentTimeMillis();
@@ -38,8 +39,27 @@ public class MyMainActivity extends Activity
             }
         });
 
+        myShaker = new ShakeListener(this);
+        myShaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
+            public void onShake() {
+                RollDice();
+            }
+        });
+
         final TextView textView = (TextView) findViewById(R.id.text);
         textView.setTextSize(20);
+    }
+
+    @Override
+    public void onResume() {
+        myShaker.resume();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        myShaker.pause();
+        super.onPause();
     }
 
     @Override
