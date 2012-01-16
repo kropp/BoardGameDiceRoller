@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/main_preferences">
+
+        <CheckBoxPreference
+                android:key="shake_preference"
+                android:title="@string/title_shake_preference"
+                android:summary="@string/summary_shake_preference" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

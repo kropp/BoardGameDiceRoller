@@ -11,5 +11,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="MyPreferencesActivity" android:label="@string/options">
+        </activity>
     </application>
-</manifest> 
+    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="9" />
+</manifest>

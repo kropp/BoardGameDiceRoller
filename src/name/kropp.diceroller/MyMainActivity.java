@@ -1,7 +1,11 @@
 package name.kropp.diceroller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +40,32 @@ public class MyMainActivity extends Activity
 
         final TextView textView = (TextView) findViewById(R.id.text);
         textView.setTextSize(20);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+        case R.id.options:
+            openOptions();
+            return true;
+        case R.id.about:
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void openOptions() {
+        Intent myIntent = new Intent(this, MyPreferencesActivity.class);
+        this.startActivity(myIntent);
     }
 
     private void RollDice() {
