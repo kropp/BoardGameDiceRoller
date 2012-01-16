@@ -9,15 +9,15 @@ import android.widget.TextView;
 
 public class MyMainActivity extends Activity
 {
-    private Dice myWhiteDice;
-    private Dice myRedDice;
-    private EventDice myEventDice;
+    private Dice6 myWhiteDice;
+    private RedDice6 myRedDice;
+    private SettlersOfCatanCitiesAndKnightsEventDice myEventDice;
 
     public MyMainActivity() {
         long seed = System.currentTimeMillis();
-        myWhiteDice = new Dice(seed);
-        myRedDice = new Dice(seed * System.currentTimeMillis());
-        myEventDice = new EventDice(new Dice(seed * seed * System.currentTimeMillis()));
+        myWhiteDice = new Dice6(seed);
+        myRedDice = new RedDice6(seed * System.currentTimeMillis());
+        myEventDice = new SettlersOfCatanCitiesAndKnightsEventDice(seed * seed * System.currentTimeMillis());
     }
 
     /** Called when the activity is first created. */
@@ -39,13 +39,13 @@ public class MyMainActivity extends Activity
     }
 
     private void RollDice() {
-        int white = myWhiteDice.roll();
-        int red = myRedDice.roll();
-        Event event = myEventDice.roll();
+        myWhiteDice.roll();
+        myRedDice.roll();
+        myEventDice.roll();
 
-        updateDiceImage(R.id.white_dice, getWhiteIconId(white));
-        updateDiceImage(R.id.red_dice, getRedIconId(red));
-        updateDiceImage(R.id.event_dice, getEventIconId(event));
+        updateDiceImage(R.id.white_dice, myWhiteDice.getIconId());
+        updateDiceImage(R.id.red_dice, myRedDice.getIconId());
+        updateDiceImage(R.id.event_dice, myEventDice.getIconId());
 
         final TextView textView = (TextView) findViewById(R.id.text);
 
@@ -54,45 +54,8 @@ public class MyMainActivity extends Activity
         for (int i = 0; i < 5; i++)
             old.append(lines[i]).append("\n");
 
-        CharSequence newText = white + " [" + red + "] = " + (white+red) + " " + event + "\n" + old.toString();
+        CharSequence newText = String.format("%d [%d] = %d %s\n%s", myWhiteDice.getCurrentValue(), myRedDice.getCurrentValue(), myWhiteDice.getCurrentValue() + myRedDice.getCurrentValue(), myEventDice.getCurrentEvent().toString(), old.toString());
         textView.setText(newText);
-    }
-
-    private int getEventIconId(Event event) {
-        switch (event)
-        {
-            case BLUE_CITY: return R.drawable.bluecity;
-            case YELLOW_CITY: return R.drawable.yellowcity;
-            case GREEN_CITY: return R.drawable.greencity;
-            case PIRATES: return R.drawable.pirates;
-            default: return R.drawable.pirates;
-        }
-    }
-
-    private int getRedIconId(int i) {
-        switch (i)
-        {
-            case 1: return R.drawable.r1;
-            case 2: return R.drawable.r2;
-            case 3: return R.drawable.r3;
-            case 4: return R.drawable.r4;
-            case 5: return R.drawable.r5;
-            case 6: return R.drawable.r6;
-            default: return R.drawable.r1;
-        }
-    }
-
-    private int getWhiteIconId(int i) {
-        switch (i)
-        {
-            case 1: return R.drawable.w1;
-            case 2: return R.drawable.w2;
-            case 3: return R.drawable.w3;
-            case 4: return R.drawable.w4;
-            case 5: return R.drawable.w5;
-            case 6: return R.drawable.w6;
-            default: return R.drawable.w1;
-        }
     }
 
     private void updateDiceImage(int dice, int icon) {

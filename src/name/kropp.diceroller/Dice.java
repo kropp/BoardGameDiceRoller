@@ -1,19 +1,24 @@
 package name.kropp.diceroller;
 
-import java.util.Random;
-
 /**
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class Dice {
-    private Random myRandomizer;
+public interface Dice {
+    /**
+     * Rolls dice.
+     */
+    public void roll();
 
-    public Dice(long seed) {
-        myRandomizer = new Random(seed);
-    }
+    /**
+     * Current value. Must be called only after roll()
+     * @return current value
+     */
+    public int getCurrentValue();
 
-    public int roll() {
-        return myRandomizer.nextInt(6) + 1;
-    }
+    /**
+     * Returns resource icon id.
+     * @return icon id
+     */
+    public int getIconId();
 }
