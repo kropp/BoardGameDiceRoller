@@ -7,5 +7,11 @@
                 android:title="@string/title_shake_preference"
                 android:summary="@string/summary_shake_preference" />
 
+
+        <CheckBoxPreference
+                android:key="vibe_preference"
+                android:title="@string/title_vibe_preference"
+                android:summary="@string/summary_vibe_preference" />
+
     </PreferenceCategory>
 </PreferenceScreen>

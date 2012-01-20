@@ -1,8 +1,12 @@
 package name.kropp.diceroller;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +21,8 @@ public class MyMainActivity extends Activity
     private RedDice6 myRedDice;
     private SettlersOfCatanCitiesAndKnightsEventDice myEventDice;
     private ShakeListener myShaker;
+    private boolean myVibeAfterRoll;
+    private Vibrator myVibrator;
 
     public MyMainActivity() {
         long seed = System.currentTimeMillis();
@@ -39,10 +45,36 @@ public class MyMainActivity extends Activity
             }
         });
 
-        myShaker = new ShakeListener(this);
-        myShaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
-            public void onShake() {
-                RollDice();
+        myVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        myVibeAfterRoll = preferences.getBoolean("vibe_preference", false);
+        boolean rollOnShakeEnabled = preferences.getBoolean("shake_preference", false);
+        if (rollOnShakeEnabled) {
+            listenShakeEvent();
+        }
+
+        preferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+                if (s.equals("shake_preference"))
+                {
+                    boolean value = sharedPreferences.getBoolean(s, false);
+                    if (value) {
+                        if (myShaker == null)
+                            listenShakeEvent();
+                        else
+                            myShaker.resume();
+                    }
+                    else
+                    {
+                        if (myShaker != null)
+                            myShaker.pause();
+                    }
+                }
+                if (s.equals("vibe_preference"))
+                {
+                    myVibeAfterRoll = sharedPreferences.getBoolean("vibe_preference", false);
+                }
             }
         });
 
@@ -50,15 +82,28 @@ public class MyMainActivity extends Activity
         textView.setTextSize(20);
     }
 
+    private void listenShakeEvent() {
+        myShaker = new ShakeListener(this);
+        myShaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
+            public void onShake() {
+                RollDice();
+            }
+        });
+    }
+
     @Override
     public void onResume() {
-        myShaker.resume();
+        if (myShaker != null) {
+            myShaker.resume();
+        }
         super.onResume();
     }
 
     @Override
     public void onPause() {
-        myShaker.pause();
+        if (myShaker != null) {
+            myShaker.pause();
+        }
         super.onPause();
     }
 
@@ -77,10 +122,15 @@ public class MyMainActivity extends Activity
             openOptions();
             return true;
         case R.id.about:
+            showAboutDialog();
             return true;
         default:
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showAboutDialog() {
+
     }
 
     private void openOptions() {
@@ -106,6 +156,11 @@ public class MyMainActivity extends Activity
 
         CharSequence newText = String.format("%d [%d] = %d %s\n%s", myWhiteDice.getCurrentValue(), myRedDice.getCurrentValue(), myWhiteDice.getCurrentValue() + myRedDice.getCurrentValue(), myEventDice.getCurrentEvent().toString(), old.toString());
         textView.setText(newText);
+        
+        if (myVibeAfterRoll)
+        {
+            myVibrator.vibrate(500);
+        }
     }
 
     private void updateDiceImage(int dice, int icon) {

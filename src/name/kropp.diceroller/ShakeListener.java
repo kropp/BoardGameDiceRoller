@@ -50,7 +50,7 @@ public class ShakeListener implements SensorEventListener {
         if (mySensor == null) {
             return;
         }
-        boolean supported = mySensorManager.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_GAME);
+        boolean supported = mySensorManager.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_UI);
         if (!supported) {
             mySensorManager.unregisterListener(this, mySensor);
         }
