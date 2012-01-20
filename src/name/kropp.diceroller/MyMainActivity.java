@@ -1,6 +1,7 @@
 package name.kropp.diceroller;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,8 @@ public class MyMainActivity extends Activity
     private boolean myVibeAfterRoll;
     private Vibrator myVibrator;
 
+    static final int ABOUT_DIALOG_ID = 1;
+    
     public MyMainActivity() {
         long seed = System.currentTimeMillis();
         myWhiteDice = new Dice6(seed);
@@ -122,15 +125,34 @@ public class MyMainActivity extends Activity
             openOptions();
             return true;
         case R.id.about:
-            showAboutDialog();
+            showDialog(ABOUT_DIALOG_ID);
             return true;
         default:
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void showAboutDialog() {
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == ABOUT_DIALOG_ID)
+        {
+            return createAboutDialog();
+        }
+        return null;
+    }
 
+    private Dialog createAboutDialog() {
+        Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(R.layout.about);
+        dialog.setTitle("About Board Game Dice Roller");
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(true);
+/*
+        ImageView image = (ImageView) dialog.findViewById(R.id.image);
+        image.setImageResource(R.drawable.android);
+*/
+        return dialog;
     }
 
     private void openOptions() {
