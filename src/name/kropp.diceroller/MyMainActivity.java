@@ -2,9 +2,11 @@ package name.kropp.diceroller;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -14,9 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
-public class MyMainActivity extends Activity
+public class MyMainActivity extends TabActivity
 {
     private Dice6 myWhiteDice;
     private RedDice6 myRedDice;
@@ -36,7 +39,37 @@ public class MyMainActivity extends Activity
 
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        Resources res = getResources();
+        TabHost tabHost = getTabHost();
+        TabHost.TabSpec spec;
+        Intent intent;
+
+        intent = new Intent().setClass(this, DiceRollActivity.class);
+        spec = tabHost.newTabSpec("rolldice").setIndicator("Roll dice!",
+                          res.getDrawable(R.drawable.ic_tab_main))
+                      .setContent(intent);
+        tabHost.addTab(spec);
+
+        intent = new Intent().setClass(this, StatsActivity.class);
+        spec = tabHost.newTabSpec("Stats").setIndicator("Stats",
+                          res.getDrawable(R.drawable.ic_tab_stats))
+                      .setContent(intent);
+        tabHost.addTab(spec);
+
+        intent = new Intent().setClass(this, SetsActivity.class);
+        spec = tabHost.newTabSpec("sets").setIndicator("Sets",
+                          res.getDrawable(R.drawable.ic_tab_sets))
+                      .setContent(intent);
+        tabHost.addTab(spec);
+
+        tabHost.setCurrentTab(0);
+    }
+
+/*    public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -83,7 +116,7 @@ public class MyMainActivity extends Activity
 
         final TextView textView = (TextView) findViewById(R.id.text);
         textView.setTextSize(20);
-    }
+    }*/
 
     private void listenShakeEvent() {
         myShaker = new ShakeListener(this);
@@ -156,8 +189,7 @@ public class MyMainActivity extends Activity
     }
 
     private void openOptions() {
-        Intent myIntent = new Intent(this, MyPreferencesActivity.class);
-        this.startActivity(myIntent);
+        this.startActivity(new Intent(this, MyPreferencesActivity.class));
     }
 
     private void RollDice() {
@@ -165,9 +197,11 @@ public class MyMainActivity extends Activity
         myRedDice.roll();
         myEventDice.roll();
 
+/*
         updateDiceImage(R.id.white_dice, myWhiteDice.getIconId());
         updateDiceImage(R.id.red_dice, myRedDice.getIconId());
         updateDiceImage(R.id.event_dice, myEventDice.getIconId());
+*/
 
         final TextView textView = (TextView) findViewById(R.id.text);
 
