@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <LinearLayout android:orientation="horizontal"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1">
+    <ImageView android:id="@+id/white_dice"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/w4"
+            />
+    <ImageView android:id="@+id/red_dice"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/r3"
+            />
+    <ImageView android:id="@+id/event_dice"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:src="@drawable/pirates"
+            />
+        </LinearLayout>
+    <TextView android:id="@+id/text"
+              android:text="\n\n\n\n\n\n"
+              android:textSize="20pt"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:layout_weight="1"
+            />
+    <Button android:id="@+id/button_id"
+            android:text="@string/roll_dice"
+            android:textSize="30pt"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            />
+</LinearLayout>
