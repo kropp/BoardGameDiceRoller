@@ -12,8 +12,17 @@ public class StatsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        TextView textview = new TextView(this);
-        textview.setText("This is the Stats tab");
-        setContentView(textview);
+        setContentView(R.layout.stats);
+
+        final TextView textView = (TextView) findViewById(R.id.statstext);
+        textView.setTextSize(20);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        final TextView textView = (TextView) findViewById(R.id.statstext);
+        textView.setText(StatsManager.getInstance().getText());
     }
 }

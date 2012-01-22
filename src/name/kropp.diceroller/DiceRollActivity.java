@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by IntelliJ IDEA.
@@ -74,9 +73,6 @@ public class DiceRollActivity extends Activity {
                 }
             }
         });
-
-        final TextView textView = (TextView) findViewById(R.id.text);
-        textView.setTextSize(20);
     }
 
     private void listenShakeEvent() {
@@ -113,15 +109,7 @@ public class DiceRollActivity extends Activity {
         updateDiceImage(R.id.red_dice, myRedDice.getIconId());
         updateDiceImage(R.id.event_dice, myEventDice.getIconId());
 
-        final TextView textView = (TextView) findViewById(R.id.text);
-
-        String[] lines = textView.getText().toString().split("\n", -1);
-        StringBuilder old = new StringBuilder();
-        for (int i = 0; i < 5; i++)
-            old.append(lines[i]).append("\n");
-
-        CharSequence newText = String.format("%d [%d] = %d %s\n%s", myWhiteDice.getCurrentValue(), myRedDice.getCurrentValue(), myWhiteDice.getCurrentValue() + myRedDice.getCurrentValue(), myEventDice.getCurrentEvent().toString(), old.toString());
-        textView.setText(newText);
+        StatsManager.getInstance().updateStats(myWhiteDice.getCurrentValue(), myRedDice.getCurrentValue(), myEventDice.getCurrentEvent());
 
         if (myVibeAfterRoll)
         {
