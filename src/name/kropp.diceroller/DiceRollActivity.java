@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 /**
  * Created by IntelliJ IDEA.
@@ -34,8 +34,8 @@ public class DiceRollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
 
-        final Button button = (Button) findViewById(R.id.button_id);
-        button.setOnClickListener(new View.OnClickListener() {
+        final LinearLayout main_area = (LinearLayout) findViewById(R.id.dice_area);
+        main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 RollDice();
             }
@@ -113,7 +113,7 @@ public class DiceRollActivity extends Activity {
 
         if (myVibeAfterRoll)
         {
-            myVibrator.vibrate(500);
+            myVibrator.vibrate(150);
         }
     }
 
