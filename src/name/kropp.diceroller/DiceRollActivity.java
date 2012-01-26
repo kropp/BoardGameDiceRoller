@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * Created by IntelliJ IDEA.
@@ -48,23 +49,31 @@ public class DiceRollActivity extends Activity {
         boolean rollOnShakeEnabled = preferences.getBoolean("shake_preference", false);
         if (rollOnShakeEnabled) {
             listenShakeEvent();
+            
+            final TextView textView = (TextView) findViewById(R.id.taptoroll);
+            textView.setText(getString(R.string.shake_or_tap_to_roll));
         }
 
         preferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
                 if (s.equals("shake_preference"))
                 {
+                    final TextView textView = (TextView) findViewById(R.id.taptoroll);
                     boolean value = sharedPreferences.getBoolean(s, false);
                     if (value) {
                         if (myShaker == null)
                             listenShakeEvent();
                         else
                             myShaker.resume();
+
+                        textView.setText(getString(R.string.shake_or_tap_to_roll));
                     }
                     else
                     {
                         if (myShaker != null)
                             myShaker.pause();
+
+                        textView.setText(getString(R.string.tap_to_roll));
                     }
                 }
                 if (s.equals("vibe_preference"))

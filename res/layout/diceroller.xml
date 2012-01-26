@@ -29,6 +29,7 @@
                 />
     </LinearLayout>
     <TextView
+            android:id="@+id/taptoroll"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/tap_to_roll"
