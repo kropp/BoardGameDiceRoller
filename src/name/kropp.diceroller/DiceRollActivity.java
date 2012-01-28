@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 /**
  * Created by IntelliJ IDEA.
  * User: kropp
@@ -117,11 +115,15 @@ public class DiceRollActivity extends Activity {
     private void RollDice() {
         myDiceSet.rollAll();
 
-        List<Dice> dices = myDiceSet.getDices();
-        
-        updateDiceImage(R.id.white_dice, dices.get(0).getIconId());
-        updateDiceImage(R.id.red_dice, dices.get(1).getIconId());
-        updateDiceImage(R.id.event_dice, dices.get(2).getIconId());
+        final LinearLayout layout = (LinearLayout) findViewById(R.id.dice_area);
+        layout.removeAllViews();
+        for (Dice dice : myDiceSet.getDices()) {
+            ImageView image = new ImageView(this);
+            LinearLayout.LayoutParams vp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1);
+            image.setLayoutParams(vp);
+            layout.addView(image);
+            image.setImageResource(dice.getIconId());
+        }
 
         StatsManager.getInstance().updateStats(myDiceSet);
 
@@ -129,10 +131,5 @@ public class DiceRollActivity extends Activity {
         {
             myVibrator.vibrate(150);
         }
-    }
-
-    private void updateDiceImage(int dice, int icon) {
-        final ImageView imageView = (ImageView) findViewById(dice);
-        imageView.setImageResource(icon);
     }
 }

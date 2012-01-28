@@ -16,24 +16,6 @@
             android:layout_height="fill_parent"
             android:layout_width="fill_parent"
             android:layout_weight="1">
-        <ImageView android:id="@+id/white_dice"
-                android:layout_height="fill_parent"
-                android:layout_width="fill_parent"
-                android:layout_weight="1"
-                android:src="@drawable/w4"
-                />
-        <ImageView android:id="@+id/red_dice"
-                android:layout_height="fill_parent"
-                android:layout_width="fill_parent"
-                android:layout_weight="1"
-                android:src="@drawable/r3"
-                />
-        <ImageView android:id="@+id/event_dice"
-                android:layout_height="fill_parent"
-                android:layout_width="fill_parent"
-                android:layout_weight="1"
-                android:src="@drawable/pirates"
-                />
     </LinearLayout>
     <TextView
             android:id="@+id/taptoroll"
