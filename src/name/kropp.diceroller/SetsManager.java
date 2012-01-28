@@ -10,27 +10,26 @@ import java.util.List;
 public class SetsManager {
     private static SetsManager ourInstance;
 
+    private ArrayList<DiceSet> myDiceSets = new ArrayList<DiceSet>();
+
     private SetsManager() {
     }
 
     public static SetsManager getInstance()
     {
         if (ourInstance == null)
+        {
             ourInstance = new SetsManager();
+            PredefinedSets.init(ourInstance);
+        }
         return ourInstance;
     }
-    
+
+    public void addSet(DiceSet diceSet) {
+        myDiceSets.add(diceSet);
+    }
+
     public List<DiceSet> getSets() {
-        ArrayList<DiceSet> diceSets = new ArrayList<DiceSet>();
-        DiceSet myDiceSet = new DiceSet();
-
-        long seed = System.currentTimeMillis();
-        myDiceSet.addDice(new Dice6(seed));
-        myDiceSet.addDice(new RedDice6(seed * System.currentTimeMillis()));
-        myDiceSet.addDice(new SettlersOfCatanCitiesAndKnightsEventDice(seed * seed * System.currentTimeMillis()));
-
-        diceSets.add(myDiceSet);
-
-        return diceSets;
+        return myDiceSets;
     }
 }

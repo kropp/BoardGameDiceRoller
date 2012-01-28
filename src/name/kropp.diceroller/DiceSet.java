@@ -9,9 +9,14 @@ import java.util.List;
  */
 public class DiceSet {
     private final List<Dice> myDices = new LinkedList<Dice>();
+    private String myName;
+
+    public DiceSet(String name) {
+        myName = name;
+    }
 
     public String getName() {
-        return "Settlers of Catan: Cities & Knights";
+        return myName;
     }
 
     public void addDice(Dice dice) {

@@ -22,12 +22,7 @@ public class DiceRollActivity extends Activity {
     private Vibrator myVibrator;
 
     public DiceRollActivity() {
-        myDiceSet = new DiceSet();
-
-        long seed = System.currentTimeMillis();
-        myDiceSet.addDice(new Dice6(seed));
-        myDiceSet.addDice(new RedDice6(seed * System.currentTimeMillis()));
-        myDiceSet.addDice(new SettlersOfCatanCitiesAndKnightsEventDice(seed * seed * System.currentTimeMillis()));
+        myDiceSet = SetsManager.getInstance().getSets().get(0);
     }
 
     public void onCreate(Bundle savedInstanceState)
