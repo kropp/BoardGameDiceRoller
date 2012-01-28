@@ -5,11 +5,11 @@ package name.kropp.diceroller;
  * User: kropp
  */
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.content.Context;
 
 public class ShakeListener implements SensorEventListener {
     private static final int FORCE_THRESHOLD = 350;
