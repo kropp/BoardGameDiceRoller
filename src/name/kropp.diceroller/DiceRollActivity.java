@@ -23,6 +23,7 @@ public class DiceRollActivity extends Activity {
 
     public DiceRollActivity() {
         myDiceSet = SetsManager.getInstance().getSets().get(0);
+        myDiceSet.rollAll();
     }
 
     public void onCreate(Bundle savedInstanceState)
@@ -32,7 +33,8 @@ public class DiceRollActivity extends Activity {
 
         final TextView setName = (TextView) findViewById(R.id.dicesetname);
         setName.setText(myDiceSet.getName());
-        
+        displaySet();
+
         final LinearLayout main_area = (LinearLayout) findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -110,6 +112,17 @@ public class DiceRollActivity extends Activity {
     private void RollDice() {
         myDiceSet.rollAll();
 
+        displaySet();
+
+        StatsManager.getInstance().updateStats(myDiceSet);
+
+        if (myVibeAfterRoll)
+        {
+            myVibrator.vibrate(150);
+        }
+    }
+
+    private void displaySet() {
         final LinearLayout layout = (LinearLayout) findViewById(R.id.dice_area);
         layout.removeAllViews();
         for (Dice dice : myDiceSet.getDices()) {
@@ -118,13 +131,6 @@ public class DiceRollActivity extends Activity {
             image.setLayoutParams(vp);
             layout.addView(image);
             image.setImageResource(dice.getIconId());
-        }
-
-        StatsManager.getInstance().updateStats(myDiceSet);
-
-        if (myVibeAfterRoll)
-        {
-            myVibrator.vibrate(150);
         }
     }
 }
