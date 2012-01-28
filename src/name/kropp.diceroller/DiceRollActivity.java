@@ -11,23 +11,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: kropp
  */
 public class DiceRollActivity extends Activity {
-    private Dice6 myWhiteDice;
-    private RedDice6 myRedDice;
-    private SettlersOfCatanCitiesAndKnightsEventDice myEventDice;
+    private DiceSet myDiceSet;
     private ShakeListener myShaker;
     private boolean myVibeAfterRoll;
     private Vibrator myVibrator;
 
     public DiceRollActivity() {
+        myDiceSet = new DiceSet();
+
         long seed = System.currentTimeMillis();
-        myWhiteDice = new Dice6(seed);
-        myRedDice = new RedDice6(seed * System.currentTimeMillis());
-        myEventDice = new SettlersOfCatanCitiesAndKnightsEventDice(seed * seed * System.currentTimeMillis());
+        myDiceSet.addDice(new Dice6(seed));
+        myDiceSet.addDice(new RedDice6(seed * System.currentTimeMillis()));
+        myDiceSet.addDice(new SettlersOfCatanCitiesAndKnightsEventDice(seed * seed * System.currentTimeMillis()));
     }
 
     public void onCreate(Bundle savedInstanceState)
@@ -35,6 +37,9 @@ public class DiceRollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
 
+        final TextView setName = (TextView) findViewById(R.id.dicesetname);
+        setName.setText(myDiceSet.getName());
+        
         final LinearLayout main_area = (LinearLayout) findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -110,15 +115,15 @@ public class DiceRollActivity extends Activity {
     }
 
     private void RollDice() {
-        myWhiteDice.roll();
-        myRedDice.roll();
-        myEventDice.roll();
+        myDiceSet.rollAll();
 
-        updateDiceImage(R.id.white_dice, myWhiteDice.getIconId());
-        updateDiceImage(R.id.red_dice, myRedDice.getIconId());
-        updateDiceImage(R.id.event_dice, myEventDice.getIconId());
+        List<Dice> dices = myDiceSet.getDices();
+        
+        updateDiceImage(R.id.white_dice, dices.get(0).getIconId());
+        updateDiceImage(R.id.red_dice, dices.get(1).getIconId());
+        updateDiceImage(R.id.event_dice, dices.get(2).getIconId());
 
-        StatsManager.getInstance().updateStats(myWhiteDice.getCurrentValue(), myRedDice.getCurrentValue(), myEventDice.getCurrentEvent());
+        StatsManager.getInstance().updateStats(myDiceSet);
 
         if (myVibeAfterRoll)
         {
