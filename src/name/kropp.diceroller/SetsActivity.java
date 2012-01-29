@@ -18,10 +18,4 @@ public class SetsActivity extends ListActivity {
 		setListAdapter(adapter);
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	}
-
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		String item = (String) getListAdapter().getItem(position);
-		Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
-	}
 }

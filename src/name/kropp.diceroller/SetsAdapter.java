@@ -2,6 +2,7 @@ package name.kropp.diceroller;
 
 import android.R;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class SetsAdapter extends ArrayAdapter<String> {
             public void onClick(View view) {
                 int index = (Integer) view.getTag();
                 mySetsManager.setSelected(index);
+                myContext.startActivity(new Intent(myContext, MyMainActivity.class));
             }
         });
 

@@ -10,11 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
 
-public class MyMainActivity extends TabActivity
-{
+public class MyMainActivity extends TabActivity {
     static final int ABOUT_DIALOG_ID = 1;
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,20 +28,20 @@ public class MyMainActivity extends TabActivity
 
         intent = new Intent().setClass(this, DiceRollActivity.class);
         spec = tabHost.newTabSpec("rolldice").setIndicator("Roll dice!",
-                          res.getDrawable(R.drawable.ic_tab_main))
-                      .setContent(intent);
+                res.getDrawable(R.drawable.ic_tab_main))
+                .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, StatsActivity.class);
         spec = tabHost.newTabSpec("Stats").setIndicator("Stats",
-                          res.getDrawable(R.drawable.ic_tab_stats))
-                      .setContent(intent);
+                res.getDrawable(R.drawable.ic_tab_stats))
+                .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, SetsActivity.class);
         spec = tabHost.newTabSpec("sets").setIndicator("Sets",
-                          res.getDrawable(R.drawable.ic_tab_sets))
-                      .setContent(intent);
+                res.getDrawable(R.drawable.ic_tab_sets))
+                .setContent(intent);
         tabHost.addTab(spec);
 
         tabHost.setCurrentTab(0);
@@ -57,21 +58,20 @@ public class MyMainActivity extends TabActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-        case R.id.options:
-            openOptions();
-            return true;
-        case R.id.about:
-            showDialog(ABOUT_DIALOG_ID);
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
+            case R.id.options:
+                openOptions();
+                return true;
+            case R.id.about:
+                showDialog(ABOUT_DIALOG_ID);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        if (id == ABOUT_DIALOG_ID)
-        {
+        if (id == ABOUT_DIALOG_ID) {
             return createAboutDialog();
         }
         return null;
@@ -93,5 +93,11 @@ public class MyMainActivity extends TabActivity
 
     private void openOptions() {
         this.startActivity(new Intent(this, MyPreferencesActivity.class));
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getTabHost().setCurrentTab(0);
     }
 }
