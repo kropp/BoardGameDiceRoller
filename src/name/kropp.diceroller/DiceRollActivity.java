@@ -21,14 +21,14 @@ public class DiceRollActivity extends Activity {
     private ShakeListener myShaker;
     private boolean myVibeAfterRoll;
     private Vibrator myVibrator;
+    private Toast myToast;
 
     public DiceRollActivity() {
         myDiceSet = SetsManager.getInstance().getSets().get(0);
         myDiceSet.rollAll();
     }
 
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
 
@@ -48,15 +48,14 @@ public class DiceRollActivity extends Activity {
         boolean rollOnShakeEnabled = preferences.getBoolean("shake_preference", false);
         if (rollOnShakeEnabled) {
             listenShakeEvent();
-            
+
             final TextView textView = (TextView) findViewById(R.id.taptoroll);
             textView.setText(getString(R.string.shake_or_tap_to_roll));
         }
 
         preferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-                if (s.equals("shake_preference"))
-                {
+                if (s.equals("shake_preference")) {
                     final TextView textView = (TextView) findViewById(R.id.taptoroll);
                     boolean value = sharedPreferences.getBoolean(s, false);
                     if (value) {
@@ -66,17 +65,14 @@ public class DiceRollActivity extends Activity {
                             myShaker.resume();
 
                         textView.setText(getString(R.string.shake_or_tap_to_roll));
-                    }
-                    else
-                    {
+                    } else {
                         if (myShaker != null)
                             myShaker.pause();
 
                         textView.setText(getString(R.string.tap_to_roll));
                     }
                 }
-                if (s.equals("vibe_preference"))
-                {
+                if (s.equals("vibe_preference")) {
                     myVibeAfterRoll = sharedPreferences.getBoolean("vibe_preference", false);
                 }
             }
@@ -126,10 +122,17 @@ public class DiceRollActivity extends Activity {
 
         StatsManager.getInstance().updateStats(myDiceSet);
 
-        Toast.makeText(this, ""+myDiceSet.getSum(), Toast.LENGTH_LONG).show();
+        String notification = "" + myDiceSet.getSum();
+        if (myToast != null) {
+            myToast.setText(notification);
+            myToast.setDuration(Toast.LENGTH_LONG);
+            myToast.show();
+        } else {
+            myToast = Toast.makeText(this, notification, Toast.LENGTH_LONG);
+            myToast.show();
+        }
 
-        if (myVibeAfterRoll)
-        {
+        if (myVibeAfterRoll) {
             myVibrator.vibrate(150);
         }
     }
