@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by IntelliJ IDEA.
@@ -124,6 +125,8 @@ public class DiceRollActivity extends Activity {
         displaySet();
 
         StatsManager.getInstance().updateStats(myDiceSet);
+
+        Toast.makeText(this, ""+myDiceSet.getSum(), Toast.LENGTH_LONG).show();
 
         if (myVibeAfterRoll)
         {

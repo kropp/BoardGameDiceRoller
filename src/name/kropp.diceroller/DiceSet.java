@@ -32,4 +32,15 @@ public class DiceSet {
     public List<Dice> getDices() {
         return myDices;
     }
+
+    public int getSum() {
+        int result = 0;
+        for (Dice dice : myDices) {
+            if (!(dice instanceof SettlersOfCatanCitiesAndKnightsEventDice))
+            {
+                result += dice.getCurrentValue();
+            }
+        }
+        return result;
+    }
 }

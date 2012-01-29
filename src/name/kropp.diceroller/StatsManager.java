@@ -39,7 +39,6 @@ public class StatsManager {
             myLines[i] = myLines[i - 1];
 
         StringBuilder builder = new StringBuilder();
-        int sum = 0;
 
         List<Dice> dices = diceSet.getDices();
         for (Dice die : dices) {
@@ -51,12 +50,10 @@ public class StatsManager {
                 } else {
                     builder.append(' ').append(die.getCurrentValue());
                 }
-
-                sum += die.getCurrentValue();
             }
         }
 
-        builder.append(" = ").append(sum);
+        builder.append(" = ").append(diceSet.getSum());
 
         myLines[0] = builder.toString();
     }
