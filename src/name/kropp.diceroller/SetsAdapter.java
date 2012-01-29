@@ -38,7 +38,16 @@ public class SetsAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) myContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView textView = (TextView) inflater.inflate(R.layout.simple_list_item_1, parent, false);
 
-        textView.setText(mySetsManager.getSets().get(0).getName());
+        textView.setText(mySetsManager.getSets().get(position).getName());
+        textView.setTag(position);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int index = (Integer) view.getTag();
+                mySetsManager.setSelected(index);
+            }
+        });
 
         return textView;
     }
