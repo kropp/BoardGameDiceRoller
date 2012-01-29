@@ -11,12 +11,13 @@
             android:gravity="center"
             android:paddingBottom="5dp"
             />
-    <LinearLayout android:id="@+id/dice_area"
-            android:orientation="vertical"
-            android:layout_height="fill_parent"
-            android:layout_width="fill_parent"
+    <TableLayout android:id="@+id/dice_area"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_weight="1">
-    </LinearLayout>
+    </TableLayout>
     <TextView
             android:id="@+id/taptoroll"
             android:layout_width="fill_parent"

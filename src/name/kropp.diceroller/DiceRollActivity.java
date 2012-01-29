@@ -7,10 +7,9 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -34,7 +33,7 @@ public class DiceRollActivity extends Activity {
 
         initView();
 
-        final LinearLayout main_area = (LinearLayout) findViewById(R.id.dice_area);
+        final View main_area = findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 RollDice();
@@ -138,14 +137,26 @@ public class DiceRollActivity extends Activity {
     }
 
     private void displaySet() {
-        final LinearLayout layout = (LinearLayout) findViewById(R.id.dice_area);
+        final TableLayout layout = (TableLayout) findViewById(R.id.dice_area);
         layout.removeAllViews();
-        for (Dice dice : myDiceSet.getDices()) {
-            ImageView image = new ImageView(this);
-            LinearLayout.LayoutParams vp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT, 1);
-            image.setLayoutParams(vp);
-            layout.addView(image);
-            image.setImageResource(dice.getIconId());
+
+        List<Dice> dices = myDiceSet.getDices();
+
+        int size = (int) Math.ceil(Math.sqrt(dices.size()));
+        for (int i = 0; i < size; i++) {
+            TableRow row = new TableRow(this);
+
+            for (int j = 0; j < size && i * size + j < dices.size(); j++) {
+                Dice dice = dices.get(i * size + j);
+
+                ImageView image = new ImageView(this);
+                image.setImageResource(dice.getIconId());
+                image.setPadding(5, 5, 5, 5);
+
+                row.addView(image);
+            }
+
+            layout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
     }
 }
