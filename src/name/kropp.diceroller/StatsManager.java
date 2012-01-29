@@ -41,11 +41,13 @@ public class StatsManager {
         for (int i = MAX_LINES - 1; i > 0; i--)
             myLines[i] = myLines[i-1];
 
+/*
         List<Dice> dices = diceSet.getDices();
         int whiteDice = dices.get(0).getCurrentValue();
         int redDice = dices.get(1).getCurrentValue();
         Event eventDice = ((SettlersOfCatanCitiesAndKnightsEventDice)dices.get(2)).getCurrentEvent();
 
         myLines[0] = String.format("%d [%d] = %d %s", whiteDice, redDice, whiteDice + redDice, eventDice);
+*/
     }
 }

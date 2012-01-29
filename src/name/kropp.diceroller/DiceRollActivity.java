@@ -31,9 +31,7 @@ public class DiceRollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
 
-        final TextView setName = (TextView) findViewById(R.id.dicesetname);
-        setName.setText(myDiceSet.getName());
-        displaySet();
+        initView();
 
         final LinearLayout main_area = (LinearLayout) findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +82,14 @@ public class DiceRollActivity extends Activity {
         });
     }
 
+    private void initView() {
+        myDiceSet = SetsManager.getInstance().getSelectedSet();
+
+        final TextView setName = (TextView) findViewById(R.id.dicesetname);
+        setName.setText(myDiceSet.getName());
+        displaySet();
+    }
+
     private void listenShakeEvent() {
         myShaker = new ShakeListener(this);
         myShaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
@@ -98,6 +104,9 @@ public class DiceRollActivity extends Activity {
         if (myShaker != null) {
             myShaker.resume();
         }
+
+        initView();
+
         super.onResume();
     }
 
