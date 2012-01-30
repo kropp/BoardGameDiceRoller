@@ -4,7 +4,7 @@ package name.kropp.diceroller;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public interface Dice {
+public interface Die {
     /**
      * Rolls dice.
      */

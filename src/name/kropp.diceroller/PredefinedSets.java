@@ -27,7 +27,7 @@ public final class PredefinedSets {
 
         for (int i = 0; i < numberOfDice; i++) {
             seed *= System.currentTimeMillis();
-            set.addDice(new Dice6(seed));
+            set.addDice(new Die6(seed));
         }
 
         return set;
@@ -37,9 +37,9 @@ public final class PredefinedSets {
         DiceSet set = new DiceSet("Settlers of Catan: Cities & Knights");
 
         long seed = System.currentTimeMillis();
-        set.addDice(new Dice6(seed));
-        set.addDice(new RedDice6(seed * System.currentTimeMillis()));
-        set.addDice(new SettlersOfCatanCitiesAndKnightsEventDice(seed * seed * System.currentTimeMillis()));
+        set.addDice(new Die6(seed));
+        set.addDice(new RedDie6(seed * System.currentTimeMillis()));
+        set.addDice(new SettlersOfCatanCitiesAndKnightsEventDie(seed * seed * System.currentTimeMillis()));
 
         return set;
     }

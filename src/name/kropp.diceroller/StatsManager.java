@@ -40,12 +40,12 @@ public class StatsManager {
 
         StringBuilder builder = new StringBuilder();
 
-        List<Dice> dices = diceSet.getDices();
-        for (Dice die : dices) {
-            if (die instanceof SettlersOfCatanCitiesAndKnightsEventDice) {
-                builder.append(' ').append(((SettlersOfCatanCitiesAndKnightsEventDice) die).getCurrentEvent());
+        List<Die> dies = diceSet.getDice();
+        for (Die die : dies) {
+            if (die instanceof SettlersOfCatanCitiesAndKnightsEventDie) {
+                builder.append(' ').append(((SettlersOfCatanCitiesAndKnightsEventDie) die).getCurrentEvent());
             } else {
-                if (die instanceof RedDice6) {
+                if (die instanceof RedDie6) {
                     builder.append(" [").append(die.getCurrentValue()).append(']');
                 } else {
                     builder.append(' ').append(die.getCurrentValue());

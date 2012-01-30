@@ -4,9 +4,9 @@ package name.kropp.diceroller;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class SettlersOfCatanCitiesAndKnightsEventDice extends Dice6 {
+public class SettlersOfCatanCitiesAndKnightsEventDie extends Die6 {
 
-    public SettlersOfCatanCitiesAndKnightsEventDice(long seed) {
+    public SettlersOfCatanCitiesAndKnightsEventDie(long seed) {
         super(seed);
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
  * User: kropp
  */
 public class DiceSet {
-    private final List<Dice> myDices = new LinkedList<Dice>();
+    private final List<Die> myDices = new LinkedList<Die>();
     private String myName;
 
     public DiceSet(String name) {
@@ -19,26 +19,26 @@ public class DiceSet {
         return myName;
     }
 
-    public void addDice(Dice dice) {
-        myDices.add(dice);
+    public void addDice(Die die) {
+        myDices.add(die);
     }
 
     public void rollAll() {
-        for (Dice dice : myDices) {
-            dice.roll();
+        for (Die die : myDices) {
+            die.roll();
         }
     }
 
-    public List<Dice> getDices() {
+    public List<Die> getDice() {
         return myDices;
     }
 
     public int getSum() {
         int result = 0;
-        for (Dice dice : myDices) {
-            if (!(dice instanceof SettlersOfCatanCitiesAndKnightsEventDice))
+        for (Die die : myDices) {
+            if (!(die instanceof SettlersOfCatanCitiesAndKnightsEventDie))
             {
-                result += dice.getCurrentValue();
+                result += die.getCurrentValue();
             }
         }
         return result;

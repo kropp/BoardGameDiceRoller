@@ -4,8 +4,8 @@ package name.kropp.diceroller;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class RedDice6 extends Dice6 {
-    public RedDice6(long seed) {
+public class RedDie6 extends Die6 {
+    public RedDie6(long seed) {
         super(seed);
     }
 

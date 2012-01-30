@@ -140,17 +140,17 @@ public class DiceRollActivity extends Activity {
         final TableLayout layout = (TableLayout) findViewById(R.id.dice_area);
         layout.removeAllViews();
 
-        List<Dice> dices = myDiceSet.getDices();
+        List<Die> dies = myDiceSet.getDice();
 
-        int size = (int) Math.ceil(Math.sqrt(dices.size()));
+        int size = (int) Math.ceil(Math.sqrt(dies.size()));
         for (int i = 0; i < size; i++) {
             TableRow row = new TableRow(this);
 
-            for (int j = 0; j < size && i * size + j < dices.size(); j++) {
-                Dice dice = dices.get(i * size + j);
+            for (int j = 0; j < size && i * size + j < dies.size(); j++) {
+                Die die = dies.get(i * size + j);
 
                 ImageView image = new ImageView(this);
-                image.setImageResource(dice.getIconId());
+                image.setImageResource(die.getIconId());
                 image.setPadding(5, 5, 5, 5);
 
                 row.addView(image);

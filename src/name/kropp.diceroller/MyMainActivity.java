@@ -81,7 +81,7 @@ public class MyMainActivity extends TabActivity {
         Dialog dialog = new Dialog(this);
 
         dialog.setContentView(R.layout.about);
-        dialog.setTitle("About Board Game Dice Roller");
+        dialog.setTitle(R.string.about_title);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
 /*

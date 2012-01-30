@@ -6,11 +6,11 @@ import java.util.Random;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class Dice6 implements Dice {
+public class Die6 implements Die {
     private Random myRandomizer;
     private int myValue;
     
-    public Dice6(long seed) {
+    public Die6(long seed) {
         myRandomizer = new Random(seed);
     }
 

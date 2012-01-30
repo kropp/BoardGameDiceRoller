@@ -6,9 +6,10 @@
     <string name="about">About</string>
     <string name="main_preferences">Preferences</string>
     <string name="title_shake_preference">Shake to roll</string>
-    <string name="summary_shake_preference">Rolls dices when shaking device</string>
+    <string name="summary_shake_preference">Rolls dice when shaking device</string>
     <string name="title_vibe_preference">Vibe after roll</string>
-    <string name="summary_vibe_preference">Vibrates after rolling dices</string>
+    <string name="summary_vibe_preference">Vibrates after rolling dice</string>
+    <string name="about_title">About Board Game Dice Roller</string>
     <string name="about_text">This is board game dice roller application. Initially designed for The Settlers of Catan: Cities &amp; Knights.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Tap dice to roll</string>
     <string name="shake_or_tap_to_roll">Shake or tap dice to roll</string>
