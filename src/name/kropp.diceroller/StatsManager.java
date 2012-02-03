@@ -1,5 +1,11 @@
 package name.kropp.diceroller;
 
+import android.graphics.Typeface;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
+
 import java.util.List;
 
 /**
@@ -8,53 +14,40 @@ import java.util.List;
  */
 public class StatsManager {
     private static StatsManager ourInstance;
-
-    final static int MAX_LINES = 20;
-
-    private String[] myLines = new String[MAX_LINES];
+    SpannableStringBuilder myStatsText = new SpannableStringBuilder();
 
     private StatsManager() {
-        for (int i = 0; i < MAX_LINES; i++)
-            myLines[i] = "\n";
     }
 
     public static StatsManager getInstance() {
         if (ourInstance == null) {
-            // not thread-safe, consider rewriting
             ourInstance = new StatsManager();
         }
         return ourInstance;
     }
 
     public CharSequence getText() {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < MAX_LINES; i++) {
-            builder.append(myLines[i]).append('\n');
-        }
-        return builder.toString();
+        return myStatsText;
     }
 
     public void updateStats(DiceSet diceSet) {
-        for (int i = MAX_LINES - 1; i > 0; i--)
-            myLines[i] = myLines[i - 1];
-
         StringBuilder builder = new StringBuilder();
 
-        List<Die> dies = diceSet.getDice();
-        for (Die die : dies) {
+        List<Die> dice = diceSet.getDice();
+        for (Die die : dice) {
             if (die instanceof SettlersOfCatanCitiesAndKnightsEventDie) {
-                builder.append(' ').append(((SettlersOfCatanCitiesAndKnightsEventDie) die).getCurrentEvent());
+                builder.append(((SettlersOfCatanCitiesAndKnightsEventDie) die).getCurrentEvent().toString()).append(' ');
             } else {
                 if (die instanceof RedDie6) {
-                    builder.append(" [").append(die.getCurrentValue()).append(']');
+                    builder.append("<font color=\"red\">").append(die.getCurrentValue()).append("</font> ");
                 } else {
-                    builder.append(' ').append(die.getCurrentValue());
+                    builder.append(die.getCurrentValue()).append(' ');
                 }
             }
         }
 
-        builder.append(" = ").append(diceSet.getSum());
+        builder.append("= <b>").append(diceSet.getSum()).append("</b><br>");
 
-        myLines[0] = builder.toString();
+        myStatsText.insert(0, Html.fromHtml(builder.toString()));
     }
 }
