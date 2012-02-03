@@ -35,4 +35,9 @@ public class SettlersOfCatanCitiesAndKnightsEventDie extends Die6 {
             default: return R.drawable.pirates;
         }
     }
+
+    @Override
+    public String toString() {
+        return getCurrentEvent().toString();
+    }
 }

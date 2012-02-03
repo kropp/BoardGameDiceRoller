@@ -22,4 +22,9 @@ public class RedDie6 extends Die6 {
             default: return R.drawable.r1;
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("<font color=\"red\">%d</font>", getCurrentValue());
+    }
 }
