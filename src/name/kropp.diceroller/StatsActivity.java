@@ -23,6 +23,6 @@ public class StatsActivity extends Activity {
         super.onResume();
 
         final TextView textView = (TextView) findViewById(R.id.statstext);
-        textView.setText(StatsManager.getInstance().getText());
+        textView.setText(StatsManager.getInstance(getResources()).getText());
     }
 }

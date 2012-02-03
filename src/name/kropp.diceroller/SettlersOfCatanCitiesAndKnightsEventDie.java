@@ -38,6 +38,6 @@ public class SettlersOfCatanCitiesAndKnightsEventDie extends Die6 {
 
     @Override
     public String toString() {
-        return getCurrentEvent().toString();
+        return String.format("<img src=\"%d\">", getIconId());
     }
 }
