@@ -3,6 +3,8 @@ package name.kropp.diceroller;
 import android.R;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +18,13 @@ import android.widget.TextView;
 public class SetsAdapter extends ArrayAdapter<String> {
     private SetsManager mySetsManager;
     private Context myContext;
+    private SharedPreferences myPreferences;
 
     public SetsAdapter(Context context, SetsManager setsManager) {
         super(context, R.layout.simple_list_item_single_choice);
 
         myContext = context;
+        myPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         mySetsManager = setsManager;
     }
 
@@ -47,6 +51,9 @@ public class SetsAdapter extends ArrayAdapter<String> {
             public void onClick(View view) {
                 int index = (Integer) view.getTag();
                 mySetsManager.setSelected(index);
+                SharedPreferences.Editor editor = myPreferences.edit();
+                editor.putString("selected_set_id", mySetsManager.getSelectedSet().getId());
+                editor.commit();
                 myContext.startActivity(new Intent(myContext, MyMainActivity.class));
             }
         });

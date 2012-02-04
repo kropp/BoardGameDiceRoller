@@ -9,10 +9,17 @@ import java.util.List;
  */
 public class DiceSet {
     private final List<Die> myDices = new LinkedList<Die>();
+    
+    private String myId;
     private String myName;
 
-    public DiceSet(String name) {
+    public DiceSet(String id, String name) {
+        myId = id;
         myName = name;
+    }
+
+    public String getId() {
+        return myId;
     }
 
     public String getName() {

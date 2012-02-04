@@ -22,14 +22,18 @@ public class DiceRollActivity extends Activity {
     private Vibrator myVibrator;
     private Toast myToast;
 
-    public DiceRollActivity() {
-        myDiceSet = SetsManager.getInstance().getSets().get(0);
-        myDiceSet.rollAll();
-    }
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String selectedSetId = preferences.getString("selected_set_id", null);
+
+        SetsManager setsManager = SetsManager.getInstance();
+        setsManager.setSelected(selectedSetId);
+        
+        myDiceSet = setsManager.getSelectedSet();
+        myDiceSet.rollAll();
 
         initView();
 
@@ -42,7 +46,6 @@ public class DiceRollActivity extends Activity {
 
         myVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         myVibeAfterRoll = preferences.getBoolean("vibe_preference", false);
         boolean rollOnShakeEnabled = preferences.getBoolean("shake_preference", false);
         if (rollOnShakeEnabled) {

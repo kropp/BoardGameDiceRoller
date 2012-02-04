@@ -44,4 +44,15 @@ public class SetsManager {
     public DiceSet getSelectedSet() {
         return myDiceSets.get(mySelected);
     }
+
+    public void setSelected(String id) {
+        int i = 0;
+        for (DiceSet diceSet : myDiceSets) {
+            if (diceSet.getId().equals(id))
+            {
+                setSelected(i);
+            }
+            i++;
+        }
+    }
 }

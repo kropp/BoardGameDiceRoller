@@ -21,7 +21,7 @@ public final class PredefinedSets {
     }
 
     private static DiceSet createSimpleDiceSet(int numberOfDice) {
-        DiceSet set = new DiceSet(String.format("%d six-sided dice (%dd6)", numberOfDice, numberOfDice));
+        DiceSet set = new DiceSet(String.format("%dd6", numberOfDice), String.format("%d six-sided dice (%dd6)", numberOfDice, numberOfDice));
 
         long seed = System.currentTimeMillis();
 
@@ -34,7 +34,7 @@ public final class PredefinedSets {
     }
 
     private static DiceSet createSettlersOfCatanCitiesAndKnightsDiceSet() {
-        DiceSet set = new DiceSet("Settlers of Catan: Cities & Knights");
+        DiceSet set = new DiceSet("catan_cities_knights", "Settlers of Catan: Cities & Knights");
 
         long seed = System.currentTimeMillis();
         set.addDice(new Die6(seed));
