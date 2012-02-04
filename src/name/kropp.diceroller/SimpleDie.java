@@ -1,5 +1,9 @@
 package name.kropp.diceroller;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
+
 import java.util.Random;
 
 /**
@@ -27,6 +31,14 @@ public class SimpleDie implements Die {
     @Override
     public String toString() {
         return String.valueOf(myValue);
+    }
+
+    @Override
+    public View getCurrentView(Context context) {
+        ImageView image = new ImageView(context);
+        image.setImageResource(getIconId());
+        image.setPadding(5, 5, 5, 5);
+        return image;
     }
 
     public int getIconId() {

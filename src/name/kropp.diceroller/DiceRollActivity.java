@@ -31,7 +31,7 @@ public class DiceRollActivity extends Activity {
 
         SetsManager setsManager = SetsManager.getInstance();
         setsManager.setSelected(selectedSetId);
-        
+
         myDiceSet = setsManager.getSelectedSet();
         myDiceSet.rollAll();
 
@@ -143,20 +143,15 @@ public class DiceRollActivity extends Activity {
         final TableLayout layout = (TableLayout) findViewById(R.id.dice_area);
         layout.removeAllViews();
 
-        List<Die> dies = myDiceSet.getDice();
+        List<Die> dice = myDiceSet.getDice();
 
-        int size = (int) Math.ceil(Math.sqrt(dies.size()));
+        int size = (int) Math.ceil(Math.sqrt(dice.size()));
         for (int i = 0; i < size; i++) {
             TableRow row = new TableRow(this);
 
-            for (int j = 0; j < size && i * size + j < dies.size(); j++) {
-                Die die = dies.get(i * size + j);
-
-                ImageView image = new ImageView(this);
-                image.setImageResource(die.getIconId());
-                image.setPadding(5, 5, 5, 5);
-
-                row.addView(image);
+            for (int j = 0; j < size && i * size + j < dice.size(); j++) {
+                Die die = dice.get(i * size + j);
+                row.addView(die.getCurrentView(this));
             }
 
             layout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));

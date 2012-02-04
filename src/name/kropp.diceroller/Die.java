@@ -1,5 +1,8 @@
 package name.kropp.diceroller;
 
+import android.content.Context;
+import android.view.View;
+
 /**
  * Created by IntelliJ IDEA.
  * User: kropp
@@ -17,8 +20,9 @@ public interface Die {
     public int getCurrentValue();
 
     /**
-     * Returns resource icon id.
-     * @return icon id
+     * Returns view displaying current die state.
+     * @return View
+     * @param context Current context
      */
-    public int getIconId();
+    public View getCurrentView(Context context);
 }
