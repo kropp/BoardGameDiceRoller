@@ -6,16 +6,18 @@ import java.util.Random;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class Die6 implements Die {
+public class SimpleDie implements Die {
     private Random myRandomizer;
     private int myValue;
+    private int mySides;
 
-    public Die6(long seed) {
+    public SimpleDie(int sides, long seed) {
+        mySides = sides;
         myRandomizer = new Random(seed);
     }
 
     public void roll() {
-        myValue = myRandomizer.nextInt(6) + 1;
+        myValue = myRandomizer.nextInt(mySides) + 1;
     }
 
     public int getCurrentValue() {

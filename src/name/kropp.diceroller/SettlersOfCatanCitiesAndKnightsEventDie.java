@@ -4,10 +4,10 @@ package name.kropp.diceroller;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class SettlersOfCatanCitiesAndKnightsEventDie extends Die6 {
+public class SettlersOfCatanCitiesAndKnightsEventDie extends SimpleDie {
 
     public SettlersOfCatanCitiesAndKnightsEventDie(long seed) {
-        super(seed);
+        super(6, seed);
     }
 
     public Event getCurrentEvent()
