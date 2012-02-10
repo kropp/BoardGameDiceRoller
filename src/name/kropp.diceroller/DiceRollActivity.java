@@ -35,7 +35,7 @@ public class DiceRollActivity extends Activity {
         myDiceSet = setsManager.getSelectedSet();
         myDiceSet.rollAll();
 
-        initView();
+        //initView();
 
         final View main_area = findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
@@ -103,10 +103,9 @@ public class DiceRollActivity extends Activity {
         if (myShaker != null) {
             myShaker.resume();
         }
+        super.onResume();
 
         initView();
-
-        super.onResume();
     }
 
     @Override
@@ -141,16 +140,37 @@ public class DiceRollActivity extends Activity {
 
     private void displaySet() {
         final TableLayout layout = (TableLayout) findViewById(R.id.dice_area);
+
+        final View view = findViewById(R.id.dicerollarea);
+
+        int width = view.getWidth();
+        if (width == 0)
+            width = getWindowManager().getDefaultDisplay().getWidth();
+
+        int height = view.getHeight();
+        if (height == 0)
+            height = getWindowManager().getDefaultDisplay().getHeight();
+
         layout.removeAllViews();
 
         List<Die> dice = myDiceSet.getDice();
 
-        int size = (int) Math.ceil(Math.sqrt(dice.size()));
-        for (int i = 0; i < size; i++) {
+        int size = dice.size();
+        double distribution = Math.sqrt(1.0 * height / width * size);
+        // trying to layout dice rectangular, otherwise adding extra items along biggest side
+        int rows = (int) (width > height ? Math.floor(distribution) : Math.ceil(distribution));
+        int columns = (int) Math.ceil(1.0 * size / rows);
+        
+        for (int i = 0; i < rows; i++) {
             TableRow row = new TableRow(this);
+            row.setWeightSum(1);
 
-            for (int j = 0; j < size && i * size + j < dice.size(); j++) {
-                Die die = dice.get(i * size + j);
+            for (int j = 0; j < columns; j++) {
+                int number =  i * columns + j;
+                if (number >= size)
+                    break;
+
+                Die die = dice.get(number);
                 row.addView(die.getCurrentView(this));
             }
 
