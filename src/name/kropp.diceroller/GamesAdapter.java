@@ -15,27 +15,27 @@ import android.widget.TextView;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class SetsAdapter extends ArrayAdapter<String> {
-    private SetsManager mySetsManager;
+public class GamesAdapter extends ArrayAdapter<String> {
+    private GamesManager myGamesManager;
     private Context myContext;
     private SharedPreferences myPreferences;
 
-    public SetsAdapter(Context context, SetsManager setsManager) {
+    public GamesAdapter(Context context, GamesManager gamesManager) {
         super(context, R.layout.simple_list_item_single_choice);
 
         myContext = context;
         myPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        mySetsManager = setsManager;
+        myGamesManager = gamesManager;
     }
 
     @Override
     public int getCount() {
-        return mySetsManager.getGames().size();
+        return myGamesManager.getGames().size();
     }
 
     @Override
     public String getItem(int position) {
-        return mySetsManager.getGames().get(position).getName();
+        return myGamesManager.getGames().get(position).getName();
     }
 
     @Override
@@ -43,16 +43,16 @@ public class SetsAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) myContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView textView = (TextView) inflater.inflate(R.layout.simple_list_item_1, parent, false);
 
-        textView.setText(mySetsManager.getGames().get(position).getName());
+        textView.setText(myGamesManager.getGames().get(position).getName());
         textView.setTag(position);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int index = (Integer) view.getTag();
-                mySetsManager.setSelected(index);
+                myGamesManager.setSelected(index);
                 SharedPreferences.Editor editor = myPreferences.edit();
-                editor.putString("selected_set_id", mySetsManager.getSelectedGame().getId());
+                editor.putString("selected_set_id", myGamesManager.getSelectedGame().getId());
                 editor.commit();
                 myContext.startActivity(new Intent(myContext, MyMainActivity.class));
             }

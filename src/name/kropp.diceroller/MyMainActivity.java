@@ -38,8 +38,8 @@ public class MyMainActivity extends TabActivity {
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        intent = new Intent().setClass(this, SetsActivity.class);
-        spec = tabHost.newTabSpec("sets").setIndicator("Sets",
+        intent = new Intent().setClass(this, GamesActivity.class);
+        spec = tabHost.newTabSpec("sets").setIndicator("Games",
                 res.getDrawable(R.drawable.ic_tab_sets))
                 .setContent(intent);
         tabHost.addTab(spec);

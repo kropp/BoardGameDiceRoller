@@ -8,10 +8,10 @@ public final class PredefinedSets {
     private PredefinedSets() {
     }
 
-    public static void init(SetsManager setsManager) {
-        setsManager.addGame(createSimpleDiceGame());
-        setsManager.addGame(createStoneAgeGame());
-        setsManager.addGame(createSettlersOfCatanCitiesAndKnightsGame());
+    public static void init(GamesManager gamesManager) {
+        gamesManager.addGame(createSimpleDiceGame());
+        gamesManager.addGame(createStoneAgeGame());
+        gamesManager.addGame(createSettlersOfCatanCitiesAndKnightsGame());
     }
 
     private static Game createSimpleDiceGame() {

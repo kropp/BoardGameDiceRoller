@@ -7,30 +7,21 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class SetsManager {
-    private static SetsManager ourInstance;
+public class GamesManager {
+    private static GamesManager ourInstance;
 
-    private ArrayList<DiceSet> myDiceSets = new ArrayList<DiceSet>();
     private ArrayList<Game> myGames = new ArrayList<Game>();
     private int mySelected;
 
-    private SetsManager() {
+    private GamesManager() {
     }
 
-    public static SetsManager getInstance() {
+    public static GamesManager getInstance() {
         if (ourInstance == null) {
-            ourInstance = new SetsManager();
+            ourInstance = new GamesManager();
             PredefinedSets.init(ourInstance);
         }
         return ourInstance;
-    }
-
-    public void addSet(DiceSet diceSet) {
-        myDiceSets.add(diceSet);
-    }
-
-    public List<DiceSet> getSets() {
-        return myDiceSets;
     }
 
     public void addGame(Game game) {
@@ -46,14 +37,10 @@ public class SetsManager {
             mySelected = index;
     }
 
-    public int getSelected() {
-        return mySelected;
-    }
-
     public void setSelected(String id) {
         int i = 0;
-        for (DiceSet diceSet : myDiceSets) {
-            if (diceSet.getId().equals(id)) {
+        for (Game game : myGames) {
+            if (game.getId().equals(id)) {
                 setSelected(i);
             }
             i++;

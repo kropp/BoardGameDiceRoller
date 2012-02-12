@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 
 import java.util.List;
@@ -30,10 +29,10 @@ public class DiceRollActivity extends Activity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String selectedSetId = preferences.getString("selected_set_id", null);
 
-        SetsManager setsManager = SetsManager.getInstance();
-        setsManager.setSelected(selectedSetId);
+        GamesManager gamesManager = GamesManager.getInstance();
+        gamesManager.setSelected(selectedSetId);
 
-        myDiceSet = setsManager.getSelectedGame().getDiceSets().get(0);
+        myDiceSet = gamesManager.getSelectedGame().getDiceSets().get(0);
         myDiceSet.rollAll();
 
         //initView();
@@ -83,7 +82,7 @@ public class DiceRollActivity extends Activity {
     }
 
     private void initView() {
-        Game game = SetsManager.getInstance().getSelectedGame();
+        Game game = GamesManager.getInstance().getSelectedGame();
         myDiceSet = game.getDiceSets().get(0);
 
         final TextView nameLabel = (TextView) findViewById(R.id.dicesetname);
