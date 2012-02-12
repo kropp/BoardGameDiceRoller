@@ -30,12 +30,12 @@ public class SetsAdapter extends ArrayAdapter<String> {
 
     @Override
     public int getCount() {
-        return mySetsManager.getSets().size();
+        return mySetsManager.getGames().size();
     }
 
     @Override
     public String getItem(int position) {
-        return mySetsManager.getSets().get(position).getName();
+        return mySetsManager.getGames().get(position).getName();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SetsAdapter extends ArrayAdapter<String> {
         LayoutInflater inflater = (LayoutInflater) myContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView textView = (TextView) inflater.inflate(R.layout.simple_list_item_1, parent, false);
 
-        textView.setText(mySetsManager.getSets().get(position).getName());
+        textView.setText(mySetsManager.getGames().get(position).getName());
         textView.setTag(position);
 
         textView.setOnClickListener(new View.OnClickListener() {

@@ -51,7 +51,7 @@ public class SetsManager {
     }
 
     public DiceSet getSelectedSet() {
-        return myDiceSets.get(mySelected);
+        return myGames.get(mySelected).getDiceSets().get(0);
     }
 
     public void setSelected(String id) {
