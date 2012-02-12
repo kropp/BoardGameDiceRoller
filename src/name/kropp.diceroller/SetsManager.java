@@ -42,16 +42,12 @@ public class SetsManager {
     }
 
     public void setSelected(int index) {
-        if (0 <= index && index < myDiceSets.size())
+        if (0 <= index && index < myGames.size())
             mySelected = index;
     }
 
     public int getSelected() {
         return mySelected;
-    }
-
-    public DiceSet getSelectedSet() {
-        return myGames.get(mySelected).getDiceSets().get(0);
     }
 
     public void setSelected(String id) {
@@ -62,5 +58,9 @@ public class SetsManager {
             }
             i++;
         }
+    }
+
+    public Game getSelectedGame() {
+        return myGames.get(mySelected);
     }
 }

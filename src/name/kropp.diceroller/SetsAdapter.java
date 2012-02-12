@@ -52,7 +52,7 @@ public class SetsAdapter extends ArrayAdapter<String> {
                 int index = (Integer) view.getTag();
                 mySetsManager.setSelected(index);
                 SharedPreferences.Editor editor = myPreferences.edit();
-                editor.putString("selected_set_id", mySetsManager.getSelectedSet().getId());
+                editor.putString("selected_set_id", mySetsManager.getSelectedGame().getId());
                 editor.commit();
                 myContext.startActivity(new Intent(myContext, MyMainActivity.class));
             }

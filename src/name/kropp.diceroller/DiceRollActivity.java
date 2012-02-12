@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class DiceRollActivity extends Activity {
         SetsManager setsManager = SetsManager.getInstance();
         setsManager.setSelected(selectedSetId);
 
-        myDiceSet = setsManager.getSelectedSet();
+        myDiceSet = setsManager.getSelectedGame().getDiceSets().get(0);
         myDiceSet.rollAll();
 
         //initView();
@@ -82,10 +83,35 @@ public class DiceRollActivity extends Activity {
     }
 
     private void initView() {
-        myDiceSet = SetsManager.getInstance().getSelectedSet();
+        Game game = SetsManager.getInstance().getSelectedGame();
+        myDiceSet = game.getDiceSets().get(0);
 
-        final TextView setName = (TextView) findViewById(R.id.dicesetname);
-        setName.setText(myDiceSet.getName());
+        final TextView nameLabel = (TextView) findViewById(R.id.dicesetname);
+        nameLabel.setText(game.getName());
+
+        List<DiceSet> sets = game.getDiceSets();
+
+        final LinearLayout setsSelector = (LinearLayout) findViewById(R.id.setsselector);
+        setsSelector.removeAllViews();
+
+        if (sets.size() > 1) {
+            for (DiceSet set : sets) {
+                Button label = new Button(this);
+                label.setText(set.getName().substring(0, 1));
+                label.setTag(set);
+                
+                label.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        myDiceSet = (DiceSet) view.getTag();
+                        displaySet();
+                    }
+                });
+                
+                setsSelector.addView(label, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+            }
+        }
+
         displaySet();
     }
 
@@ -160,13 +186,13 @@ public class DiceRollActivity extends Activity {
         // trying to layout dice rectangular, otherwise adding extra items along biggest side
         int rows = (int) (width > height ? Math.floor(distribution) : Math.ceil(distribution));
         int columns = (int) Math.ceil(1.0 * size / rows);
-        
+
         for (int i = 0; i < rows; i++) {
             TableRow row = new TableRow(this);
             row.setWeightSum(1);
 
             for (int j = 0; j < columns; j++) {
-                int number =  i * columns + j;
+                int number = i * columns + j;
                 if (number >= size)
                     break;
 
