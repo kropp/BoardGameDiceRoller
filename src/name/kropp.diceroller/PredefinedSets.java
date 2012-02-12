@@ -9,23 +9,26 @@ public final class PredefinedSets {
     }
 
     public static void init(SetsManager setsManager) {
-        setsManager.addSet(createSimpleDiceSet(1));
-        setsManager.addSet(createSimpleDiceSet(2));
-        setsManager.addSet(createSimpleDiceSet(3));
-        setsManager.addSet(createSimpleDiceSet(4));
-        setsManager.addSet(createSimpleDiceSet(5));
-        setsManager.addSet(createSimpleDiceSet(6));
-        setsManager.addSet(createSimpleDiceSet(7));
-
-        setsManager.addSet(createSettlersOfCatanCitiesAndKnightsDiceSet());
-
-
+        setsManager.addGame(createSimpleDiceGame());
         setsManager.addGame(createStoneAgeGame());
         setsManager.addGame(createSettlersOfCatanCitiesAndKnightsGame());
     }
 
-    private static DiceSet createSimpleDiceSet(int numberOfDice) {
-        DiceSet set = new DiceSet(String.format("%dd6", numberOfDice), String.format("%d six-sided dice (%dd6)", numberOfDice, numberOfDice));
+    private static Game createSimpleDiceGame() {
+        Game result = new Game("1d6_4d6", "6-sided Dice");
+
+        for(int i = 1; i <= 4; i++) {
+            result.addDiceSet(createSimpleDiceSet(i, false));
+        }
+
+        return result;
+    }
+
+    private static DiceSet createSimpleDiceSet(int numberOfDice, boolean shortName) {
+        String name = shortName ?
+                String.valueOf(numberOfDice) :
+                String.format("%dd6", numberOfDice);
+        DiceSet set = new DiceSet(String.format("%dd6", numberOfDice), name);
 
         long seed = System.currentTimeMillis();
 
@@ -41,7 +44,7 @@ public final class PredefinedSets {
         Game result = new Game("stone_age", "Stone Age");
         
         for(int i = 1; i <= 7; i++) {
-            result.addDiceSet(createSimpleDiceSet(i));
+            result.addDiceSet(createSimpleDiceSet(i, true));
         }
         
         return result;

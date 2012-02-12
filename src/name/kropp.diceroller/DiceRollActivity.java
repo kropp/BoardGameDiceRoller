@@ -97,7 +97,7 @@ public class DiceRollActivity extends Activity {
         if (sets.size() > 1) {
             for (DiceSet set : sets) {
                 Button label = new Button(this);
-                label.setText(set.getName().substring(0, 1));
+                label.setText(set.getName());
                 label.setTag(set);
                 
                 label.setOnClickListener(new View.OnClickListener() {
