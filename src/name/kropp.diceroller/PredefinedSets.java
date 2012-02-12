@@ -18,6 +18,10 @@ public final class PredefinedSets {
         setsManager.addSet(createSimpleDiceSet(7));
 
         setsManager.addSet(createSettlersOfCatanCitiesAndKnightsDiceSet());
+
+
+        setsManager.addGame(createStoneAgeGame());
+        setsManager.addGame(createSettlersOfCatanCitiesAndKnightsGame());
     }
 
     private static DiceSet createSimpleDiceSet(int numberOfDice) {
@@ -31,6 +35,22 @@ public final class PredefinedSets {
         }
 
         return set;
+    }
+
+    private static Game createStoneAgeGame() {
+        Game result = new Game("stone_age", "Stone Age");
+        
+        for(int i = 1; i <= 7; i++) {
+            result.addDiceSet(createSimpleDiceSet(i));
+        }
+        
+        return result;
+    }
+    
+    private static Game createSettlersOfCatanCitiesAndKnightsGame() {
+        Game result = new Game("catan_cities_knights", "Settlers of Catan: Cities & Knights");
+        result.addDiceSet(createSettlersOfCatanCitiesAndKnightsDiceSet());
+        return result;
     }
 
     private static DiceSet createSettlersOfCatanCitiesAndKnightsDiceSet() {

@@ -11,6 +11,7 @@ public class SetsManager {
     private static SetsManager ourInstance;
 
     private ArrayList<DiceSet> myDiceSets = new ArrayList<DiceSet>();
+    private ArrayList<Game> myGames = new ArrayList<Game>();
     private int mySelected;
 
     private SetsManager() {
@@ -32,6 +33,14 @@ public class SetsManager {
         return myDiceSets;
     }
 
+    public void addGame(Game game) {
+        myGames.add(game);
+    }
+
+    public List<Game> getGames() {
+        return myGames;
+    }
+
     public void setSelected(int index) {
         if (0 <= index && index < myDiceSets.size())
             mySelected = index;
@@ -48,8 +57,7 @@ public class SetsManager {
     public void setSelected(String id) {
         int i = 0;
         for (DiceSet diceSet : myDiceSets) {
-            if (diceSet.getId().equals(id))
-            {
+            if (diceSet.getId().equals(id)) {
                 setSelected(i);
             }
             i++;
