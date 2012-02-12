@@ -35,8 +35,6 @@ public class DiceRollActivity extends Activity {
         myDiceSet = gamesManager.getSelectedGame().getDiceSets().get(0);
         myDiceSet.rollAll();
 
-        //initView();
-
         final View main_area = findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -83,7 +81,17 @@ public class DiceRollActivity extends Activity {
 
     private void initView() {
         Game game = GamesManager.getInstance().getSelectedGame();
-        myDiceSet = game.getDiceSets().get(0);
+
+        // if currently selected set is not from this game, change to first set from game
+        boolean found = false;
+        for (DiceSet set : game.getDiceSets()) {
+            if (set == myDiceSet) {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            myDiceSet = game.getDiceSets().get(0);
 
         final TextView nameLabel = (TextView) findViewById(R.id.dicesetname);
         nameLabel.setText(game.getName());
@@ -98,7 +106,7 @@ public class DiceRollActivity extends Activity {
                 Button label = new Button(this);
                 label.setText(set.getName());
                 label.setTag(set);
-                
+
                 label.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -106,7 +114,7 @@ public class DiceRollActivity extends Activity {
                         displaySet();
                     }
                 });
-                
+
                 setsSelector.addView(label, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
             }
         }
