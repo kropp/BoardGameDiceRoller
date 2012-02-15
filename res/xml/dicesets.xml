@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<games>
+    <game id="1d6_4d6" name="Simple dice">
+        <diceset id="1d6" name="1d6">
+            <die type="d6"/>
+        </diceset>
+        <diceset id="2d6" name="2d6">
+            <die type="d6"/>
+            <die type="d6"/>
+        </diceset>
+        <diceset id="3d6" name="3d6">
+            <die type="d6"/>
+            <die type="d6"/>
+            <die type="d6"/>
+        </diceset>
+        <diceset id="4d6" name="4d6">
+            <die type="d6"/>
+            <die type="d6"/>
+            <die type="d6"/>
+            <die type="d6"/>
+        </diceset>
+    </game>
+    <game id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
+        <diceset id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
+            <die type="d6"/>
+            <die type="d6" color="red"/>
+            <die type="catan_cities_knights_event_die"/>
+        </diceset>
+    </game>
+    <game id="stone_age" name="Stone Age" version="full">
+        <diceset id="1d6" name="1">
+            <die type="d6" />
+        </diceset>
+        <diceset id="2d6" name="2">
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="3d6" name="3">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="4d6" name="4">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="5d6" name="5">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="6d6" name="6">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="7d6" name="7">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+    </game>
+</games>
