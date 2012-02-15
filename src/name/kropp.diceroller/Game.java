@@ -10,12 +10,14 @@ import java.util.List;
 public class Game {
     private String myId;
     private String myName;
+    private Version myVersion;
 
     private List<DiceSet> myDiceSets;
 
-    public Game(String id, String name) {
+    public Game(String id, String name, Version version) {
         myId = id;
         myName = name;
+        myVersion = version;
         myDiceSets = new ArrayList<DiceSet>();
     }
 
