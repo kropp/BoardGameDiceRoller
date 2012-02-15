@@ -32,7 +32,8 @@ public class DiceRollActivity extends Activity {
         GamesManager gamesManager = GamesManager.getInstance();
         gamesManager.setSelected(selectedSetId);
 
-        myDiceSet = gamesManager.getSelectedGame().getDiceSets().get(0);
+        if (myDiceSet == null)
+            myDiceSet = gamesManager.getSelectedGame().getDiceSets().get(0);
         myDiceSet.rollAll();
 
         final View main_area = findViewById(R.id.dice_area);
@@ -192,6 +193,8 @@ public class DiceRollActivity extends Activity {
         double distribution = Math.sqrt(1.0 * height / width * size);
         // trying to layout dice rectangular, otherwise adding extra items along biggest side
         int rows = (int) (width > height ? Math.floor(distribution) : Math.ceil(distribution));
+        if (rows == 0)
+            rows = 1;
         int columns = (int) Math.ceil(1.0 * size / rows);
 
         for (int i = 0; i < rows; i++) {
