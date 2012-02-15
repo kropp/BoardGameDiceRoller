@@ -26,7 +26,7 @@ public class DiceSet {
         return myName;
     }
 
-    public void addDice(Die die) {
+    public void addDie(Die die) {
         myDices.add(die);
     }
 

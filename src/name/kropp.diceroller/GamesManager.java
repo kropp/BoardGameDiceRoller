@@ -1,5 +1,10 @@
 package name.kropp.diceroller;
 
+import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +21,16 @@ public class GamesManager {
     private GamesManager() {
     }
 
-    public static GamesManager getInstance() {
+    public static GamesManager getInstance(Resources resources) {
         if (ourInstance == null) {
             ourInstance = new GamesManager();
-            PredefinedSets.init(ourInstance);
+            try {
+                new GamesXmlParser(ourInstance).parseXml(resources.getXml(R.xml.dicesets));
+            } catch (IOException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
         }
         return ourInstance;
     }

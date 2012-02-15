@@ -29,7 +29,7 @@ public class DiceRollActivity extends Activity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String selectedSetId = preferences.getString("selected_set_id", null);
 
-        GamesManager gamesManager = GamesManager.getInstance();
+        GamesManager gamesManager = GamesManager.getInstance(getResources());
         gamesManager.setSelected(selectedSetId);
 
         if (myDiceSet == null)
@@ -81,7 +81,7 @@ public class DiceRollActivity extends Activity {
     }
 
     private void initView() {
-        Game game = GamesManager.getInstance().getSelectedGame();
+        Game game = GamesManager.getInstance(getResources()).getSelectedGame();
 
         // if currently selected set is not from this game, change to first set from game
         boolean found = false;
