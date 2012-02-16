@@ -52,7 +52,7 @@ public class GamesAdapter extends ArrayAdapter<String> {
                 int index = (Integer) view.getTag();
                 myGamesManager.setSelected(index);
                 SharedPreferences.Editor editor = myPreferences.edit();
-                editor.putString("selected_set_id", myGamesManager.getSelectedGame().getId());
+                editor.putString(myContext.getString(name.kropp.diceroller.R.string.selected_set_id_preference_name), myGamesManager.getSelectedGame().getId());
                 editor.commit();
                 myContext.startActivity(new Intent(myContext, MyMainActivity.class));
             }
