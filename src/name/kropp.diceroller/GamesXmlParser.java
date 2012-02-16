@@ -5,6 +5,7 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,9 +15,11 @@ public class GamesXmlParser {
     private GamesManager myGamesManager;
     private Game myGame;
     private DiceSet myDiceSet;
+    private Random myRandom;
 
     public GamesXmlParser(GamesManager gamesManager) {
         myGamesManager = gamesManager;
+        myRandom = new Random(System.currentTimeMillis());
     }
 
     public void parseXml(XmlResourceParser xml) throws IOException, XmlPullParserException {
@@ -39,12 +42,16 @@ public class GamesXmlParser {
         String type = xml.getAttributeValue(null, "type");
         Die die = null;
         if (type.equals("d6")) {
-            die = new SimpleDie(6, System.currentTimeMillis());
+            die = new SimpleDie(6, getNextSeed());
         } else if (type.equals("catan_cities_knights_event_die")) {
-            die = new SettlersOfCatanCitiesAndKnightsEventDie(System.currentTimeMillis());
+            die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
         }
         if (die != null)
             myDiceSet.addDie(die);
+    }
+
+    private long getNextSeed() {
+        return myRandom.nextLong();
     }
 
     private void startDiceSet(XmlResourceParser xml) {
