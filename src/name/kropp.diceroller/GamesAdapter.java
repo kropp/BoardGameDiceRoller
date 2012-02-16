@@ -49,10 +49,9 @@ public class GamesAdapter extends ArrayAdapter<String> {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int index = (Integer) view.getTag();
-                myGamesManager.setSelected(index);
+                myGamesManager.setSelectedGame((Integer) view.getTag());
                 SharedPreferences.Editor editor = myPreferences.edit();
-                editor.putString(myContext.getString(name.kropp.diceroller.R.string.selected_set_id_preference_name), myGamesManager.getSelectedGame().getId());
+                editor.putString(myContext.getString(name.kropp.diceroller.R.string.selected_game_id_preference_name), myGamesManager.getSelectedGame().getId());
                 editor.commit();
                 myContext.startActivity(new Intent(myContext, MyMainActivity.class));
             }

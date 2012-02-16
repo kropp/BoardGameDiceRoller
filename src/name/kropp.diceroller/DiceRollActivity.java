@@ -26,15 +26,24 @@ public class DiceRollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
 
+        GamesManager gamesManager = GamesManager.getInstance(getResources());
+
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String selectedGameId = preferences.getString(getString(R.string.selected_game_id_preference_name), null);
         String selectedSetId = preferences.getString(getString(R.string.selected_set_id_preference_name), null);
 
-        GamesManager gamesManager = GamesManager.getInstance(getResources());
-        gamesManager.setSelected(selectedSetId);
+        gamesManager.setSelectedGame(selectedGameId);
 
         if (myDiceSet == null) {
-            myDiceSet = gamesManager.getSelectedGame().getDiceSets().get(0);
-            myDiceSet.rollAll();
+            List<DiceSet> diceSets = gamesManager.getSelectedGame().getDiceSets();
+            for (DiceSet diceSet : diceSets) {
+                if (diceSet.getId().equals(selectedSetId)) {
+                    myDiceSet = diceSet;
+                    break;
+                }
+            }
+            if (myDiceSet == null)
+                myDiceSet = diceSets.get(0);
         }
 
         final View main_area = findViewById(R.id.dice_area);
@@ -109,10 +118,16 @@ public class DiceRollActivity extends Activity {
                 label.setText(set.getName());
                 label.setTag(set);
 
+                final DiceRollActivity context = this;
                 label.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         myDiceSet = (DiceSet) view.getTag();
+                        
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                        editor.putString(context.getString(R.string.selected_set_id_preference_name), myDiceSet.getId());
+                        editor.commit();
+                        
                         displaySet();
                     }
                 });

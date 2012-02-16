@@ -46,8 +46,10 @@ public class GamesXmlParser {
         } else if (type.equals("catan_cities_knights_event_die")) {
             die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
         }
-        if (die != null)
+        if (die != null) {
+            die.roll();
             myDiceSet.addDie(die);
+        }
     }
 
     private long getNextSeed() {

@@ -43,16 +43,16 @@ public class GamesManager {
         return myGames;
     }
 
-    public void setSelected(int index) {
+    public void setSelectedGame(int index) {
         if (0 <= index && index < myGames.size())
             mySelected = index;
     }
 
-    public void setSelected(String id) {
+    public void setSelectedGame(String id) {
         int i = 0;
         for (Game game : myGames) {
             if (game.getId().equals(id)) {
-                setSelected(i);
+                setSelectedGame(i);
             }
             i++;
         }

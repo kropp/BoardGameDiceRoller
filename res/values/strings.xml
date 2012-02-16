@@ -16,6 +16,7 @@
     <string name="rolldice_tab_name">Roll dice!</string>
     <string name="stats_tab_name">Stats</string>
     <string name="games_tab_name">Games</string>
+    <string name="selected_game_id_preference_name">selected_game_id</string>
     <string name="selected_set_id_preference_name">selected_set_id</string>
     <string name="vibe_preference_name">vibe_preference</string>
     <string name="shake_preference_name">shake_preference</string>
