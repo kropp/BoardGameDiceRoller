@@ -21,26 +21,26 @@ public class MyMainActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Resources res = getResources();
+        Resources resources = getResources();
         TabHost tabHost = getTabHost();
         TabHost.TabSpec spec;
         Intent intent;
 
         intent = new Intent().setClass(this, DiceRollActivity.class);
-        spec = tabHost.newTabSpec("rolldice").setIndicator("Roll dice!",
-                res.getDrawable(R.drawable.ic_tab_main))
+        spec = tabHost.newTabSpec("rolldice").setIndicator(resources.getString(R.string.rolldice_tab_name),
+                resources.getDrawable(R.drawable.ic_tab_main))
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, StatsActivity.class);
-        spec = tabHost.newTabSpec("Stats").setIndicator("Stats",
-                res.getDrawable(R.drawable.ic_tab_stats))
+        spec = tabHost.newTabSpec("stats").setIndicator(resources.getString(R.string.stats_tab_name),
+                resources.getDrawable(R.drawable.ic_tab_stats))
                 .setContent(intent);
         tabHost.addTab(spec);
 
         intent = new Intent().setClass(this, GamesActivity.class);
-        spec = tabHost.newTabSpec("sets").setIndicator("Games",
-                res.getDrawable(R.drawable.ic_tab_sets))
+        spec = tabHost.newTabSpec("sets").setIndicator(resources.getString(R.string.games_tab_name),
+                resources.getDrawable(R.drawable.ic_tab_sets))
                 .setContent(intent);
         tabHost.addTab(spec);
 

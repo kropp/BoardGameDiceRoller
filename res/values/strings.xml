@@ -13,4 +13,7 @@
     <string name="about_text">This is board game dice roller application. Initially designed for The Settlers of Catan: Cities &amp; Knights.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Tap dice to roll</string>
     <string name="shake_or_tap_to_roll">Shake or tap dice to roll</string>
+    <string name="rolldice_tab_name">Roll dice!</string>
+    <string name="stats_tab_name">Stats</string>
+    <string name="games_tab_name">Games</string>
 </resources>
