@@ -14,15 +14,22 @@ public class StatsActivity extends Activity {
 
         setContentView(R.layout.stats);
 
-        final TextView textView = (TextView) findViewById(R.id.statstext);
+/*
+        final TextView textView = (TextView) findViewById(R.id.historytext);
         textView.setTextSize(20);
+*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        final TextView textView = (TextView) findViewById(R.id.statstext);
-        textView.setText(StatsManager.getInstance(getResources()).getText());
+        final TextView textView = (TextView) findViewById(R.id.historytext);
+        textView.setText(StatsManager.getInstance(getResources()).getHistoryText());
+
+        DiceSet set = GamesManager.getInstance(getResources()).getSelectedSet();
+
+        final TextView textView2 = (TextView) findViewById(R.id.statstext);
+        textView2.setText(StatsManager.getInstance(getResources()).getStats(set));
     }
 }

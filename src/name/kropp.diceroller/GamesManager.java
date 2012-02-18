@@ -17,6 +17,7 @@ public class GamesManager {
 
     private ArrayList<Game> myGames = new ArrayList<Game>();
     private int mySelected;
+    private DiceSet mySelectedSet;
 
     private GamesManager() {
     }
@@ -60,5 +61,18 @@ public class GamesManager {
 
     public Game getSelectedGame() {
         return myGames.get(mySelected);
+    }
+
+    public DiceSet getSelectedSet() {
+        return mySelectedSet;
+    }
+    
+    public void setSelectedSet(String setId) {
+        for (DiceSet set : getSelectedGame().getDiceSets()) {
+            if (set.getId().equals(setId)) {
+                mySelectedSet = set;
+                break;
+            }
+        }
     }
 }

@@ -45,6 +45,7 @@ public class DiceRollActivity extends Activity {
             if (myDiceSet == null)
                 myDiceSet = diceSets.get(0);
         }
+        gamesManager.setSelectedSet(myDiceSet.getId());
 
         final View main_area = findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +92,8 @@ public class DiceRollActivity extends Activity {
     }
 
     private void initView() {
-        Game game = GamesManager.getInstance(getResources()).getSelectedGame();
+        final GamesManager gamesManager = GamesManager.getInstance(getResources());
+        Game game = gamesManager.getSelectedGame();
 
         // if currently selected set is not from this game, change to first set from game
         boolean found = false;
@@ -101,8 +103,10 @@ public class DiceRollActivity extends Activity {
                 break;
             }
         }
-        if (!found)
+        if (!found) {
             myDiceSet = game.getDiceSets().get(0);
+            gamesManager.setSelectedSet(myDiceSet.getId());
+        }
 
         final TextView nameLabel = (TextView) findViewById(R.id.dicesetname);
         nameLabel.setText(game.getName());
@@ -123,11 +127,13 @@ public class DiceRollActivity extends Activity {
                     @Override
                     public void onClick(View view) {
                         myDiceSet = (DiceSet) view.getTag();
-                        
+
                         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
                         editor.putString(context.getString(R.string.selected_set_id_preference_name), myDiceSet.getId());
                         editor.commit();
-                        
+
+                        gamesManager.setSelectedSet(myDiceSet.getId());
+
                         displaySet();
                     }
                 });

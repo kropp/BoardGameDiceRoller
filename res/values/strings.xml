@@ -20,4 +20,5 @@
     <string name="selected_set_id_preference_name">selected_set_id</string>
     <string name="vibe_preference_name">vibe_preference</string>
     <string name="shake_preference_name">shake_preference</string>
+    <string name="history_header">History</string>
 </resources>
