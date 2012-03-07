@@ -4,11 +4,67 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical">
-    <TextView android:id="@+id/statstext"
-              android:layout_weight="2"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-            />
+    <TableLayout android:id="@+id/statslayout"
+                 android:layout_weight="2"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:gravity="center"
+            >
+<!--
+        <TableRow>
+            <ImageView android:src="@drawable/bar"
+                       android:layout_width="40dp"
+                       android:layout_height="70dp"
+                       android:layout_gravity="bottom"
+                       android:layout_margin="3dp"
+                       android:id="@+id/b1"
+                    />
+            <ImageView android:src="@drawable/bar"
+                       android:layout_width="40dp"
+                       android:layout_height="30dp"
+                       android:layout_gravity="bottom"
+                       android:layout_margin="3dp"
+                       android:id="@+id/b2"
+                    />
+            <ImageView android:src="@drawable/bar"
+                       android:layout_width="40dp"
+                       android:layout_height="50dp"
+                       android:layout_gravity="bottom"
+                       android:layout_margin="3dp"
+                       android:id="@+id/b3"
+                    />
+            <ImageView android:src="@drawable/bar"
+                       android:layout_width="40dp"
+                       android:layout_height="60dp"
+                       android:layout_gravity="bottom"
+                       android:layout_margin="3dp"
+                       android:id="@+id/b4"
+                    />
+            <ImageView android:src="@drawable/bar"
+                       android:layout_width="40dp"
+                       android:layout_height="30dp"
+                       android:layout_gravity="bottom"
+                       android:layout_margin="3dp"
+                       android:id="@+id/b5"
+                    />
+            <ImageView android:src="@drawable/bar"
+                       android:layout_width="40dp"
+                       android:layout_height="70dp"
+                       android:layout_gravity="bottom"
+                       android:layout_margin="3dp"
+                       android:id="@+id/b6"
+                    />
+        </TableRow>
+        <TableRow>
+            <TextView android:text="1" android:gravity="center"/>
+            <TextView android:text="2" android:gravity="center"/>
+            <TextView android:text="3" android:gravity="center"/>
+            <TextView android:text="4" android:gravity="center"/>
+            <TextView android:text="5" android:gravity="center"/>
+            <TextView android:text="6" android:gravity="center"/>
+        </TableRow>
+-->
+    </TableLayout>
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

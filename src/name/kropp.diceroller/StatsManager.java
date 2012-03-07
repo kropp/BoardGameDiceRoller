@@ -31,9 +31,9 @@ public class StatsManager {
         return ourInstance;
     }
 
-    public CharSequence getStats(DiceSet diceSet) {
+    public Map<Integer, Integer> getStats(DiceSet diceSet) {
         if (diceSet == null)
-            return "";
+            return null;
 
         // prepare map from value to count
         Map<Integer, Integer> values = new HashMap<Integer, Integer>();
@@ -44,7 +44,10 @@ public class StatsManager {
                 }
             }
         }
-        
+
+        return values;
+/*
+
         StringBuilder builder = new StringBuilder();
         
         for (Integer value : values.keySet()) {
@@ -57,6 +60,7 @@ public class StatsManager {
         }
 
         return builder;
+*/
     }
     
     public CharSequence getHistoryText() {
