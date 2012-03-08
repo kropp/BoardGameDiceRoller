@@ -41,20 +41,21 @@ public class StatsActivity extends Activity {
 
         table.removeAllViews();
 
-        Animation rise = AnimationUtils.loadAnimation(this, R.anim.rise);
-
         // bars
         TableRow row1 = new TableRow(this);
         row1.setWeightSum(1);
         row1.setGravity(Gravity.BOTTOM);
 
-        int max = findMax(stats.values());
+        Collection<Integer> values = stats.values();
+        int max = findMax(values);
 
-        for (Integer value : stats.values()) {
+        for (Integer value : values) {
             ImageView bar = new ImageView(this);
             bar.setImageDrawable(getResources().getDrawable(R.drawable.bar));
+            Animation rise = AnimationUtils.loadAnimation(this, R.anim.rise);
             bar.setAnimation(rise);
-            row1.addView(bar, 30, 70 / max * value);
+            row1.addView(bar, 300 / values.size(), Math.round(80f / max * value));
+            rise.start();
         }
 
         table.addView(row1, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
@@ -71,9 +72,6 @@ public class StatsActivity extends Activity {
         }
 
         table.addView(row2, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
-
-
-        rise.start();
     }
 
     private int findMax(Collection<Integer> values) {
