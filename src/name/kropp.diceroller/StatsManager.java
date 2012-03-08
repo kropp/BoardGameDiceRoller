@@ -46,21 +46,6 @@ public class StatsManager {
         }
 
         return values;
-/*
-
-        StringBuilder builder = new StringBuilder();
-        
-        for (Integer value : values.keySet()) {
-            builder.append(value).append(": ");
-            int count = values.get(value);
-            for (int i = 0; i < count; i++) {
-                builder.append("*");
-            }
-            builder.append("\n");
-        }
-
-        return builder;
-*/
     }
     
     public CharSequence getHistoryText() {
@@ -70,9 +55,13 @@ public class StatsManager {
     public void updateStats(DiceSet diceSet) {
         StringBuilder builder = new StringBuilder();
 
+        boolean first = true;
         for (Die die : diceSet.getDice()) {
+            if (!first)
+                builder.append("+ ");
             builder.append(die).append(' ');
             addHistoryValue(die);
+            first = false;
         }
 
         builder.append("= <b>").append(diceSet.getSum()).append("</b><br>");
