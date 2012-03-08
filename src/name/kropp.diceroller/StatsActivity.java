@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -45,12 +46,15 @@ public class StatsActivity extends Activity {
         // bars
         TableRow row1 = new TableRow(this);
         row1.setWeightSum(1);
+        row1.setGravity(Gravity.BOTTOM);
+
+        int max = findMax(stats.values());
 
         for (Integer value : stats.values()) {
             ImageView bar = new ImageView(this);
             bar.setImageDrawable(getResources().getDrawable(R.drawable.bar));
             bar.setAnimation(rise);
-            row1.addView(bar, 30, 7*value);
+            row1.addView(bar, 30, 70 / max * value);
         }
 
         table.addView(row1, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
@@ -70,5 +74,13 @@ public class StatsActivity extends Activity {
 
 
         rise.start();
+    }
+
+    private int findMax(Collection<Integer> values) {
+        int max = 0;
+        for (Integer value : values)
+            if (value > max)
+                max = value;
+        return max;
     }
 }
