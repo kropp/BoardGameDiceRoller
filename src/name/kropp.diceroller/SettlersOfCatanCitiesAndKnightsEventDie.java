@@ -1,5 +1,10 @@
 package name.kropp.diceroller;
 
+import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
+import android.view.View;
+import android.widget.ImageView;
+
 /**
  * Created by IntelliJ IDEA.
  * User: kropp
@@ -25,6 +30,12 @@ public class SettlersOfCatanCitiesAndKnightsEventDie extends SimpleDie {
     }
 
     @Override
+    public View getCurrentView(Context context) {
+        ImageView image = new ImageView(context);
+        image.setImageDrawable(context.getResources().getDrawable(getIconId()));
+        return image;
+    }
+
     public int getIconId() {
         switch (getCurrentEvent())
         {

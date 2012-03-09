@@ -1,6 +1,9 @@
 package name.kropp.diceroller;
 
 import android.content.Context;
+import android.graphics.*;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,6 +17,8 @@ public class SimpleDie implements Die {
     private Random myRandomizer;
     private int myValue;
     private int mySides;
+    private int myColor = 0xff000000;
+    private int myDieColor = 0xffffffff;
 
     public SimpleDie(int sides, long seed) {
         mySides = sides;
@@ -35,28 +40,41 @@ public class SimpleDie implements Die {
 
     @Override
     public View getCurrentView(Context context) {
+        GradientDrawable drawable = (GradientDrawable) context.getResources().getDrawable(R.drawable.die6);
+        drawable.setColor(getDieColor());
+        
+        final int width = drawable.getIntrinsicWidth();
+        final int height = drawable.getIntrinsicHeight();
+
+        Bitmap canvasBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(canvasBitmap);
+
+        Paint paint = new Paint();
+        paint.setFilterBitmap(true);
+        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG));
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setTextSize(24);
+        paint.setFakeBoldText(true);
+        paint.setColor(getColor());
+
+        drawable.setBounds(0, 0, width, height);
+        drawable.draw(canvas);
+        String s = String.valueOf(myValue);
+        Rect bounds = new Rect();
+        paint.getTextBounds(s, 0, s.length(), bounds);
+        canvas.drawText(s, width / 2, (height - (bounds.top - bounds.bottom)) / 2, paint);
+
         ImageView image = new ImageView(context);
-        image.setImageResource(getIconId());
-        image.setPadding(5, 5, 5, 5);
+        image.setImageBitmap(canvasBitmap);
+
         return image;
     }
 
-    public int getIconId() {
-        switch (myValue) {
-            case 1:
-                return R.drawable.w1;
-            case 2:
-                return R.drawable.w2;
-            case 3:
-                return R.drawable.w3;
-            case 4:
-                return R.drawable.w4;
-            case 5:
-                return R.drawable.w5;
-            case 6:
-                return R.drawable.w6;
-            default:
-                return R.drawable.w1;
-        }
+    private int getDieColor() {
+        return myDieColor;
+    }
+
+    public int getColor() {
+        return myColor;
     }
 }
