@@ -29,7 +29,7 @@ public class ResourceImageGetter implements Html.ImageGetter {
         try {
             id = Integer.parseInt(s);
         } catch (NumberFormatException e) {
-            id = R.drawable.w6;
+            id = R.drawable.icon;
         }
         Drawable d = myResources.getDrawable(id);
         d.setBounds(0, 0, 24, 24);
