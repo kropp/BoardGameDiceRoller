@@ -1,7 +1,6 @@
 package name.kropp.diceroller;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,7 +11,7 @@ import android.widget.ImageView;
 public class SettlersOfCatanCitiesAndKnightsEventDie extends SimpleDie {
 
     public SettlersOfCatanCitiesAndKnightsEventDie(long seed) {
-        super(6, seed);
+        super(6, seed, 0, 0);
     }
 
     public Event getCurrentEvent()

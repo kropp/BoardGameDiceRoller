@@ -10,7 +10,7 @@ import android.widget.ImageView;
  */
 public class RedDie6 extends SimpleDie {
     public RedDie6(long seed) {
-        super(6, seed);
+        super(6, seed, 0, 0);
     }
 
     @Override

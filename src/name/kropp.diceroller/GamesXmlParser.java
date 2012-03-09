@@ -44,9 +44,9 @@ public class GamesXmlParser {
         if (type.equals("d6")) {
             String color = xml.getAttributeValue(null, "color");
             if (color != null && color.equals("red"))
-                die = new RedDie6(getNextSeed());
+                die = new SimpleDie(6, getNextSeed(), 0xffff0000, 0xff000000);
             else
-                die = new SimpleDie(6, getNextSeed());
+                die = new SimpleDie(6, getNextSeed(), 0xffffffff, 0xff000000);
         } else if (type.equals("catan_cities_knights_event_die")) {
             die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
         }

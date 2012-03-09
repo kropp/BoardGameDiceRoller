@@ -17,11 +17,13 @@ public class SimpleDie implements Die {
     private Random myRandomizer;
     private int myValue;
     private int mySides;
-    private int myColor = 0xff000000;
-    private int myDieColor = 0xffffffff;
+    private int myColor;
+    private int myDieColor;
 
-    public SimpleDie(int sides, long seed) {
+    public SimpleDie(int sides, long seed, int dieColor, int color) {
         mySides = sides;
+        myDieColor = dieColor;
+        myColor = color;
         myRandomizer = new Random(seed);
     }
 
@@ -35,6 +37,8 @@ public class SimpleDie implements Die {
 
     @Override
     public String toString() {
+        if (myDieColor == 0xffff0000)
+            return String.format("<font color=\"red\">%d</font>", myValue);
         return String.valueOf(myValue);
     }
 
