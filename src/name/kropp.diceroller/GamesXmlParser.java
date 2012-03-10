@@ -42,13 +42,16 @@ public class GamesXmlParser {
     private void startDie(XmlResourceParser xml) {
         String type = xml.getAttributeValue(null, "type");
         Die die = null;
-        if (type.equals("d6")) {
+        if (type.startsWith("d")) {
+            int sides = Integer.valueOf(type.substring(1));
+
             String color = xml.getAttributeValue(null, "color");
             int dieColor = Color.WHITE;
             if (color != null)
                 dieColor = Color.parseColor(color);
             int faceColor = dieColor != Color.BLACK ? Color.BLACK : Color.WHITE;
-            die = new SimpleDie(6, getNextSeed(), dieColor, faceColor);
+
+            die = new SimpleDie(sides, getNextSeed(), dieColor, faceColor);
         } else if (type.equals("catan_cities_knights_event_die")) {
             die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
         }

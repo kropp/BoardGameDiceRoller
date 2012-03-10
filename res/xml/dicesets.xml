@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <games>
-    <game id="1d6_4d6" name="Simple dice">
+    <game id="1d6_4d6" name="Simple d6 dice">
         <diceset id="1d6" name="1d6">
             <die type="d6"/>
         </diceset>
@@ -18,6 +18,17 @@
             <die type="d6"/>
             <die type="d6"/>
             <die type="d6"/>
+        </diceset>
+    </game>
+    <game id="1d4_1d8_1d20" name="d4, d8, d20 dice">
+        <diceset id="1d4" name="1d4">
+            <die type="d4" color="green"/>
+        </diceset>
+        <diceset id="1d8" name="1d8">
+            <die type="d8" color="yellow"/>
+        </diceset>
+        <diceset id="1d20" name="1d20">
+            <die type="d20" color="blue"/>
         </diceset>
     </game>
     <game id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
