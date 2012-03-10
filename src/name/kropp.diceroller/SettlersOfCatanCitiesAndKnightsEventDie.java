@@ -1,6 +1,9 @@
 package name.kropp.diceroller;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,7 +14,7 @@ import android.widget.ImageView;
 public class SettlersOfCatanCitiesAndKnightsEventDie extends SimpleDie {
 
     public SettlersOfCatanCitiesAndKnightsEventDie(long seed) {
-        super(6, seed, 0, 0);
+        super(6, seed, Color.WHITE, Color.BLACK);
     }
 
     public Event getCurrentEvent()
@@ -29,10 +32,10 @@ public class SettlersOfCatanCitiesAndKnightsEventDie extends SimpleDie {
     }
 
     @Override
-    public View getCurrentView(Context context) {
-        ImageView image = new ImageView(context);
-        image.setImageDrawable(context.getResources().getDrawable(getIconId()));
-        return image;
+    protected void drawFace(int width, int height, Canvas canvas, Context context) {
+        Drawable drawable = context.getResources().getDrawable(getIconId());
+        drawable.setBounds(0, 0, width, height);
+        drawable.draw(canvas);
     }
 
     public int getIconId() {

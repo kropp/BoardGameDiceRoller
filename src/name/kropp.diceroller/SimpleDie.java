@@ -56,13 +56,17 @@ public class SimpleDie implements Die {
         drawable.setBounds(0, 0, width, height);
         drawable.draw(canvas);
 
-        drawDots(myValue, width, height, canvas);
-        //drawText(width, height, canvas);
+        drawFace(width, height, canvas, context);
 
         ImageView image = new ImageView(context);
         image.setImageBitmap(canvasBitmap);
 
         return image;
+    }
+
+    protected void drawFace(int width, int height, Canvas canvas, Context context) {
+        drawDots(myValue, width, height, canvas);
+        //drawText(width, height, canvas);
     }
 
     private void drawDots(int value, int width, int height, Canvas canvas) {
