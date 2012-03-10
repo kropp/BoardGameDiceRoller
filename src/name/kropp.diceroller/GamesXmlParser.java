@@ -1,6 +1,7 @@
 package name.kropp.diceroller;
 
 import android.content.res.XmlResourceParser;
+import android.graphics.Color;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -43,10 +44,11 @@ public class GamesXmlParser {
         Die die = null;
         if (type.equals("d6")) {
             String color = xml.getAttributeValue(null, "color");
-            if (color != null && color.equals("red"))
-                die = new SimpleDie(6, getNextSeed(), 0xffff0000, 0xff000000);
-            else
-                die = new SimpleDie(6, getNextSeed(), 0xffffffff, 0xff000000);
+            int dieColor = Color.WHITE;
+            if (color != null)
+                dieColor = Color.parseColor(color);
+            int faceColor = dieColor != Color.BLACK ? Color.BLACK : Color.WHITE;
+            die = new SimpleDie(6, getNextSeed(), dieColor, faceColor);
         } else if (type.equals("catan_cities_knights_event_die")) {
             die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
         }
