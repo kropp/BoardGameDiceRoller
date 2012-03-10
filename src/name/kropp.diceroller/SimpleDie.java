@@ -2,7 +2,6 @@ package name.kropp.diceroller;
 
 import android.content.Context;
 import android.graphics.*;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,9 +36,7 @@ public class SimpleDie implements Die {
 
     @Override
     public String toString() {
-        if (myDieColor == 0xffff0000)
-            return String.format("<font color=\"red\">%d</font>", myValue);
-        return String.valueOf(myValue);
+        return String.format("<font color=\"#%x\">%d</font>", myDieColor & 0x00ffffff, myValue);
     }
 
     @Override
@@ -65,33 +62,35 @@ public class SimpleDie implements Die {
     }
 
     protected void drawFace(int width, int height, Canvas canvas, Context context) {
-        drawDots(myValue, width, height, canvas);
-        //drawText(width, height, canvas);
+        if (mySides == 6)
+            drawDots(width, height, canvas);
+        else
+            drawText(width, height, canvas);
     }
 
-    private void drawDots(int value, int width, int height, Canvas canvas) {
+    private void drawDots(int width, int height, Canvas canvas) {
         Paint paint = new Paint();
         canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
         paint.setColor(getColor());
 
-        final float halfSize = 9;
+        final float halfSize = width / 8 - 1;
         float centerX = (float) (width / 2.0);
         float centerY = (float) (height / 2.0);
 
-        if (value % 2 == 1)
+        if (myValue % 2 == 1)
             drawDot(canvas, paint, halfSize, centerX, centerY);
 
-        if (value > 1) {
+        if (myValue > 1) {
             drawDot(canvas, paint, halfSize, halfSize * 2, height - halfSize * 2);
             drawDot(canvas, paint, halfSize, width - halfSize * 2, halfSize * 2);
         }
 
-        if (value > 3) {
+        if (myValue > 3) {
             drawDot(canvas, paint, halfSize, width - halfSize * 2, height - halfSize * 2);
             drawDot(canvas, paint, halfSize, halfSize * 2, halfSize * 2);
         }
 
-        if (value == 6) {
+        if (myValue == 6) {
             drawDot(canvas, paint, halfSize, halfSize * 2, centerY);
             drawDot(canvas, paint, halfSize, width - halfSize * 2, centerY);
         }
