@@ -64,6 +64,15 @@ public class MyMainActivity extends TabActivity {
             case R.id.about:
                 showDialog(ABOUT_DIALOG_ID);
                 return true;
+            case R.id.clearhistory:
+                StatsManager.getInstance(getResources()).clear();
+
+                if (getTabHost().getCurrentTab() == 1) { // reload stats view
+                    Intent intent = new Intent(this, MyMainActivity.class);
+                    intent.putExtra("tab", "stats");
+                    startActivity(intent);
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -98,6 +107,12 @@ public class MyMainActivity extends TabActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        getTabHost().setCurrentTab(0);
+        int index = 0;
+        if (intent.getExtras() != null) {
+            String tabName = intent.getExtras().getString("tab");
+            if (tabName != null && tabName.equals("stats"))
+                index = 1;
+        }
+        getTabHost().setCurrentTab(index);
     }
 }

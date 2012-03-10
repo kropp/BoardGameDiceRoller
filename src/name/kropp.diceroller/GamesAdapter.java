@@ -53,7 +53,10 @@ public class GamesAdapter extends ArrayAdapter<String> {
                 SharedPreferences.Editor editor = myPreferences.edit();
                 editor.putString(myContext.getString(name.kropp.diceroller.R.string.selected_game_id_preference_name), myGamesManager.getSelectedGame().getId());
                 editor.commit();
-                myContext.startActivity(new Intent(myContext, MyMainActivity.class));
+
+                Intent intent = new Intent(myContext, MyMainActivity.class);
+                intent.putExtra("tab", "rolldice");
+                myContext.startActivity(intent);
             }
         });
 

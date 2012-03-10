@@ -77,4 +77,9 @@ public class StatsManager {
         }
         historyValues.add(die.getCurrentValue());
     }
+
+    public void clear() {
+        myHistoryValues.clear();
+        myHistoryText.clear();
+    }
 }
