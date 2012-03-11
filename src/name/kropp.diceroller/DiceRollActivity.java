@@ -190,7 +190,7 @@ public class DiceRollActivity extends Activity {
         }
 
         if (myVibeAfterRoll) {
-            myVibrator.vibrate(150);
+            myVibrator.vibrate(100);
         }
     }
 

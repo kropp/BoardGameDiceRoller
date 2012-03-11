@@ -12,22 +12,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 public class ShakeListener implements SensorEventListener {
-    private static final int FORCE_THRESHOLD = 350;
-    private static final int TIME_THRESHOLD = 100;
-    private static final int SHAKE_TIMEOUT = 500;
-    private static final int SHAKE_DURATION = 1000;
-    private static final int SHAKE_COUNT = 3;
+    private OnShakeListener myShakeListener;
 
     private SensorManager mySensorManager;
-    private float myPreviousX = -1.0f;
-    private float myPreviousY = -1.0f;
-    private float myPreviousZ = -1.0f;
-    private long myPreviousTime;
-    private OnShakeListener myShakeListener;
-    private int myShakeCount = 0;
-    private long myPreviousShake;
-    private long myPreviousForce;
-    private Sensor mySensor;
+    private float myAccel = 0f; // acceleration apart from gravity
+    private float myAccelCurrent = SensorManager.GRAVITY_EARTH; // current acceleration including gravity
+    private float myAccelLast = SensorManager.GRAVITY_EARTH; // last acceleration including gravity
+    private long myLastShake;
 
     public interface OnShakeListener {
         public void onShake();
@@ -42,60 +33,30 @@ public class ShakeListener implements SensorEventListener {
         myShakeListener = listener;
     }
 
+
     public void resume() {
-        if (mySensorManager == null) {
-            return;
-        }
-        mySensor = mySensorManager.getDefaultSensor(SensorManager.SENSOR_ACCELEROMETER);
-        if (mySensor == null) {
-            return;
-        }
-        boolean supported = mySensorManager.registerListener(this, mySensor, SensorManager.SENSOR_DELAY_NORMAL);
-        if (!supported) {
-            mySensorManager.unregisterListener(this, mySensor);
-        }
+        mySensorManager.registerListener(this, mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     public void pause() {
-        if (mySensorManager != null && mySensor != null) {
-            mySensorManager.unregisterListener(this, mySensor);
-            mySensorManager = null;
-            mySensor = null;
-        }
+        mySensorManager.unregisterListener(this);
     }
 
     public void onAccuracyChanged(Sensor sensor, int i) {
     }
 
-    public void onSensorChanged(SensorEvent sensorEvent) {
-        if (sensorEvent.sensor.getType() != SensorManager.SENSOR_ACCELEROMETER)
-            return;
+    public void onSensorChanged(SensorEvent se) {
+        float x = se.values[0];
+        float y = se.values[1];
+        float z = se.values[2];
+        myAccelLast = myAccelCurrent;
+        myAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
+        float delta = myAccelCurrent - myAccelLast;
+        myAccel = myAccel * 0.9f + delta; // perform low-cut filter
 
-        long now = System.currentTimeMillis();
-
-        if ((now - myPreviousForce) > SHAKE_TIMEOUT) {
-            myShakeCount = 0;
-        }
-
-        float[] values = sensorEvent.values;
-
-        if ((now - myPreviousTime) > TIME_THRESHOLD) {
-            long diff = now - myPreviousTime;
-            float speed = Math.abs(values[SensorManager.DATA_X] + values[SensorManager.DATA_Y] + values[SensorManager.DATA_Z] - myPreviousX - myPreviousY - myPreviousZ) / diff * 10000;
-            if (speed > FORCE_THRESHOLD) {
-                if ((++myShakeCount >= SHAKE_COUNT) && (now - myPreviousShake > SHAKE_DURATION)) {
-                    myPreviousShake = now;
-                    myShakeCount = 0;
-                    if (myShakeListener != null) {
-                        myShakeListener.onShake();
-                    }
-                }
-                myPreviousForce = now;
-            }
-            myPreviousTime = now;
-            myPreviousX = values[SensorManager.DATA_X];
-            myPreviousY = values[SensorManager.DATA_Y];
-            myPreviousZ = values[SensorManager.DATA_Z];
+        if (myAccel > 1.8 && myShakeListener != null && (System.currentTimeMillis() - myLastShake > 1000)) {
+            myLastShake = System.currentTimeMillis();
+            myShakeListener.onShake();
         }
     }
 }
