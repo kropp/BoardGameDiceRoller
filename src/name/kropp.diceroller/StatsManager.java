@@ -64,7 +64,9 @@ public class StatsManager {
             first = false;
         }
 
-        builder.append("= <b>").append(diceSet.getSum()).append("</b><br>");
+        if (diceSet.getDice().size() > 1)
+            builder.append("= <b>").append(diceSet.getSum()).append("</b>");
+        builder.append("<br>");
 
         myHistoryText.insert(0, Html.fromHtml(builder.toString(), myResourceImageGetter, null));
     }

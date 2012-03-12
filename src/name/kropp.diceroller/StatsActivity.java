@@ -1,6 +1,7 @@
 package name.kropp.diceroller;
 
 import android.app.Activity;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -39,8 +40,13 @@ public class StatsActivity extends Activity {
 
         // bars
         TableRow row1 = new TableRow(this);
-        row1.setWeightSum(1);
+        row1.setWeightSum(0.1f);
         row1.setGravity(Gravity.BOTTOM);
+
+        int width = 200;
+        int height = table.getMeasuredHeight() - 40;
+        if (height < 10)
+            height = 100;
 
         Collection<Integer> values = stats.values();
         int max = findMax(values);
@@ -50,15 +56,16 @@ public class StatsActivity extends Activity {
             bar.setImageDrawable(getResources().getDrawable(R.drawable.bar));
             Animation rise = AnimationUtils.loadAnimation(this, R.anim.rise);
             bar.setAnimation(rise);
-            row1.addView(bar, 300 / values.size(), Math.round(80f / max * value));
+            bar.setAdjustViewBounds(true);
+            row1.addView(bar, width / values.size(), Math.round(1f * height / max * value));
             rise.start();
         }
 
-        table.addView(row1, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        table.addView(row1, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.FILL_PARENT));
 
         // values
         TableRow row2 = new TableRow(this);
-        row1.setWeightSum(1);
+        row1.setWeightSum(1.9f);
 
         for (Integer value : stats.keySet()) {
             TextView label = new TextView(this);
@@ -67,7 +74,7 @@ public class StatsActivity extends Activity {
             row2.addView(label);
         }
 
-        table.addView(row2, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        table.addView(row2, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.FILL_PARENT));
     }
 
     private int findMax(Collection<Integer> values) {
