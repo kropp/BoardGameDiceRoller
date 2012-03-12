@@ -38,6 +38,11 @@ public class SimpleDie implements Die {
     }
 
     @Override
+    public boolean countsInSum() {
+        return true;
+    }
+
+    @Override
     public String toString() {
         return String.format("<font color=\"#%x\">%d</font>", myDieColor & 0x00ffffff, myValue);
     }

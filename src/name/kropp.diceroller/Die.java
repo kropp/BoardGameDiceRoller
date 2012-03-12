@@ -20,6 +20,12 @@ public interface Die {
     public int getCurrentValue();
 
     /**
+     * Should add this value to set sum or not.
+     * @return true if this die value should be count in set sum, false otherwise
+     */
+    public boolean countsInSum();
+
+    /**
      * Returns view displaying current die state.
      * @return View
      * @param context Current context

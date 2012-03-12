@@ -43,7 +43,7 @@ public class DiceSet {
     public int getSum() {
         int result = 0;
         for (Die die : myDices) {
-            if (!(die instanceof SettlersOfCatanCitiesAndKnightsEventDie))
+            if (die.countsInSum())
             {
                 result += die.getCurrentValue();
             }
