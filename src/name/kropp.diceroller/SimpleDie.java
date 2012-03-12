@@ -67,30 +67,30 @@ public class SimpleDie implements Die {
             GradientDrawable drawable = (GradientDrawable) context.getResources().getDrawable(R.drawable.die6);
             drawable.setColor(getDieColor());
             return drawable;
-        } else if (mySides == 12) {
-            float size = context.getResources().getDimension(R.dimen.diesize);
-            Path path = new Path();
-            path.moveTo(size / 2, 0);
-            path.lineTo(getX(5, 1, size), getY(5, 1, size));
-            path.lineTo(getX(5, 2, size), getY(5, 2, size));
-            path.lineTo(getX(5, 3, size), getY(5, 3, size));
-            path.lineTo(getX(5, 4, size), getY(5, 4, size));
-            path.close();
-            ShapeDrawable result = new ShapeDrawable(new PathShape(path, size, size));
-            result.setBounds(0, 0, (int) size, (int) size);
-            Paint paint = result.getPaint();
-            paint.setColor(getDieColor());
-            paint.setStrokeWidth(2);
-            paint.setStrokeJoin(Paint.Join.ROUND);
-            return result;
         } else {
             float size = context.getResources().getDimension(R.dimen.diesize);
             Path path = new Path();
-            final float sin60 = 0.866025404f;
-            float offset = size * (1 - sin60);
-            path.moveTo(size / 2, 0);
-            path.lineTo(0, size - offset);
-            path.lineTo(size, size - offset);
+            if (mySides == 10) {
+                // kite
+                path.moveTo(size / 2, 0);
+                path.lineTo(0.22f * size, 0.55f * size);
+                path.lineTo(size / 2, 0.8f * size);
+                path.lineTo(0.78f * size, 0.55f * size);
+            } else if (mySides == 12) {
+                // pentagon
+                path.moveTo(size / 2, 0);
+                path.lineTo(getX(5, 1, size), getY(5, 1, size));
+                path.lineTo(getX(5, 2, size), getY(5, 2, size));
+                path.lineTo(getX(5, 3, size), getY(5, 3, size));
+                path.lineTo(getX(5, 4, size), getY(5, 4, size));
+            } else {
+                // triangle
+                final float sin60 = 0.866025404f;
+                float offset = size * (1 - sin60);
+                path.moveTo(size / 2, 0);
+                path.lineTo(0, size - offset);
+                path.lineTo(size, size - offset);
+            }
             path.close();
             ShapeDrawable result = new ShapeDrawable(new PathShape(path, size, size));
             result.setBounds(0, 0, (int) size, (int) size);
@@ -103,11 +103,11 @@ public class SimpleDie implements Die {
     }
 
     private float getX(int n, int i, float size) {
-        return (float) (size/2*(1 + Math.cos(-Math.PI/2 + 2 * Math.PI*i/n)));
+        return (float) (size / 2 * (1 + Math.cos(-Math.PI / 2 + 2 * Math.PI * i / n)));
     }
 
     private float getY(int n, int i, float size) {
-        return (float) (size/2*(1 + Math.sin(-Math.PI/2 + 2 * Math.PI*i/n)));
+        return (float) (size / 2 * (1 + Math.sin(-Math.PI / 2 + 2 * Math.PI * i / n)));
     }
 
     protected void drawFace(int width, int height, Canvas canvas, Context context) {

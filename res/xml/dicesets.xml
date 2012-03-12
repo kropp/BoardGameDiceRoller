@@ -20,9 +20,12 @@
             <die type="d6"/>
         </diceset>
     </game>
-    <game id="1d4_1d8_1d12_1d20" name="d4, d8, d12, d20 dice">
+    <game id="1d4_1d8_1d12_1d20" name="d4, d8, d10, d12, d20 dice">
         <diceset id="1d4" name="1d4">
             <die type="d4" color="green"/>
+        </diceset>
+        <diceset id="1d10" name="1d10">
+            <die type="d10" color="cyan"/>
         </diceset>
         <diceset id="1d12" name="1d12">
             <die type="d12" color="magenta"/>
