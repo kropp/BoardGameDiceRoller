@@ -93,10 +93,7 @@ public class MyMainActivity extends TabActivity {
         dialog.setTitle(R.string.about_title);
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(true);
-/*
-        ImageView image = (ImageView) dialog.findViewById(R.id.image);
-        image.setImageResource(R.drawable.android);
-*/
+
         return dialog;
     }
 
