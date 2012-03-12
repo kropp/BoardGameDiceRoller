@@ -179,14 +179,16 @@ public class DiceRollActivity extends Activity {
 
         StatsManager.getInstance(getResources()).updateStats(myDiceSet);
 
-        String notification = "" + myDiceSet.getSum();
-        if (myToast != null) {
-            myToast.setText(notification);
-            myToast.setDuration(Toast.LENGTH_LONG);
-            myToast.show();
-        } else {
-            myToast = Toast.makeText(this, notification, Toast.LENGTH_LONG);
-            myToast.show();
+        if (myDiceSet.getDice().size() > 1) {
+            String notification = "" + myDiceSet.getSum();
+            if (myToast != null) {
+                myToast.setText(notification);
+                myToast.setDuration(Toast.LENGTH_LONG);
+                myToast.show();
+            } else {
+                myToast = Toast.makeText(this, notification, Toast.LENGTH_LONG);
+                myToast.show();
+            }
         }
 
         if (myVibeAfterRoll) {
@@ -199,11 +201,11 @@ public class DiceRollActivity extends Activity {
 
         final View view = findViewById(R.id.dicerollarea);
 
-        int width = view.getWidth();
+        int width = view.getMeasuredWidth();
         if (width == 0)
             width = getWindowManager().getDefaultDisplay().getWidth();
 
-        int height = view.getHeight();
+        int height = view.getMeasuredHeight();
         if (height == 0)
             height = getWindowManager().getDefaultDisplay().getHeight();
 
@@ -214,7 +216,8 @@ public class DiceRollActivity extends Activity {
         int size = dice.size();
         double distribution = Math.sqrt(1.0 * height / width * size);
         // trying to layout dice rectangular, otherwise adding extra items along biggest side
-        int rows = (int) (width > height ? Math.floor(distribution) : Math.ceil(distribution));
+        //int rows = (int) (width > height ? Math.floor(distribution) : Math.ceil(distribution));
+        int rows = (int) Math.round(distribution);
         if (rows == 0)
             rows = 1;
         int columns = (int) Math.ceil(1.0 * size / rows);
