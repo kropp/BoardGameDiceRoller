@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dice>
+    <die id="catan_cities_knights_event_die" type="d6">
+        <face image="yellowcity" />
+        <face image="greencity" />
+        <face image="bluecity" />
+        <face image="pirates" />
+        <face image="pirates" />
+        <face image="pirates" />
+    </die>
+</dice>

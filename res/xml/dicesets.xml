@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <games>
-    <game id="1d6_4d6" name="Simple d6 dice">
+    <game id="1d6_3d6" name="Simple d6 dice">
         <diceset id="1d6" name="1d6">
             <die type="d6"/>
         </diceset>
@@ -13,12 +13,14 @@
             <die type="d6"/>
             <die type="d6"/>
         </diceset>
+<!--
         <diceset id="4d6" name="4d6">
             <die type="d6"/>
             <die type="d6"/>
             <die type="d6"/>
             <die type="d6"/>
         </diceset>
+-->
     </game>
     <game id="1d4_1d8_1d12_1d20" name="d4, d8, d10, d12, d20 dice">
         <diceset id="1d4" name="1d4">
@@ -37,6 +39,27 @@
             <die type="d20" color="blue"/>
         </diceset>
     </game>
+    <game id="backgammon" name="Backgammon">
+        <diceset id="backgammon" name="Backgammon">
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+    </game>
+    <game id="monopoly" name="Monopoly">
+        <diceset id="monopoly" name="Monopoly">
+            <special event="double">
+                <message>Double! Roll again!</message>
+            </special>
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+    </game>
+    <game id="catan" name="Settlers of Catan">
+        <diceset id="catan" name="Settlers of Catan">
+            <die type="d6"/>
+            <die type="d6"/>
+        </diceset>
+    </game>
     <game id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
         <diceset id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
             <die type="d6"/>
@@ -50,7 +73,7 @@
         </diceset>
         <diceset id="2d6" name="2">
             <die type="d6" />
-            <die type="d6" />
+            <die type="d6" />                             `
         </diceset>
         <diceset id="3d6" name="3">
             <die type="d6" />
