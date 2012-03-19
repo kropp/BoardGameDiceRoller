@@ -1,7 +1,6 @@
 package name.kropp.diceroller;
 
 import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class GamesManager {
         if (ourInstance == null) {
             ourInstance = new GamesManager();
             try {
-                new GamesXmlParser(ourInstance).parseXml(resources.getXml(R.xml.dicesets));
+                new GamesXmlParser(ourInstance, DiceManager.getInstance(resources)).parseXml(resources.getXml(R.xml.dicesets));
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             } catch (XmlPullParserException e) {

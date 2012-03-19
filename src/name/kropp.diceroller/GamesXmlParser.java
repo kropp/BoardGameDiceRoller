@@ -14,13 +14,13 @@ import java.util.Random;
  */
 public class GamesXmlParser {
     private GamesManager myGamesManager;
+    private DiceManager myDiceManager;
     private Game myGame;
     private DiceSet myDiceSet;
-    private Random myRandom;
 
-    public GamesXmlParser(GamesManager gamesManager) {
+    public GamesXmlParser(GamesManager gamesManager, DiceManager diceManager) {
         myGamesManager = gamesManager;
-        myRandom = new Random(System.currentTimeMillis());
+        myDiceManager = diceManager;
     }
 
     public void parseXml(XmlResourceParser xml) throws IOException, XmlPullParserException {
@@ -40,29 +40,11 @@ public class GamesXmlParser {
     }
 
     private void startDie(XmlResourceParser xml) {
-        String type = xml.getAttributeValue(null, "type");
-        Die die = null;
-        if (type.startsWith("d")) {
-            int sides = Integer.valueOf(type.substring(1));
-
-            String color = xml.getAttributeValue(null, "color");
-            int dieColor = Color.WHITE;
-            if (color != null)
-                dieColor = Color.parseColor(color);
-            int faceColor = dieColor != Color.BLACK ? Color.BLACK : Color.WHITE;
-
-            die = new SimpleDie(sides, getNextSeed(), dieColor, faceColor);
-        } else if (type.equals("catan_cities_knights_event_die")) {
-            die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
-        }
+        Die die = myDiceManager.createDie(xml.getAttributeValue(null, "type"), xml.getAttributeValue(null, "color"));
         if (die != null) {
             die.roll();
             myDiceSet.addDie(die);
         }
-    }
-
-    private long getNextSeed() {
-        return myRandom.nextLong();
     }
 
     private void startDiceSet(XmlResourceParser xml) {
