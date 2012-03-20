@@ -1,9 +1,7 @@
 package name.kropp.diceroller;
 
 import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
 import android.graphics.Color;
-import name.kropp.diceroller.dice.CustomDieFactory;
 import name.kropp.diceroller.dice.DieFactory;
 import name.kropp.diceroller.dice.SimpleDieFactory;
 import org.xmlpull.v1.XmlPullParserException;
@@ -33,7 +31,6 @@ public class DiceManager {
         myDiceFactories.put("d10", new SimpleDieFactory(10));
         myDiceFactories.put("d12", new SimpleDieFactory(12));
         myDiceFactories.put("d20", new SimpleDieFactory(20));
-        myDiceFactories.put("catan_cities_knights_event_die", new CustomDieFactory());
     }
 
     public static DiceManager getInstance(Resources resources) {
@@ -63,5 +60,9 @@ public class DiceManager {
     
     private long getNextSeed() {
         return myRandom.nextLong();
+    }
+
+    public void addDieFactory(String type, DieFactory dieFactory) {
+        myDiceFactories.put(type, dieFactory);
     }
 }
