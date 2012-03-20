@@ -3,9 +3,14 @@ package name.kropp.diceroller;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Color;
+import name.kropp.diceroller.dice.CustomDieFactory;
+import name.kropp.diceroller.dice.DieFactory;
+import name.kropp.diceroller.dice.SimpleDieFactory;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.Random;
 
 /**
@@ -14,43 +19,46 @@ import java.util.Random;
  */
 public class DiceManager {
     private Random myRandom;
+    private Dictionary<String, DieFactory> myDiceFactories;
+    
     private static DiceManager ourInstance;
 
     private DiceManager() {
         myRandom = new Random(System.currentTimeMillis());
+        myDiceFactories = new Hashtable<String, DieFactory>();
+
+        myDiceFactories.put("d4", new SimpleDieFactory(4));
+        myDiceFactories.put("d6", new SimpleDieFactory(6));
+        myDiceFactories.put("d8", new SimpleDieFactory(8));
+        myDiceFactories.put("d10", new SimpleDieFactory(10));
+        myDiceFactories.put("d12", new SimpleDieFactory(12));
+        myDiceFactories.put("d20", new SimpleDieFactory(20));
+        myDiceFactories.put("catan_cities_knights_event_die", new CustomDieFactory());
     }
 
     public static DiceManager getInstance(Resources resources) {
         if (ourInstance == null) {
             ourInstance = new DiceManager();
-/*
             try {
-                new GamesXmlParser(ourInstance, DiceManager.getInstance(resources)).parseXml(resources.getXml(R.xml.dicesets));
+                new DiceXmlParser(ourInstance).parseXml(resources.getXml(R.xml.dice));
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             } catch (XmlPullParserException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
-*/
         }
         return ourInstance;
     }
     
     public Die createDie(String type, String color) {
-        Die die = null;
-        if (type.startsWith("d")) {
-            int sides = Integer.valueOf(type.substring(1));
-
-            int dieColor = Color.WHITE;
-            if (color != null)
-                dieColor = Color.parseColor(color);
+        DieFactory dieFactory = myDiceFactories.get(type);
+        if (dieFactory != null) {
+            int dieColor = color != null ? Color.parseColor(color) : Color.WHITE;
             int faceColor = dieColor != Color.BLACK ? Color.BLACK : Color.WHITE;
 
-            die = new SimpleDie(sides, getNextSeed(), dieColor, faceColor);
-        } else if (type.equals("catan_cities_knights_event_die")) {
-            die = new SettlersOfCatanCitiesAndKnightsEventDie(getNextSeed());
+            return dieFactory.createDie(getNextSeed(), dieColor, faceColor);
         }
-        return die;
+        return null;
     }
     
     private long getNextSeed() {
