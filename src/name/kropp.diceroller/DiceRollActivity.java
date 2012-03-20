@@ -177,7 +177,7 @@ public class DiceRollActivity extends Activity {
 
         displaySet();
 
-        StatsManager.getInstance(getResources()).updateStats(myDiceSet);
+        StatsManager.getInstance(this).updateStats(myDiceSet);
 
         if (myDiceSet.getDice().size() > 1) {
             String notification = "" + myDiceSet.getSum();

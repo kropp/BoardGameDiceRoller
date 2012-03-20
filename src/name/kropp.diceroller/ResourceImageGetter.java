@@ -1,5 +1,6 @@
 package name.kropp.diceroller;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
@@ -11,27 +12,23 @@ import android.text.Html;
 public class ResourceImageGetter implements Html.ImageGetter {
     private static ResourceImageGetter ourInstance;
 
-    private Resources myResources;
+    private final Context myContext;
 
-    private ResourceImageGetter(Resources resources) {
-        this.myResources = resources;
+    private ResourceImageGetter(Context context) {
+        myContext = context;
     }
 
-    public static ResourceImageGetter getInstance(Resources resources) {
+    public static ResourceImageGetter getInstance(Context context) {
         if (ourInstance == null)
-            ourInstance = new ResourceImageGetter(resources);
+            ourInstance = new ResourceImageGetter(context);
         return ourInstance;
     }
 
     @Override
     public Drawable getDrawable(String s) {
-        int id;
-        try {
-            id = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            id = R.drawable.icon;
-        }
-        Drawable d = myResources.getDrawable(id);
+        Resources resources = myContext.getResources();
+        int id = resources.getIdentifier(s, "drawable", myContext.getPackageName());;
+        Drawable d = resources.getDrawable(id);
         d.setBounds(0, 0, 24, 24);
         return d;
     }

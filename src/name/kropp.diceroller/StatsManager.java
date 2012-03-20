@@ -1,6 +1,6 @@
 package name.kropp.diceroller;
 
-import android.content.res.Resources;
+import android.content.Context;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 
@@ -20,13 +20,13 @@ public class StatsManager {
     private ResourceImageGetter myResourceImageGetter;
     private Map<Die, List<Integer>> myHistoryValues = new HashMap<Die, List<Integer>>();
 
-    private StatsManager(Resources resources) {
-        myResourceImageGetter = ResourceImageGetter.getInstance(resources);
+    private StatsManager(Context context) {
+        myResourceImageGetter = ResourceImageGetter.getInstance(context);
     }
 
-    public static StatsManager getInstance(Resources resources) {
+    public static StatsManager getInstance(Context context) {
         if (ourInstance == null) {
-            ourInstance = new StatsManager(resources);
+            ourInstance = new StatsManager(context);
         }
         return ourInstance;
     }

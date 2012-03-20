@@ -65,7 +65,7 @@ public class MyMainActivity extends TabActivity {
                 showDialog(ABOUT_DIALOG_ID);
                 return true;
             case R.id.clearhistory:
-                StatsManager.getInstance(getResources()).clear();
+                StatsManager.getInstance(this).clear();
 
                 if (getTabHost().getCurrentTab() == 1) { // reload stats view
                     Intent intent = new Intent(this, MyMainActivity.class);
