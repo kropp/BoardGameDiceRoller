@@ -21,7 +21,6 @@ public class CustomDie extends SimpleDie {
         return false;
     }
 
-    @Override
     protected void drawFace(int width, int height, Canvas canvas, Context context) {
         Drawable drawable = context.getResources().getDrawable(getIconId(context));
         drawable.setBounds(0, 0, width, height);

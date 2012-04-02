@@ -25,12 +25,12 @@ public class DiceManager {
         myRandom = new Random(System.currentTimeMillis());
         myDiceFactories = new Hashtable<String, DieFactory>();
 
-        myDiceFactories.put("d4", new SimpleDieFactory(4));
-        myDiceFactories.put("d6", new SimpleDieFactory(6));
-        myDiceFactories.put("d8", new SimpleDieFactory(8));
-        myDiceFactories.put("d10", new SimpleDieFactory(10));
-        myDiceFactories.put("d12", new SimpleDieFactory(12));
-        myDiceFactories.put("d20", new SimpleDieFactory(20));
+        myDiceFactories.put("d4", new SimpleDieFactory(4, new BaseDieDrawStrategy()));
+        myDiceFactories.put("d6", new SimpleDieFactory(6, new BaseDieDrawStrategy()));
+        myDiceFactories.put("d8", new SimpleDieFactory(8, new BaseDieDrawStrategy()));
+        myDiceFactories.put("d10", new SimpleDieFactory(10, new BaseDieDrawStrategy()));
+        myDiceFactories.put("d12", new SimpleDieFactory(12, new BaseDieDrawStrategy()));
+        myDiceFactories.put("d20", new SimpleDieFactory(20, new BaseDieDrawStrategy()));
     }
 
     public static DiceManager getInstance(Resources resources) {

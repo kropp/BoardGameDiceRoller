@@ -26,6 +26,18 @@ public interface Die {
     public boolean countsInSum();
 
     /**
+     * Returns foreground color
+     * @return color in 0xffffffff format
+     */
+    public int getColor();
+
+    /**
+     * Returns die color
+     * @return color in 0xffffffff format
+     */
+    public int getDieColor();
+
+    /**
      * Returns view displaying current die state.
      * @return View
      * @param context Current context
