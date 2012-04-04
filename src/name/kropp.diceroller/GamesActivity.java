@@ -12,7 +12,7 @@ public class GamesActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        GamesAdapter adapter = new GamesAdapter(this, GamesManager.getInstance(getResources()));
+        GamesAdapter adapter = new GamesAdapter(this, GamesManager.getInstance(getResources()), VersionManager.getInstance());
 		setListAdapter(adapter);
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 	}

@@ -1,12 +1,10 @@
 package name.kropp.diceroller;
 
 import android.content.res.XmlResourceParser;
-import android.graphics.Color;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * Created by IntelliJ IDEA.
@@ -59,6 +57,6 @@ public class GamesXmlParser {
             version = Version.FULL;
 
         myGame = new Game(xml.getAttributeValue(null, "id"), xml.getAttributeValue(null, "name"), version);
-        myGamesManager.addGame(myGame);
+        myGamesManager.addGame(myGame, version);
     }
 }
