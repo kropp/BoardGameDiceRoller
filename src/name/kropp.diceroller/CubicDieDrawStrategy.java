@@ -1,5 +1,6 @@
 package name.kropp.diceroller;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
@@ -11,7 +12,7 @@ import android.graphics.RectF;
  */
 public class CubicDieDrawStrategy extends RectFaceDieDrawStrategy {
     @Override
-    protected void drawFace(int width, int height, Canvas canvas, Die die) {
+    protected void drawFace(int width, int height, Canvas canvas, Die die, Context context) {
         Paint paint = new Paint();
         canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
         paint.setColor(die.getColor());

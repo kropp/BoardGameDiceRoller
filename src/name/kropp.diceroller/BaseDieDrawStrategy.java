@@ -22,7 +22,7 @@ public abstract class BaseDieDrawStrategy implements DieDrawStrategy {
         drawable.setBounds(0, 0, size, size);
         drawable.draw(canvas);
 
-        drawFace(size, size, canvas, die);
+        drawFace(size, size, canvas, die, context);
 
         ImageView image = new ImageView(context);
         image.setImageBitmap(canvasBitmap);
@@ -32,7 +32,7 @@ public abstract class BaseDieDrawStrategy implements DieDrawStrategy {
 
     protected abstract Drawable getDieDrawable(Context context, Die die, int size);
 
-    protected void drawFace(int width, int height, Canvas canvas, Die die) {
+    protected void drawFace(int width, int height, Canvas canvas, Die die, Context context) {
         Paint paint = new Paint();
         paint.setFilterBitmap(true);
         canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));

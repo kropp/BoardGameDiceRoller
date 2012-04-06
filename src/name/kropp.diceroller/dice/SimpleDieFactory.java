@@ -19,8 +19,6 @@ public class SimpleDieFactory implements DieFactory {
 
     @Override
     public Die createDie(long seed, int dieColor, int color) {
-        SimpleDie die = new SimpleDie(mySides, seed, dieColor, color);
-        die.setDrawStrategy(myDrawStrategy);
-        return die;
+        return new SimpleDie(mySides, seed, dieColor, color, myDrawStrategy);
     }
 }

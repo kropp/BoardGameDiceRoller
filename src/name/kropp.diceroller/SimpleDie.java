@@ -18,10 +18,11 @@ public class SimpleDie implements Die {
 
     private DieDrawStrategy myDrawStrategy;
 
-    public SimpleDie(int sides, long seed, int dieColor, int color) {
+    public SimpleDie(int sides, long seed, int dieColor, int color, DieDrawStrategy drawStrategy) {
         mySides = sides;
         myDieColor = dieColor;
         myColor = color;
+        myDrawStrategy = drawStrategy;
         myRandomizer = new Random(seed);
     }
 
@@ -74,9 +75,5 @@ public class SimpleDie implements Die {
 
     public int getColor() {
         return myColor;
-    }
-
-    public void setDrawStrategy(DieDrawStrategy drawStrategy) {
-        myDrawStrategy = drawStrategy;
     }
 }

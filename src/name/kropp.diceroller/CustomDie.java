@@ -11,8 +11,8 @@ import android.graphics.drawable.Drawable;
 public class CustomDie extends SimpleDie {
     private final String[] myFaceImages;
 
-    public CustomDie(int sides, long seed, int dieColor, int color, String[] faceImages) {
-        super(sides, seed, dieColor, color);
+    public CustomDie(int sides, long seed, int dieColor, int color, String[] faceImages, DieDrawStrategy drawStrategy) {
+        super(sides, seed, dieColor, color, drawStrategy);
         myFaceImages = faceImages;
     }
 
