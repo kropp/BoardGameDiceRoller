@@ -3,6 +3,7 @@ package name.kropp.diceroller;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -76,6 +77,17 @@ public class StatsActivity extends Activity {
                 }
 
                 table.addView(row2, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.FILL_PARENT));
+            }
+        } else {
+            final Activity context = this;
+            Button buyButton = (Button) findViewById(R.id.buy_button);
+            if (buyButton != null) {
+                buyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        VersionManager.getInstance().showBuyDialog(context);
+                    }
+                });
             }
         }
     }
