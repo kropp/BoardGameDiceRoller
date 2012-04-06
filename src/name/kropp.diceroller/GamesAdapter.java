@@ -56,7 +56,7 @@ public class GamesAdapter extends ArrayAdapter<String> {
             listItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    myActivity.showDialog(GamesActivity.FULL_VERSION_DIALOG_ID);
+                    myVersionManager.showBuyDialog(myActivity);
                 }
             });
 
