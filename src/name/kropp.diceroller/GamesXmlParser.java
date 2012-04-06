@@ -57,6 +57,6 @@ public class GamesXmlParser {
             version = Version.FULL;
 
         myGame = new Game(xml.getAttributeValue(null, "id"), xml.getAttributeValue(null, "name"), version);
-        myGamesManager.addGame(myGame, version);
+        myGamesManager.addGame(myGame);
     }
 }

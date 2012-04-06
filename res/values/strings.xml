@@ -22,4 +22,6 @@
     <string name="shake_preference_name">shake_preference</string>
     <string name="history_header">History</string>
     <string name="clearhistory">Clear history</string>
+    <string name="stats_only_in_full_version">Statistics available only in full version. Please, support development of this app by buying upgrade in Play Store.</string>
+    <string name="only_in_full_version">Available only in full version</string>
 </resources>

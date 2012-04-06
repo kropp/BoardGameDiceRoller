@@ -7,9 +7,16 @@
                  android:layout_weight="2"
                  android:layout_width="fill_parent"
                  android:layout_height="fill_parent"
-                 android:gravity="bottom"
+                 android:gravity="center"
                  android:stretchColumns="*"
             >
+        <TableRow>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="@string/stats_only_in_full_version"/>
+        </TableRow>
     </TableLayout>
     <TextView
             android:layout_width="fill_parent"

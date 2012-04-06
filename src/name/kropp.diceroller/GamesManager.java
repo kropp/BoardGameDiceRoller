@@ -15,7 +15,6 @@ public class GamesManager {
     private static GamesManager ourInstance;
 
     private ArrayList<Game> myGames = new ArrayList<Game>();
-    private ArrayList<Game> myGamesLite = new ArrayList<Game>();
     private int mySelected;
     private DiceSet mySelectedSet;
 
@@ -36,15 +35,11 @@ public class GamesManager {
         return ourInstance;
     }
 
-    public void addGame(Game game, Version version) {
+    public void addGame(Game game) {
         myGames.add(game);
-        if (version == Version.LITE)
-            myGamesLite.add(game);
     }
 
-    public List<Game> getGames(Version version) {
-        if (version == Version.LITE)
-            return myGamesLite;
+    public List<Game> getGames() {
         return myGames;
     }
 

@@ -33,6 +33,10 @@ public class Game {
         return myName;
     }
 
+    public Version getVersion() {
+        return myVersion;
+    }
+
     public List<DiceSet> getDiceSets() {
         return myDiceSets;
     }
