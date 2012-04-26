@@ -1,8 +1,9 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.settings;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import name.kropp.diceroller.R;
 
 /**
  * Created by IntelliJ IDEA.

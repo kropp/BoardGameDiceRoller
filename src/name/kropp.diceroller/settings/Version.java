@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.settings;
 
 /**
  * Created by IntelliJ IDEA.
