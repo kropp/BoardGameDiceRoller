@@ -1,7 +1,5 @@
 package name.kropp.diceroller.dice;
 
-import name.kropp.diceroller.Die;
-
 /**
  * Created by IntelliJ IDEA.
  * User: kropp

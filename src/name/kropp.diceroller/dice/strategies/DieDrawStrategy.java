@@ -1,7 +1,8 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.dice.strategies;
 
 import android.content.Context;
 import android.view.View;
+import name.kropp.diceroller.dice.Die;
 
 /**
  * Created by IntelliJ IDEA.

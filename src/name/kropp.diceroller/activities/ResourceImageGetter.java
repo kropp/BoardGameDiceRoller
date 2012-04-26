@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.content.Context;
 import android.content.res.Resources;

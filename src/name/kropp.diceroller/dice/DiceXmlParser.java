@@ -1,7 +1,6 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.dice;
 
 import android.content.res.XmlResourceParser;
-import name.kropp.diceroller.dice.CustomDieFactory;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 

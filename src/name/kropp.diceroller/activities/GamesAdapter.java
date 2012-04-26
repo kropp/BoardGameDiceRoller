@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.R;
 import android.app.Activity;
@@ -12,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.TwoLineListItem;
+import name.kropp.diceroller.games.Game;
+import name.kropp.diceroller.games.GamesManager;
+import name.kropp.diceroller.Version;
+import name.kropp.diceroller.VersionManager;
 
 /**
  * Created by IntelliJ IDEA.

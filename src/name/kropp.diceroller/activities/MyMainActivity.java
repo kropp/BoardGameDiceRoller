@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.app.Dialog;
 import android.app.TabActivity;
@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
+import name.kropp.diceroller.R;
+import name.kropp.diceroller.games.StatsManager;
 
 public class MyMainActivity extends TabActivity {
     static final int ABOUT_DIALOG_ID = 1;

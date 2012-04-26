@@ -5,7 +5,7 @@
       android:versionName="1.0"
       android:installLocation="preferExternal">
     <application android:label="@string/app_name" android:icon="@drawable/icon">
-        <activity android:name="MyMainActivity"
+        <activity android:name=".activities.MyMainActivity"
                   android:label="@string/app_name"
                   android:launchMode="singleTask">
             <intent-filter>
@@ -13,11 +13,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="MyPreferencesActivity" android:label="@string/options">
+        <activity android:name=".activities.MyPreferencesActivity" android:label="@string/options">
         </activity>
-        <activity android:name="DiceRollActivity"/>
-        <activity android:name="StatsActivity"/>
-        <activity android:name=".GamesActivity"/>
+        <activity android:name=".activities.DiceRollActivity"/>
+        <activity android:name=".activities.StatsActivity"/>
+        <activity android:name=".activities.GamesActivity"/>
     </application>
     <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="9" />
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />

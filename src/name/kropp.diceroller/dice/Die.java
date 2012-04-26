@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.dice;
 
 import android.content.Context;
 import android.view.View;

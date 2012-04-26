@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
+import name.kropp.diceroller.*;
+import name.kropp.diceroller.dice.DiceSet;
+import name.kropp.diceroller.games.GamesManager;
+import name.kropp.diceroller.games.StatsManager;
 
 import java.util.Collection;
 import java.util.Map;

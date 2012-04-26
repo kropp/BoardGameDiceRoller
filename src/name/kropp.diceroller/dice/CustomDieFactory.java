@@ -1,8 +1,6 @@
 package name.kropp.diceroller.dice;
 
-import name.kropp.diceroller.CustomDie;
-import name.kropp.diceroller.CustomDieDrawStrategy;
-import name.kropp.diceroller.Die;
+import name.kropp.diceroller.dice.strategies.CustomDieDrawStrategy;
 
 /**
  * Created by IntelliJ IDEA.

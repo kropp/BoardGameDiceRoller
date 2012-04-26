@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.dice;
 
 import java.util.LinkedList;
 import java.util.List;

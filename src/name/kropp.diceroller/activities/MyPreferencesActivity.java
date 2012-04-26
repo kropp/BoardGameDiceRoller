@@ -1,7 +1,8 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import name.kropp.diceroller.R;
 
 /**
  * Created by IntelliJ IDEA.

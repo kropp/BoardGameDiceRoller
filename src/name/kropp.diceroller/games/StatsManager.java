@@ -1,8 +1,11 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.games;
 
 import android.content.Context;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
+import name.kropp.diceroller.activities.ResourceImageGetter;
+import name.kropp.diceroller.dice.DiceSet;
+import name.kropp.diceroller.dice.Die;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 /**
  * Created by IntelliJ IDEA.

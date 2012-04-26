@@ -1,4 +1,7 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.games;
+
+import name.kropp.diceroller.Version;
+import name.kropp.diceroller.dice.DiceSet;
 
 import java.util.ArrayList;
 import java.util.List;

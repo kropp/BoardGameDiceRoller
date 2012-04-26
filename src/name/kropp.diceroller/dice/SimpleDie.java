@@ -1,7 +1,9 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.dice;
 
 import android.content.Context;
 import android.view.View;
+import name.kropp.diceroller.R;
+import name.kropp.diceroller.dice.strategies.DieDrawStrategy;
 
 import java.util.Random;
 

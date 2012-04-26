@@ -1,4 +1,4 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,12 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.*;
+import name.kropp.diceroller.*;
+import name.kropp.diceroller.dice.DiceSet;
+import name.kropp.diceroller.dice.Die;
+import name.kropp.diceroller.games.Game;
+import name.kropp.diceroller.games.GamesManager;
+import name.kropp.diceroller.games.StatsManager;
 
 import java.util.List;
 

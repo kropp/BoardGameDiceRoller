@@ -1,10 +1,11 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.dice.strategies;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.RectF;
+import name.kropp.diceroller.dice.Die;
 
 /**
  * Created by IntelliJ IDEA.

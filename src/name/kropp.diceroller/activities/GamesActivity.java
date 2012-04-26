@@ -1,8 +1,10 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.activities;
 
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import name.kropp.diceroller.games.GamesManager;
+import name.kropp.diceroller.VersionManager;
 
 /**
  * Created by IntelliJ IDEA.

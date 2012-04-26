@@ -1,6 +1,9 @@
-package name.kropp.diceroller;
+package name.kropp.diceroller.games;
 
 import android.content.res.Resources;
+import name.kropp.diceroller.R;
+import name.kropp.diceroller.dice.DiceManager;
+import name.kropp.diceroller.dice.DiceSet;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
