@@ -1,6 +1,6 @@
 package name.kropp.diceroller.games;
 
-import name.kropp.diceroller.Version;
+import name.kropp.diceroller.settings.Version;
 import name.kropp.diceroller.dice.DiceSet;
 
 import java.util.ArrayList;

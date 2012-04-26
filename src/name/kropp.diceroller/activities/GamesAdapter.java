@@ -14,8 +14,9 @@ import android.widget.TextView;
 import android.widget.TwoLineListItem;
 import name.kropp.diceroller.games.Game;
 import name.kropp.diceroller.games.GamesManager;
-import name.kropp.diceroller.Version;
-import name.kropp.diceroller.VersionManager;
+import name.kropp.diceroller.settings.PreferenceNames;
+import name.kropp.diceroller.settings.Version;
+import name.kropp.diceroller.settings.VersionManager;
 
 /**
  * Created by IntelliJ IDEA.
@@ -74,7 +75,7 @@ public class GamesAdapter extends ArrayAdapter<String> {
                 public void onClick(View view) {
                     myGamesManager.setSelectedGame((Integer) view.getTag());
                     SharedPreferences.Editor editor = myPreferences.edit();
-                    editor.putString(myActivity.getString(name.kropp.diceroller.R.string.selected_game_id_preference_name), myGamesManager.getSelectedGame().getId());
+                    editor.putString(PreferenceNames.SelectedGameId, myGamesManager.getSelectedGame().getId());
                     editor.commit();
 
                     Intent intent = new Intent(myActivity, MyMainActivity.class);

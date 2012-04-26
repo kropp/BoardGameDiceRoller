@@ -1,7 +1,7 @@
 package name.kropp.diceroller.games;
 
 import android.content.res.XmlResourceParser;
-import name.kropp.diceroller.Version;
+import name.kropp.diceroller.settings.Version;
 import name.kropp.diceroller.dice.DiceManager;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;

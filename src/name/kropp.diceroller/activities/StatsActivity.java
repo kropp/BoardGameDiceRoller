@@ -12,6 +12,8 @@ import name.kropp.diceroller.*;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.games.GamesManager;
 import name.kropp.diceroller.games.StatsManager;
+import name.kropp.diceroller.settings.Version;
+import name.kropp.diceroller.settings.VersionManager;
 
 import java.util.Collection;
 import java.util.Map;

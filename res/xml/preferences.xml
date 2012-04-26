@@ -3,13 +3,13 @@
     <PreferenceCategory android:title="@string/main_preferences">
 
         <CheckBoxPreference
-                android:key="@string/shake_preference_name"
+                android:key="shake_preference"
                 android:title="@string/title_shake_preference"
                 android:summary="@string/summary_shake_preference" />
 
 
         <CheckBoxPreference
-                android:key="@string/vibe_preference_name"
+                android:key="vibe_preference"
                 android:title="@string/title_vibe_preference"
                 android:summary="@string/summary_vibe_preference" />
 

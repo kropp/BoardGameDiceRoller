@@ -8,12 +8,13 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.*;
-import name.kropp.diceroller.*;
+import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;
 import name.kropp.diceroller.games.Game;
 import name.kropp.diceroller.games.GamesManager;
 import name.kropp.diceroller.games.StatsManager;
+import name.kropp.diceroller.settings.PreferenceNames;
 
 import java.util.List;
 
@@ -35,8 +36,8 @@ public class DiceRollActivity extends Activity {
         GamesManager gamesManager = GamesManager.getInstance(getResources());
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String selectedGameId = preferences.getString(getString(R.string.selected_game_id_preference_name), null);
-        String selectedSetId = preferences.getString(getString(R.string.selected_set_id_preference_name), null);
+        String selectedGameId = preferences.getString(PreferenceNames.SelectedGameId, null);
+        String selectedSetId = preferences.getString(PreferenceNames.SelectedSetId, null);
 
         gamesManager.setSelectedGame(selectedGameId);
 
@@ -62,8 +63,8 @@ public class DiceRollActivity extends Activity {
 
         myVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
-        myVibeAfterRoll = preferences.getBoolean(getString(R.string.vibe_preference_name), false);
-        boolean rollOnShakeEnabled = preferences.getBoolean(getString(R.string.shake_preference_name), false);
+        myVibeAfterRoll = preferences.getBoolean(PreferenceNames.Vibe, false);
+        boolean rollOnShakeEnabled = preferences.getBoolean(PreferenceNames.Shake, false);
         if (rollOnShakeEnabled) {
             listenShakeEvent();
 
@@ -73,7 +74,7 @@ public class DiceRollActivity extends Activity {
 
         preferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-                if (s.equals(getString(R.string.shake_preference_name))) {
+                if (s.equals(PreferenceNames.Shake)) {
                     final TextView textView = (TextView) findViewById(R.id.taptoroll);
                     boolean value = sharedPreferences.getBoolean(s, false);
                     if (value) {
@@ -90,7 +91,7 @@ public class DiceRollActivity extends Activity {
                         textView.setText(getString(R.string.tap_to_roll));
                     }
                 }
-                if (s.equals(getString(R.string.vibe_preference_name))) {
+                if (s.equals(PreferenceNames.Vibe)) {
                     myVibeAfterRoll = sharedPreferences.getBoolean(s, false);
                 }
             }
@@ -135,7 +136,7 @@ public class DiceRollActivity extends Activity {
                         myDiceSet = (DiceSet) view.getTag();
 
                         SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-                        editor.putString(context.getString(R.string.selected_set_id_preference_name), myDiceSet.getId());
+                        editor.putString(PreferenceNames.SelectedSetId, myDiceSet.getId());
                         editor.commit();
 
                         gamesManager.setSelectedSet(myDiceSet.getId());
