@@ -102,4 +102,9 @@
             <die type="d6" />
         </diceset>
     </game>
+    <game id="merchants_and_maradeurs" name="Merchants & Maradeurs" version="full">
+        <diceset id="1dmm6" name="1">
+            <die type="merchants_and_maradeurs_die" />
+        </diceset>
+    </game>
 </games>
