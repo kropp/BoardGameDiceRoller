@@ -18,7 +18,7 @@
                     android:orientation="vertical"
                     >
                 <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="center"
                         android:padding="10dp"
@@ -34,7 +34,6 @@
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.01"
             android:lines="1"
             android:text="@string/history_header"
             style="@android:style/TextAppearance.WindowTitle"

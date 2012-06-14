@@ -22,7 +22,7 @@ public class VersionManager {
     }
 
     public Version getVersion() {
-        return Version.LITE;
+        return Version.FULL;
     }
 
     public void showBuyDialog(Context context) {

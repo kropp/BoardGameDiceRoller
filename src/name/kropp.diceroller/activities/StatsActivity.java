@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
-import name.kropp.diceroller.*;
+import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.games.GamesManager;
 import name.kropp.diceroller.games.StatsManager;
@@ -43,13 +42,13 @@ public class StatsActivity extends Activity {
 
         if (VersionManager.getInstance().getVersion() == Version.FULL) {
             table.removeAllViews();
-            table.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM));
+            //table.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM));
 
             Collection<Integer> values = stats.values();
             if (values.size() > 0) {
                 // bars
                 TableRow row1 = new TableRow(this);
-                row1.setWeightSum(0.1f);
+                //row1.setWeightSum(0.1f);
                 row1.setGravity(Gravity.BOTTOM);
 
                 int width = 200;
@@ -73,7 +72,7 @@ public class StatsActivity extends Activity {
 
                 // values
                 TableRow row2 = new TableRow(this);
-                row1.setWeightSum(1.9f);
+                //row2.setWeightSum(1.9f);
 
                 for (Integer value : stats.keySet()) {
                     TextView label = new TextView(this);
