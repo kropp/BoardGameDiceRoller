@@ -106,5 +106,27 @@
         <diceset id="1dmm6" name="1">
             <die type="merchants_and_maradeurs_die" />
         </diceset>
+        <diceset id="2dmm6" name="2">
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+        </diceset>
+        <diceset id="3dmm6" name="3">
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+        </diceset>
+        <diceset id="4dmm6" name="4">
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+        </diceset>
+        <diceset id="5dmm6" name="5">
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_maradeurs_die" />
+        </diceset>
     </game>
 </games>
