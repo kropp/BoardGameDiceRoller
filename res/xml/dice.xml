@@ -8,4 +8,12 @@
         <face image="pirates" />
         <face image="pirates" />
     </die>
+    <die id="merchants_and_maradeurs_die" type="d6" countsInSum="false">
+        <face image="mm1" />
+        <face image="mm2" />
+        <face image="mm3" />
+        <face image="mm4" />
+        <face image="hull" />
+        <face image="hull" />
+    </die>
 </dice>
