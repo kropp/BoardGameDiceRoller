@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <games>
     <game id="simple_dice" name="Simple dice">
-        <diceset id="1d4" name="d4">
+        <diceset id="1d4" name="4">
             <die type="d4" color="green"/>
         </diceset>
-        <diceset id="1d6" name="d6">
+        <diceset id="1d6" name="6">
             <die type="d6"/>
         </diceset>
-        <diceset id="1d8" name="d8">
+        <diceset id="1d8" name="8">
             <die type="d8" color="yellow"/>
         </diceset>
-        <diceset id="1d10" name="d10">
+        <diceset id="1d10" name="10">
             <die type="d10" color="cyan"/>
         </diceset>
-        <diceset id="1d12" name="d12">
+        <diceset id="1d12" name="12">
             <die type="d12" color="magenta"/>
         </diceset>
-        <diceset id="1d20" name="d20">
+        <diceset id="1d20" name="20">
             <die type="d20" color="blue"/>
         </diceset>
     </game>
