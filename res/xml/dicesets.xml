@@ -46,11 +46,13 @@
             <die type="d6"/>
         </diceset>
     </game>
+    <!--
     <game id="formulad" name="Formula D" version="full">
         <diceset id="black" name="Black">
             <die type="d6"/>
         </diceset>
     </game>
+    -->
     <game id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights" version="full">
         <diceset id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
             <die type="d6"/>
