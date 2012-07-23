@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import name.kropp.diceroller.R;
-import name.kropp.diceroller.games.StatsManager;
 
 public class MyMainActivity extends TabActivity {
     static final int ABOUT_DIALOG_ID = 1;
@@ -34,11 +33,13 @@ public class MyMainActivity extends TabActivity {
                 .setContent(intent);
         tabHost.addTab(spec);
 
+/*
         intent = new Intent().setClass(this, StatsActivity.class);
         spec = tabHost.newTabSpec("stats").setIndicator(resources.getString(R.string.stats_tab_name),
                 resources.getDrawable(R.drawable.ic_tab_stats))
                 .setContent(intent);
         tabHost.addTab(spec);
+*/
 
         intent = new Intent().setClass(this, GamesActivity.class);
         spec = tabHost.newTabSpec("sets").setIndicator(resources.getString(R.string.games_tab_name),
@@ -66,6 +67,7 @@ public class MyMainActivity extends TabActivity {
             case R.id.about:
                 showDialog(ABOUT_DIALOG_ID);
                 return true;
+/*
             case R.id.clearhistory:
                 StatsManager.getInstance(this).clear();
 
@@ -75,6 +77,7 @@ public class MyMainActivity extends TabActivity {
                     startActivity(intent);
                 }
                 return true;
+*/
             default:
                 return super.onOptionsItemSelected(item);
         }
