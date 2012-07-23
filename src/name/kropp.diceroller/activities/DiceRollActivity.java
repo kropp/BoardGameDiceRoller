@@ -186,8 +186,10 @@ public class DiceRollActivity extends Activity {
 
         StatsManager.getInstance(this).updateStats(myDiceSet);
 
-        if (myDiceSet.getDice().size() > 1) {
-            String notification = "" + myDiceSet.getSum();
+        int sum = myDiceSet.getSum();
+
+        if (myDiceSet.getDice().size() > 1 && sum > 0) {
+            String notification = "" + sum;
             if (myToast != null) {
                 myToast.setText(notification);
                 myToast.setDuration(Toast.LENGTH_LONG);
