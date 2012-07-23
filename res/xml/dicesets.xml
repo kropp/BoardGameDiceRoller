@@ -104,31 +104,31 @@
             <die type="d6" />
         </diceset>
     </game>
-    <game id="merchants_and_maradeurs" name="Merchants &amp; Maradeurs" version="full">
+    <game id="merchants_and_marauders" name="Merchants &amp; Marauders" version="full">
         <diceset id="1dmm6" name="1">
-            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
         <diceset id="2dmm6" name="2">
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
         <diceset id="3dmm6" name="3">
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
         <diceset id="4dmm6" name="4">
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
         <diceset id="5dmm6" name="5">
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
-            <die type="merchants_and_maradeurs_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
     </game>
 </games>
