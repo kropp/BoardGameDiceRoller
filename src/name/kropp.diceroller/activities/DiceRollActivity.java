@@ -8,6 +8,8 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.*;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
@@ -208,6 +210,9 @@ public class DiceRollActivity extends Activity {
 
     private void displaySet() {
         final TableLayout layout = (TableLayout) findViewById(R.id.dice_area);
+
+        Animation flash = AnimationUtils.loadAnimation(this, R.anim.flash);
+        layout.setAnimation(flash);
 
         final View view = findViewById(R.id.dicerollarea);
 
