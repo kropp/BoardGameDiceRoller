@@ -13,8 +13,8 @@
             android:paddingBottom="5dp"
             />
     <TableLayout android:id="@+id/dice_area"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1">
@@ -35,10 +35,5 @@
             android:gravity="center"
             android:paddingTop="5dp"
             >
-        <TextView
-                android:text="test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                ></TextView>
     </LinearLayout>
 </LinearLayout>

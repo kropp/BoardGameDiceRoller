@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
 import name.kropp.diceroller.R;
@@ -234,6 +235,7 @@ public class DiceRollActivity extends Activity {
         for (int i = 0; i < rows; i++) {
             TableRow row = new TableRow(this);
             row.setWeightSum(1);
+            row.setGravity(Gravity.CENTER);
 
             for (int j = 0; j < columns; j++) {
                 int number = i * columns + j;
