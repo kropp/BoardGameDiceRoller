@@ -36,7 +36,7 @@ public class DiceRollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diceroller);
 
-        GamesManager gamesManager = GamesManager.getInstance(getResources());
+        GamesManager gamesManager = GamesManager.getInstance(this);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String selectedGameId = preferences.getString(PreferenceNames.SelectedGameId, null);
@@ -102,7 +102,7 @@ public class DiceRollActivity extends Activity {
     }
 
     private void initView() {
-        final GamesManager gamesManager = GamesManager.getInstance(getResources());
+        final GamesManager gamesManager = GamesManager.getInstance(this);
         Game game = gamesManager.getSelectedGame();
 
         // if currently selected set is not from this game, change to first set from game

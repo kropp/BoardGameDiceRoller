@@ -1,5 +1,6 @@
 package name.kropp.diceroller.games;
 
+import android.content.Context;
 import android.content.res.Resources;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceManager;
@@ -24,11 +25,12 @@ public class GamesManager {
     private GamesManager() {
     }
 
-    public static GamesManager getInstance(Resources resources) {
+    public static GamesManager getInstance(Context context) {
         if (ourInstance == null) {
             ourInstance = new GamesManager();
             try {
-                new GamesXmlParser(ourInstance, DiceManager.getInstance(resources)).parseXml(resources.getXml(R.xml.dicesets));
+                Resources resources = context.getResources();
+                new GamesXmlParser(ourInstance, DiceManager.getInstance(resources), context).parseXml(resources.getXml(R.xml.dicesets));
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             } catch (XmlPullParserException e) {

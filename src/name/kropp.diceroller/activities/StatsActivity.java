@@ -34,7 +34,7 @@ public class StatsActivity extends Activity {
         final TextView textView = (TextView) findViewById(R.id.historytext);
         textView.setText(StatsManager.getInstance(this).getHistoryText());
 
-        DiceSet set = GamesManager.getInstance(getResources()).getSelectedSet();
+        DiceSet set = GamesManager.getInstance(this).getSelectedSet();
 
         Map<Integer, Integer> stats = StatsManager.getInstance(this).getStats(set);
 

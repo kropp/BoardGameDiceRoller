@@ -1,10 +1,12 @@
 package name.kropp.diceroller.games;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
-import name.kropp.diceroller.settings.Version;
 import name.kropp.diceroller.dice.DiceManager;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;
+import name.kropp.diceroller.settings.Version;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -17,12 +19,14 @@ import java.io.IOException;
 public class GamesXmlParser {
     private GamesManager myGamesManager;
     private DiceManager myDiceManager;
+    private Context myContext;
     private Game myGame;
     private DiceSet myDiceSet;
 
-    public GamesXmlParser(GamesManager gamesManager, DiceManager diceManager) {
+    public GamesXmlParser(GamesManager gamesManager, DiceManager diceManager, Context context) {
         myGamesManager = gamesManager;
         myDiceManager = diceManager;
+        myContext = context;
     }
 
     public void parseXml(XmlResourceParser xml) throws IOException, XmlPullParserException {
@@ -50,7 +54,11 @@ public class GamesXmlParser {
     }
 
     private void startDiceSet(XmlResourceParser xml) {
-        myDiceSet = new DiceSet(xml.getAttributeValue(null, "id"), xml.getAttributeValue(null, "name"));
+        String id = xml.getAttributeValue(null, "id");
+        Resources resources = myContext.getResources();
+        int resId = resources.getIdentifier("_" + id, "string", myContext.getPackageName());
+        String name = resId != 0 ? resources.getString(resId) : "";
+        myDiceSet = new DiceSet(id, name);
         myGame.addDiceSet(myDiceSet);
     }
 
@@ -60,7 +68,12 @@ public class GamesXmlParser {
         if (xml.getAttributeCount() > 2 && xml.getAttributeValue(null, "version").equals("full"))
             version = Version.FULL;
 
-        myGame = new Game(xml.getAttributeValue(null, "id"), xml.getAttributeValue(null, "name"), version);
+        String id = xml.getAttributeValue(null, "id");
+        Resources resources = myContext.getResources();
+        int resId = resources.getIdentifier("_" + id, "string", myContext.getPackageName());
+        String name = resId != 0 ? resources.getString(resId) : "";
+
+        myGame = new Game(id, name, version);
         myGamesManager.addGame(myGame);
     }
 }
