@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Кубики для настольных игр</string>
+    <string name="roll_dice">Кубики</string>
+    <string name="options">Настройки</string>
+    <string name="about">О программе</string>
+    <string name="main_preferences">Настройки</string>
+    <string name="title_shake_preference">Потрясти для броска</string>
+    <string name="summary_shake_preference">Rolls dice when shaking device</string>
+    <string name="title_vibe_preference">Вибрировать после броска</string>
+    <string name="summary_vibe_preference">Vibrates after rolling dice</string>
+    <string name="about_title">О программе</string>
+    <string name="about_text">Это приложения для бросков кубиков в настольных играх. Изначально разработано для игры Колонизаторы: Города и Рыцари.\n\n© 2012, Виктор Кропп.</string>
+    <string name="tap_to_roll">Нажмите для броска</string>
+    <string name="shake_or_tap_to_roll">Потрясите или нажмите для броска</string>
+    <string name="rolldice_tab_name">Кубики</string>
+    <string name="stats_tab_name">Статистика</string>
+    <string name="games_tab_name">Игры</string>
+    <string name="history_header">История</string>
+    <string name="clearhistory">Очистить историю</string>
+    <string name="stats_only_in_full_version">Статистика доступна только в полной версии</string>
+    <string name="only_in_full_version">Только в полной версии. Нажмите для обновления!</string>
+    <string name="smth_available_only_in_full_version">Статистика и некоторые другие возможности доступны только в полной версии. Пожалуйста, поддержите разработку приложения купив полную версию в Play Store.</string>
+    <string name="upgrade_header">Обновить до полной версии</string>
+    <string name="buy_full_version">Купить полную версию!</string>
+</resources>
