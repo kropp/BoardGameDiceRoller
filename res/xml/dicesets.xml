@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <games>
     <game id="simple_dice">
-        <diceset id="1d4">
+        <diceset id="d4">
             <die type="d4" color="green"/>
         </diceset>
-        <diceset id="1d6">
+        <diceset id="d6">
             <die type="d6"/>
         </diceset>
-        <diceset id="1d8">
+        <diceset id="d8">
             <die type="d8" color="yellow"/>
         </diceset>
-        <diceset id="1d10">
+        <diceset id="d10">
             <die type="d10" color="cyan"/>
         </diceset>
-        <diceset id="1d12">
+        <diceset id="d12">
             <die type="d12" color="magenta"/>
         </diceset>
-        <diceset id="1d20">
+        <diceset id="d20">
             <die type="d20" color="blue"/>
         </diceset>
     </game>
-    <!--
-    <game id="backgammon" name="Backgammon">
-        <diceset id="backgammon" name="Backgammon">
+    <game id="backgammon">
+        <diceset id="backgammon">
             <die type="d6" />
             <die type="d6" />
         </diceset>
     </game>
-    <game id="monopoly" name="Monopoly">
-        <diceset id="monopoly" name="Monopoly">
+    <game id="monopoly">
+        <diceset id="monopoly">
             <special event="double">
                 <message>Double! Roll again!</message>
             </special>
@@ -36,18 +35,17 @@
             <die type="d6" />
         </diceset>
     </game>
-    <game id="munchkin" name="Munchkin">
-        <diceset id="munchkin" name="Munchkin">
+    <game id="munchkin">
+        <diceset id="munchkin">
             <die type="d6" color="blue"/>
         </diceset>
     </game>
-    <game id="catan" name="Settlers of Catan">
-        <diceset id="catan" name="Settlers of Catan">
+    <game id="catan">
+        <diceset id="catan">
             <die type="d6"/>
             <die type="d6"/>
         </diceset>
     </game>
-    -->
     <!--
     <game id="formulad" name="Formula D" version="full">
         <diceset id="black" name="Black">
@@ -55,78 +53,77 @@
         </diceset>
     </game>
     -->
-    <!--
-    <game id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights" version="full">
-        <diceset id="catan_cities_knights" name="Settlers of Catan: Cities &amp; Knights">
+    <game id="catan_cities_knights" version="full">
+        <diceset id="catan_cities_knights">
             <die type="d6"/>
             <die type="d6" color="red"/>
             <die type="catan_cities_knights_event_die"/>
         </diceset>
     </game>
-    <game id="stone_age" name="Stone Age" version="full">
-        <diceset id="1d6" name="1">
+    <game id="stone_age" version="full">
+        <diceset id="1d6">
             <die type="d6" />
         </diceset>
-        <diceset id="2d6" name="2">
+        <diceset id="2d6">
             <die type="d6" />
             <die type="d6" />                             `
         </diceset>
+        <diceset id="3d6">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="4d6">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="5d6">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="6d6">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+        <diceset id="7d6">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+    </game>
+    <game id="merchants_and_marauders" version="full">
+        <diceset id="1d6" name="1">
+            <die type="merchants_and_marauders_die" />
+        </diceset>
+        <diceset id="2d6" name="2">
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+        </diceset>
         <diceset id="3d6" name="3">
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
         <diceset id="4d6" name="4">
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
+            <die type="merchants_and_marauders_die" />
         </diceset>
         <diceset id="5d6" name="5">
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-        </diceset>
-        <diceset id="6d6" name="6">
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-        </diceset>
-        <diceset id="7d6" name="7">
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-            <die type="d6" />
-        </diceset>
-    </game>
-    <game id="merchants_and_marauders" name="Merchants &amp; Marauders" version="full">
-        <diceset id="1dmm6" name="1">
-            <die type="merchants_and_marauders_die" />
-        </diceset>
-        <diceset id="2dmm6" name="2">
-            <die type="merchants_and_marauders_die" />
-            <die type="merchants_and_marauders_die" />
-        </diceset>
-        <diceset id="3dmm6" name="3">
-            <die type="merchants_and_marauders_die" />
-            <die type="merchants_and_marauders_die" />
-            <die type="merchants_and_marauders_die" />
-        </diceset>
-        <diceset id="4dmm6" name="4">
-            <die type="merchants_and_marauders_die" />
-            <die type="merchants_and_marauders_die" />
-            <die type="merchants_and_marauders_die" />
-            <die type="merchants_and_marauders_die" />
-        </diceset>
-        <diceset id="5dmm6" name="5">
             <die type="merchants_and_marauders_die" />
             <die type="merchants_and_marauders_die" />
             <die type="merchants_and_marauders_die" />
@@ -134,5 +131,4 @@
             <die type="merchants_and_marauders_die" />
         </diceset>
     </game>
-    -->
 </games>

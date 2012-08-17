@@ -23,4 +23,13 @@
     <string name="smth_available_only_in_full_version">Статистика и некоторые другие возможности доступны только в полной версии. Пожалуйста, поддержите разработку приложения купив полную версию в Play Store.</string>
     <string name="upgrade_header">Обновить до полной версии</string>
     <string name="buy_full_version">Купить полную версию!</string>
+
+    <string name="_simple_dice">Просто кубики</string>
+    <string name="_backgammon">Нарды</string>
+    <string name="_monopoly">Монополия</string>
+    <string name="_munchkin">Манчкин</string>
+    <string name="_catan">Колонизаторы</string>
+    <string name="_catan_cities_knights">Колонизаторы: Города и Рыцари</string>
+    <string name="_stone_age">100000 лет до нашей эры</string>
+    <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
 </resources>
