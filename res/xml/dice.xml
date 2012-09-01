@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dice>
-    <die id="catan_cities_knights_event_die" type="d6" countsInSum="false">
+    <imageDie id="catan_cities_knights_event_die" type="d6" countsInSum="false">
         <face image="yellowcity" />
         <face image="greencity" />
         <face image="bluecity" />
         <face image="pirates" />
         <face image="pirates" />
         <face image="pirates" />
-    </die>
-    <die id="merchants_and_marauders_die" type="d6" countsInSum="false">
+    </imageDie>
+    <imageDie id="merchants_and_marauders_die" type="d6" countsInSum="false">
         <face image="mm1" />
         <face image="mm2" />
         <face image="mm3" />
         <face image="mm4" />
         <face image="hull" />
         <face image="hull" />
-    </die>
+    </imageDie>
+<!--
+    <rangeDie id="f1d1" type="d4" from="1" to="2" />
+    <rangeDie id="f1d2" type="d6" from="1" to="2" />
+-->
 </dice>

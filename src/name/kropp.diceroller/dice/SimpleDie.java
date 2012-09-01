@@ -12,9 +12,9 @@ import java.util.Random;
  * User: kropp
  */
 public class SimpleDie implements Die {
-    private Random myRandomizer;
-    private int myValue;
-    private int mySides;
+    protected Random myRandomizer;
+    protected int myValue;
+    protected int mySides;
     private int myColor;
     private int myDieColor;
 

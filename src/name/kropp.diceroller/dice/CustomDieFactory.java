@@ -1,6 +1,7 @@
 package name.kropp.diceroller.dice;
 
 import name.kropp.diceroller.dice.strategies.CustomDieDrawStrategy;
+import name.kropp.diceroller.dice.strategies.DieDrawStrategy;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,6 +19,11 @@ public class CustomDieFactory implements DieFactory {
     @Override
     public Die createDie(long seed, int dieColor, int color) {
         return new CustomDie(mySides, seed, dieColor, color, myFaceImages, new CustomDieDrawStrategy());
+    }
+
+    @Override
+    public DieDrawStrategy getDrawStrategy() {
+        return null;
     }
 
     public void setFaceImage(int face, String image) {

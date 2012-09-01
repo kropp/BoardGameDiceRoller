@@ -3,10 +3,7 @@ package name.kropp.diceroller.dice;
 import android.content.res.Resources;
 import android.graphics.Color;
 import name.kropp.diceroller.R;
-import name.kropp.diceroller.dice.strategies.CubicDieDrawStrategy;
-import name.kropp.diceroller.dice.strategies.KiteFaceDieDrawStrategy;
-import name.kropp.diceroller.dice.strategies.PentagonFaceDieDrawStrategy;
-import name.kropp.diceroller.dice.strategies.TriangleFaceDieDrawStrategy;
+import name.kropp.diceroller.dice.strategies.*;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
@@ -67,5 +64,9 @@ public class DiceManager {
 
     public void addDieFactory(String type, DieFactory dieFactory) {
         myDiceFactories.put(type, dieFactory);
+    }
+
+    public DieFactory getDieFactory(String type){
+        return myDiceFactories.get(type);
     }
 }
