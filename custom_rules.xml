@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="custom">
+    <target name="debug-build-and-install" depends="android_rules.debug, android_rules.installd"
+            description="Builds and installs the debug package." />
+</project>
