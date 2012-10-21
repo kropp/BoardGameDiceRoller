@@ -46,13 +46,29 @@
             <die type="d6"/>
         </diceset>
     </game>
-    <!--
-    <game id="formulad" name="Formula D" version="full">
-        <diceset id="black" name="Black">
-            <die type="d6"/>
+    <game id="formulad" version="full">
+        <diceset id="fd_special">
+            <die type="d20" color="#333333" />
+        </diceset>
+        <diceset id="1d6">
+            <die type="f1d1" color="yellow" />
+        </diceset>
+        <diceset id="2d6">
+            <die type="f1d2" color="#ff8c00" />
+        </diceset>
+        <diceset id="3d6">
+            <die type="f1d3" color="red" />
+        </diceset>
+        <diceset id="4d6">
+            <die type="f1d4" color="green" />
+        </diceset>
+        <diceset id="5d6">
+            <die type="f1d5" color="magenta" />
+        </diceset>
+        <diceset id="6d6">
+            <die type="f1d6" color="blue" />
         </diceset>
     </game>
-    -->
     <game id="catan_cities_knights" version="full">
         <diceset id="catan_cities_knights">
             <die type="d6"/>

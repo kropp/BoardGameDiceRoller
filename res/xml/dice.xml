@@ -16,8 +16,10 @@
         <face image="hull" />
         <face image="hull" />
     </imageDie>
-<!--
-    <rangeDie id="f1d1" type="d4" from="1" to="2" />
-    <rangeDie id="f1d2" type="d6" from="1" to="2" />
--->
+    <numbersDie id="f1d1" type="d4" numbers="1,1,2,2" />
+    <numbersDie id="f1d2" type="d6" numbers="2,3,3,4,4,4" />
+    <numbersDie id="f1d3" type="d8" numbers="4,5,6,6,7,7,8,8" />
+    <rangeDie id="f1d4" type="d12" from="7" to="12" />
+    <rangeDie id="f1d5" type="d20" from="11" to="20" />
+    <rangeDie id="f1d6" type="d10" from="21" to="30" />
 </dice>

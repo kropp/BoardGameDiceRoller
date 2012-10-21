@@ -18,7 +18,7 @@ import java.util.Random;
 public class DiceManager {
     private Random myRandom;
     private Dictionary<String, DieFactory> myDiceFactories;
-    
+
     private static DiceManager ourInstance;
 
     private DiceManager() {
@@ -46,18 +46,18 @@ public class DiceManager {
         }
         return ourInstance;
     }
-    
+
     public Die createDie(String type, String color) {
         DieFactory dieFactory = myDiceFactories.get(type);
         if (dieFactory != null) {
             int dieColor = color != null ? Color.parseColor(color) : Color.WHITE;
-            int faceColor = dieColor != Color.BLACK ? Color.BLACK : Color.WHITE;
+            int faceColor = dieColor != Color.BLACK && dieColor != Color.argb(0xff, 0x33, 0x33, 0x33) ? Color.BLACK : Color.WHITE;
 
             return dieFactory.createDie(getNextSeed(), dieColor, faceColor);
         }
         return null;
     }
-    
+
     private long getNextSeed() {
         return myRandom.nextLong();
     }
@@ -66,7 +66,7 @@ public class DiceManager {
         myDiceFactories.put(type, dieFactory);
     }
 
-    public DieFactory getDieFactory(String type){
+    public DieFactory getDieFactory(String type) {
         return myDiceFactories.get(type);
     }
 }

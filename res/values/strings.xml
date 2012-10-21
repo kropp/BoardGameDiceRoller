@@ -38,6 +38,7 @@
     <string name="_5d6">5</string>
     <string name="_6d6">6</string>
     <string name="_7d6">7</string>
+    <string name="_fd_special">D</string>
 
     <string name="_backgammon">Backgammon</string>
     <string name="_monopoly">Monopoly</string>
@@ -46,4 +47,5 @@
     <string name="_catan_cities_knights">Settlers of Catan: Cities &amp; Knights</string>
     <string name="_stone_age">Stone Age</string>
     <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
+    <string name="_formulad">Formula D</string>
 </resources>

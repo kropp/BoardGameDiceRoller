@@ -2,6 +2,7 @@ package name.kropp.diceroller.dice;
 
 import android.content.res.XmlResourceParser;
 import name.kropp.diceroller.dice.strategies.DieDrawStrategy;
+import name.kropp.diceroller.dice.strategies.RectFaceDieDrawStrategy;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -32,6 +33,8 @@ public class DiceXmlParser {
                     startImageDie(xml);
                 } else if (name.equals("rangeDie")) {
                     startRangeDie(xml);
+                } else if (name.equals("numbersDie")) {
+                    startNumbersDie(xml);
                 } else if (name.equals("face")) {
                     addFace(xml);
                 }
@@ -62,15 +65,30 @@ public class DiceXmlParser {
 
         DieDrawStrategy drawStrategy = getDieDrawStrategyByType(type);
 
-        CustomRangeDieFactory dieFactory = new CustomRangeDieFactory(from, to, drawStrategy);
-        myDiceManager.addDieFactory(xml.getAttributeValue(null, "id"), dieFactory);
+        myDiceManager.addDieFactory(xml.getAttributeValue(null, "id"), new CustomRangeDieFactory(from, to, drawStrategy));
+    }
+
+    private void startNumbersDie(XmlResourceParser xml) {
+        String type = xml.getAttributeValue(null, "type");
+
+        String[] strNumbers = xml.getAttributeValue(null, "numbers").split(",");
+        int numbers[] = new int[strNumbers.length];
+        for (int i = 0; i < strNumbers.length; i++) {
+            numbers[i] = Integer.valueOf(strNumbers[i]);
+        }
+
+        DieDrawStrategy drawStrategy = getDieDrawStrategyByType(type);
+
+        myDiceManager.addDieFactory(xml.getAttributeValue(null, "id"), new CustomNumbersDieFactory(numbers, drawStrategy));
     }
 
     private DieDrawStrategy getDieDrawStrategyByType(String type) {
+        if (type.equals("d6"))
+            return new RectFaceDieDrawStrategy();
+
         DieFactory dieFactory = myDiceManager.getDieFactory(type);
         if (dieFactory != null)
             return dieFactory.getDrawStrategy();
         return null;
-
     }
 }
