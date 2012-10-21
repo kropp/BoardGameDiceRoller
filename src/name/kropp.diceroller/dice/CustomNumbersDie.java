@@ -16,6 +16,9 @@ public class CustomNumbersDie extends SimpleDie {
 
     @Override
     public int getCurrentValue() {
-        return myNumbers[super.getCurrentValue()-1];
+        int i = super.getCurrentValue() - 1;
+        if (i >= myNumbers.length)
+            i = 0;
+        return myNumbers[i];
     }
 }
