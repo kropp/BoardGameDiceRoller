@@ -5,13 +5,14 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import name.kropp.diceroller.R;
 
-public class MyMainActivity extends TabActivity {
+public class MyMainActivity extends FragmentActivity {
     static final int ABOUT_DIALOG_ID = 1;
 
     /**
@@ -21,33 +22,6 @@ public class MyMainActivity extends TabActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-
-        Resources resources = getResources();
-        TabHost tabHost = getTabHost();
-        TabHost.TabSpec spec;
-        Intent intent;
-
-        intent = new Intent().setClass(this, DiceRollActivity.class);
-        spec = tabHost.newTabSpec("rolldice").setIndicator(resources.getString(R.string.rolldice_tab_name),
-                resources.getDrawable(R.drawable.ic_tab_main))
-                .setContent(intent);
-        tabHost.addTab(spec);
-
-/*
-        intent = new Intent().setClass(this, StatsActivity.class);
-        spec = tabHost.newTabSpec("stats").setIndicator(resources.getString(R.string.stats_tab_name),
-                resources.getDrawable(R.drawable.ic_tab_stats))
-                .setContent(intent);
-        tabHost.addTab(spec);
-*/
-
-        intent = new Intent().setClass(this, GamesActivity.class);
-        spec = tabHost.newTabSpec("sets").setIndicator(resources.getString(R.string.games_tab_name),
-                resources.getDrawable(R.drawable.ic_tab_sets))
-                .setContent(intent);
-        tabHost.addTab(spec);
-
-        tabHost.setCurrentTab(0);
     }
 
     @Override
@@ -115,6 +89,5 @@ public class MyMainActivity extends TabActivity {
             if (tabName != null && tabName.equals("stats"))
                 index = 1;
         }
-        getTabHost().setCurrentTab(index);
     }
 }

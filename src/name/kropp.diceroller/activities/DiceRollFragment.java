@@ -1,13 +1,15 @@
 package name.kropp.diceroller.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
@@ -25,7 +27,7 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class DiceRollActivity extends Activity {
+public class DiceRollFragment extends Fragment {
     private DiceSet myDiceSet;
     private ShakeListener myShaker;
     private boolean myVibeAfterRoll;
@@ -34,11 +36,15 @@ public class DiceRollActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.diceroller);
+    }
 
-        GamesManager gamesManager = GamesManager.getInstance(this);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.diceroller, container);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        GamesManager gamesManager = GamesManager.getInstance(getActivity());
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String selectedGameId = preferences.getString(PreferenceNames.SelectedGameId, null);
         String selectedSetId = preferences.getString(PreferenceNames.SelectedSetId, null);
 
@@ -57,28 +63,29 @@ public class DiceRollActivity extends Activity {
         }
         gamesManager.setSelectedSet(myDiceSet.getId());
 
-        final View main_area = findViewById(R.id.dice_area);
+/*
+        final View main_area = getActivity().findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 RollDice();
             }
         });
 
-        myVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        myVibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         myVibeAfterRoll = preferences.getBoolean(PreferenceNames.Vibe, false);
         boolean rollOnShakeEnabled = preferences.getBoolean(PreferenceNames.Shake, false);
         if (rollOnShakeEnabled) {
             listenShakeEvent();
 
-            final TextView textView = (TextView) findViewById(R.id.taptoroll);
+            final TextView textView = (TextView) getActivity().findViewById(R.id.taptoroll);
             textView.setText(getString(R.string.shake_or_tap_to_roll));
         }
 
         preferences.registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
                 if (s.equals(PreferenceNames.Shake)) {
-                    final TextView textView = (TextView) findViewById(R.id.taptoroll);
+                    final TextView textView = (TextView) getActivity().findViewById(R.id.taptoroll);
                     boolean value = sharedPreferences.getBoolean(s, false);
                     if (value) {
                         if (myShaker == null)
@@ -99,10 +106,13 @@ public class DiceRollActivity extends Activity {
                 }
             }
         });
+*/
+
+        return view;
     }
 
     private void initView() {
-        final GamesManager gamesManager = GamesManager.getInstance(this);
+        final GamesManager gamesManager = GamesManager.getInstance(getActivity());
         Game game = gamesManager.getSelectedGame();
 
         // if currently selected set is not from this game, change to first set from game
@@ -118,27 +128,27 @@ public class DiceRollActivity extends Activity {
             gamesManager.setSelectedSet(myDiceSet.getId());
         }
 
-        final TextView nameLabel = (TextView) findViewById(R.id.dicesetname);
+        final TextView nameLabel = (TextView) getActivity().findViewById(R.id.dicesetname);
         nameLabel.setText(game.getName());
 
         List<DiceSet> sets = game.getDiceSets();
 
-        final LinearLayout setsSelector = (LinearLayout) findViewById(R.id.setsselector);
+        final LinearLayout setsSelector = (LinearLayout) getActivity().findViewById(R.id.setsselector);
         setsSelector.removeAllViews();
 
         if (sets.size() > 1) {
             for (DiceSet set : sets) {
-                Button label = new Button(this);
+                Button label = new Button(getActivity());
                 label.setText(set.getName());
                 label.setTag(set);
 
-                final DiceRollActivity context = this;
+                final DiceRollFragment context = this;
                 label.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         myDiceSet = (DiceSet) view.getTag();
 
-                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getActivity()).edit();
                         editor.putString(PreferenceNames.SelectedSetId, myDiceSet.getId());
                         editor.commit();
 
@@ -156,7 +166,7 @@ public class DiceRollActivity extends Activity {
     }
 
     private void listenShakeEvent() {
-        myShaker = new ShakeListener(this);
+        myShaker = new ShakeListener(getActivity());
         myShaker.setOnShakeListener(new ShakeListener.OnShakeListener() {
             public void onShake() {
                 RollDice();
@@ -187,7 +197,7 @@ public class DiceRollActivity extends Activity {
 
         displaySet();
 
-        StatsManager.getInstance(this).updateStats(myDiceSet);
+        StatsManager.getInstance(getActivity()).updateStats(myDiceSet);
 
         int sum = myDiceSet.getSum();
 
@@ -198,7 +208,7 @@ public class DiceRollActivity extends Activity {
                 myToast.setDuration(Toast.LENGTH_LONG);
                 myToast.show();
             } else {
-                myToast = Toast.makeText(this, notification, Toast.LENGTH_LONG);
+                myToast = Toast.makeText(getActivity(), notification, Toast.LENGTH_LONG);
                 myToast.show();
             }
         }
@@ -209,20 +219,20 @@ public class DiceRollActivity extends Activity {
     }
 
     private void displaySet() {
-        final TableLayout layout = (TableLayout) findViewById(R.id.dice_area);
+        final TableLayout layout = (TableLayout) getActivity().findViewById(R.id.dice_area);
 
-        Animation flash = AnimationUtils.loadAnimation(this, R.anim.flash);
+        Animation flash = AnimationUtils.loadAnimation(getActivity(), R.anim.flash);
         layout.setAnimation(flash);
 
-        final View view = findViewById(R.id.dicerollarea);
+        final View view = getActivity().findViewById(R.id.dicerollarea);
 
         int width = view.getMeasuredWidth();
         if (width == 0)
-            width = getWindowManager().getDefaultDisplay().getWidth();
+            width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
 
         int height = view.getMeasuredHeight();
         if (height == 0)
-            height = getWindowManager().getDefaultDisplay().getHeight();
+            height = getActivity().getWindowManager().getDefaultDisplay().getHeight();
 
         layout.removeAllViews();
 
@@ -238,7 +248,7 @@ public class DiceRollActivity extends Activity {
         int columns = (int) Math.ceil(1.0 * size / rows);
 
         for (int i = 0; i < rows; i++) {
-            TableRow row = new TableRow(this);
+            TableRow row = new TableRow(getActivity());
             row.setWeightSum(1);
             row.setGravity(Gravity.CENTER);
 
@@ -248,7 +258,7 @@ public class DiceRollActivity extends Activity {
                     break;
 
                 Die die = dice.get(number);
-                row.addView(die.getCurrentView(this));
+                row.addView(die.getCurrentView(getActivity()));
             }
 
             layout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
