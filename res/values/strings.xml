@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Board Game Dice Roller</string>
     <string name="roll_dice">Roll dice!</string>
+    <string name="choose_game">Games</string>
     <string name="options">Options</string>
     <string name="about">About</string>
     <string name="main_preferences">Preferences</string>

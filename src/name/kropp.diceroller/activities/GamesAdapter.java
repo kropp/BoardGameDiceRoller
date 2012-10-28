@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,10 @@ public class GamesAdapter extends ArrayAdapter<String> {
                     SharedPreferences.Editor editor = myPreferences.edit();
                     editor.putString(PreferenceNames.SelectedGameId, myGamesManager.getSelectedGame().getId());
                     editor.commit();
+
+                    try {
+                        myActivity.dismissDialog(MyMainActivity.GAMES_DIALOG_ID);
+                    } catch (Exception e) {}
 
                     Intent intent = new Intent(myActivity, MyMainActivity.class);
                     intent.putExtra("tab", "rolldice");

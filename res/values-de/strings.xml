@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Würfel für die Brettspiele</string>
     <string name="roll_dice">Werfen!</string>
+    <string name="choose_game">Spiele</string>
     <string name="options">Einstellungen</string>
     <string name="about">Über das Programm</string>
     <string name="main_preferences">Einstellungen</string>

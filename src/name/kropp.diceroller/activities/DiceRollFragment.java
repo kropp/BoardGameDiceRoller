@@ -63,13 +63,21 @@ public class DiceRollFragment extends Fragment {
         }
         gamesManager.setSelectedSet(myDiceSet.getId());
 
-/*
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
         final View main_area = getActivity().findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 RollDice();
             }
         });
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         myVibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -106,9 +114,6 @@ public class DiceRollFragment extends Fragment {
                 }
             }
         });
-*/
-
-        return view;
     }
 
     private void initView() {

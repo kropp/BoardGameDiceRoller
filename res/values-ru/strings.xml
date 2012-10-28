@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Кубики для настольных игр</string>
     <string name="roll_dice">Кубики</string>
+    <string name="choose_game">Игры</string>
     <string name="options">Настройки</string>
     <string name="about">О программе</string>
     <string name="main_preferences">Настройки</string>

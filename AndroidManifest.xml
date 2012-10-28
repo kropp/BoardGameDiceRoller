@@ -15,11 +15,11 @@
         </activity>
         <activity android:name=".activities.MyPreferencesActivity" android:label="@string/options">
         </activity>
-<!--
-        <activity android:name=".activities.DiceRollFragment"/>
-        <activity android:name=".activities.StatsActivity"/>
-        <activity android:name=".activities.GamesFragment"/>
--->
+        <activity android:name=".activities.DiceRollActivity"/>
+        <!--
+                <activity android:name=".activities.StatsActivity"/>
+                <activity android:name=".activities.GamesFragment"/>
+        -->
     </application>
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
