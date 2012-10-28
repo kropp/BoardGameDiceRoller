@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/dicerollarea"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <TextView
+            android:id="@+id/dicesetname"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            />
+    <TableLayout android:id="@+id/dice_area"
+                 android:layout_height="fill_parent"
+                 android:layout_width="wrap_content"
+                 android:gravity="center"
+                 android:layout_gravity="center|center_vertical"
+                 android:layout_weight="1">
+    </TableLayout>
+    <TextView
+            android:id="@+id/taptoroll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tap_to_roll"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            />
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+        <ImageButton android:id="@+id/appbutton"
+                     android:layout_gravity="left"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="@drawable/icon"
+                />
+        <LinearLayout
+                android:id="@+id/setsselector"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_vertical"
+                android:paddingTop="5dp"
+                android:layout_marginRight="50dp"
+                >
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

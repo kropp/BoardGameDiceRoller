@@ -20,8 +20,16 @@
                 <activity android:name=".activities.StatsActivity"/>
                 <activity android:name=".activities.GamesFragment"/>
         -->
+        <uses-library android:name="com.sony.smallapp.framework" android:required="false" />
+        <service android:name="name.kropp.diceroller.smallapp.BoardGameDiceRollerSmallApp" android:exported="true">
+            <intent-filter>
+                <action android:name="com.sony.smallapp.intent.action.MAIN" />
+                <category android:name="com.sony.smallapp.intent.category.LAUNCHER" />
+            </intent-filter>
+        </service>
     </application>
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="16" />
     <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.sony.smallapp.permission.SMALLAPP" />
 </manifest>
