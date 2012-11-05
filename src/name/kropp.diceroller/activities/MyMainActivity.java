@@ -42,9 +42,7 @@ public class MyMainActivity extends FragmentActivity {
     }
 
     private boolean isXLargeScreen() {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        return dm.widthPixels >= 960 && dm.heightPixels >= 720;
+        return (getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) > Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     @Override
