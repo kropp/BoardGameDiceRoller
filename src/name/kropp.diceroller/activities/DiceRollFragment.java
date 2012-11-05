@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -224,20 +225,24 @@ public class DiceRollFragment extends Fragment {
     }
 
     private void displaySet() {
-        final TableLayout layout = (TableLayout) getActivity().findViewById(R.id.dice_area);
+        FragmentActivity activity = getActivity();
+        if (activity == null)
+            return;
 
-        Animation flash = AnimationUtils.loadAnimation(getActivity(), R.anim.flash);
+        final TableLayout layout = (TableLayout) activity.findViewById(R.id.dice_area);
+
+        Animation flash = AnimationUtils.loadAnimation(activity, R.anim.flash);
         layout.setAnimation(flash);
 
-        final View view = getActivity().findViewById(R.id.dicerollarea);
+        final View view = activity.findViewById(R.id.dicerollarea);
 
         int width = view.getMeasuredWidth();
         if (width == 0)
-            width = getActivity().getWindowManager().getDefaultDisplay().getWidth();
+            width = activity.getWindowManager().getDefaultDisplay().getWidth();
 
         int height = view.getMeasuredHeight();
         if (height == 0)
-            height = getActivity().getWindowManager().getDefaultDisplay().getHeight();
+            height = activity.getWindowManager().getDefaultDisplay().getHeight();
 
         layout.removeAllViews();
 
@@ -253,7 +258,7 @@ public class DiceRollFragment extends Fragment {
         int columns = (int) Math.ceil(1.0 * size / rows);
 
         for (int i = 0; i < rows; i++) {
-            TableRow row = new TableRow(getActivity());
+            TableRow row = new TableRow(activity);
             row.setWeightSum(1);
             row.setGravity(Gravity.CENTER);
 
@@ -263,7 +268,7 @@ public class DiceRollFragment extends Fragment {
                     break;
 
                 Die die = dice.get(number);
-                row.addView(die.getCurrentView(getActivity()));
+                row.addView(die.getCurrentView(activity));
             }
 
             layout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
