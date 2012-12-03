@@ -7,9 +7,7 @@
     <string name="about">О программе</string>
     <string name="main_preferences">Настройки</string>
     <string name="title_shake_preference">Потрясти для броска</string>
-    <string name="summary_shake_preference">Rolls dice when shaking device</string>
     <string name="title_vibe_preference">Вибрировать после броска</string>
-    <string name="summary_vibe_preference">Vibrates after rolling dice</string>
     <string name="about_title">О программе</string>
     <string name="about_text">Это приложения для бросков кубиков в настольных играх. Изначально разработано для игры Колонизаторы: Города и Рыцари.\n\n© 2012, Виктор Кропп.</string>
     <string name="tap_to_roll">Нажмите для броска</string>
@@ -33,4 +31,7 @@
     <string name="_catan_cities_knights">Колонизаторы: Города и Рыцари</string>
     <string name="_stone_age">100000 лет до нашей эры</string>
     <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
+    <string name="after_roll_preferences">После броска</string>
+    <string name="title_keep_screen_on_preference">Не выключать экран</string>
+    <string name="summary_keep_screen_on_preference">Не позволяет устройству засыпать. Внимание! Работающий экран быстрее сажает батарею!</string>
 </resources>

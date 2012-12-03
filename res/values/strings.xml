@@ -5,11 +5,8 @@
     <string name="choose_game">Games</string>
     <string name="options">Options</string>
     <string name="about">About</string>
-    <string name="main_preferences">Preferences</string>
     <string name="title_shake_preference">Shake to roll</string>
-    <string name="summary_shake_preference">Rolls dice when shaking device</string>
-    <string name="title_vibe_preference">Vibe after roll</string>
-    <string name="summary_vibe_preference">Vibrates after rolling dice</string>
+    <string name="title_vibe_preference">Vibrate after roll</string>
     <string name="about_title">About Board Game Dice Roller</string>
     <string name="about_text">This is board game dice roller application. Initially designed for The Settlers of Catan: Cities &amp; Knights.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Tap dice to roll</string>
@@ -49,4 +46,7 @@
     <string name="_stone_age">Stone Age</string>
     <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
     <string name="_formulad">Formula D</string>
+    <string name="after_roll_preferences">After roll</string>
+    <string name="title_keep_screen_on_preference">Keep screen on</string>
+    <string name="summary_keep_screen_on_preference">Don\'t let your device sleep. Warning! Active screen consumes more battery!</string>
 </resources>

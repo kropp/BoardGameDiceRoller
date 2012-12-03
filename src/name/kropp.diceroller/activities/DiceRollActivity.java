@@ -1,9 +1,13 @@
 package name.kropp.diceroller.activities;
 
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
+import android.view.WindowManager;
 import name.kropp.diceroller.R;
+import name.kropp.diceroller.settings.PreferenceNames;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,6 +18,12 @@ public class DiceRollActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean keepScreenOn = preferences.getBoolean(PreferenceNames.KeepScreenOn, false);
+        if (keepScreenOn) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             // If the screen is now in landscape mode, we can show the

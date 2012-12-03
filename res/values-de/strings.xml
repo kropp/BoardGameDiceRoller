@@ -7,9 +7,7 @@
     <string name="about">Über das Programm</string>
     <string name="main_preferences">Einstellungen</string>
     <string name="title_shake_preference">Schütteln um zu werfen</string>
-    <string name="summary_shake_preference">Rolls dice when shaking device</string>
     <string name="title_vibe_preference">Vibrieren nach dem Wurf</string>
-    <string name="summary_vibe_preference">Vibrates after rolling dice</string>
     <string name="about_title">Über die Würfel für die Brettspiele</string>
     <string name="about_text">Das Program hilft die Würfel in verschiedene Brettspiele zu werfen.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Berühren die Würfel</string>
@@ -47,4 +45,7 @@
     <string name="_catan_cities_knights">Die Siedler von Catan: Städte und Ritter</string>
     <string name="_stone_age">Stone Age</string>
     <string name="_merchants_and_marauders">Korsaren von Karibik</string>
+    <string name="after_roll_preferences">Nach dem Wurf</string>
+    <string name="title_keep_screen_on_preference">Ausschalten des Bildschirms verhindern</string>
+    <string name="summary_keep_screen_on_preference">Lass das Gerät nicht schlafen. Achtung! Bildschirm braucht viel Energie!</string>
 </resources>
