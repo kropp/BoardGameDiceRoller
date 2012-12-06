@@ -7,12 +7,18 @@
     <CheckBoxPreference
             android:key="keep_screen_on_preference"
             android:title="@string/title_keep_screen_on_preference"
-            android:summary="@string/summary_keep_screen_on_preference"
              />
     <PreferenceCategory android:title="@string/after_roll_preferences">
         <CheckBoxPreference
                 android:key="vibe_preference"
                 android:title="@string/title_vibe_preference"
                  />
+        <RingtonePreference
+                android:key="notification_preference"
+                android:title="@string/title_notification_preference"
+                android:ringtoneType="notification"
+                android:showSilent="true"
+                android:showDefault="true"
+            />
     </PreferenceCategory>
 </PreferenceScreen>

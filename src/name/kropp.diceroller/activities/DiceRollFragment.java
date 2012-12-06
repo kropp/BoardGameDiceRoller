@@ -2,15 +2,16 @@ package name.kropp.diceroller.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
@@ -34,6 +35,7 @@ public class DiceRollFragment extends Fragment {
     private boolean myVibeAfterRoll;
     private Vibrator myVibrator;
     private Toast myToast;
+    private Ringtone myRingtone;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,13 @@ public class DiceRollFragment extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String selectedGameId = preferences.getString(PreferenceNames.SelectedGameId, null);
         String selectedSetId = preferences.getString(PreferenceNames.SelectedSetId, null);
+
+        boolean keepScreenOn = preferences.getBoolean(PreferenceNames.KeepScreenOn, false);
+        if (keepScreenOn) {
+            getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+
+
 
         gamesManager.setSelectedGame(selectedGameId);
 
@@ -83,6 +92,13 @@ public class DiceRollFragment extends Fragment {
         myVibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         myVibeAfterRoll = preferences.getBoolean(PreferenceNames.Vibe, false);
+        String soundAfterRoll = preferences.getString(PreferenceNames.Notification, "");
+        if (soundAfterRoll != null && soundAfterRoll.length() > 0) {
+            myRingtone = RingtoneManager.getRingtone(getActivity(), Uri.parse(soundAfterRoll));
+        } else {
+            myRingtone = null;
+        }
+
         boolean rollOnShakeEnabled = preferences.getBoolean(PreferenceNames.Shake, false);
         if (rollOnShakeEnabled) {
             listenShakeEvent();
@@ -112,6 +128,22 @@ public class DiceRollFragment extends Fragment {
                 }
                 if (s.equals(PreferenceNames.Vibe)) {
                     myVibeAfterRoll = sharedPreferences.getBoolean(s, false);
+                }
+                if (s.equals(PreferenceNames.Notification)) {
+                    String soundAfterRoll = sharedPreferences.getString(PreferenceNames.Notification, "");
+                    if (soundAfterRoll != null && soundAfterRoll.length() > 0) {
+                        myRingtone = RingtoneManager.getRingtone(getActivity(), Uri.parse(soundAfterRoll));
+                    } else {
+                        myRingtone = null;
+                    }
+                }
+                if (s.equals(PreferenceNames.KeepScreenOn)) {
+                    boolean keepScreenOn = sharedPreferences.getBoolean(PreferenceNames.KeepScreenOn, false);
+                    if (keepScreenOn) {
+                        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    } else {
+                        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    }
                 }
             }
         });
@@ -185,9 +217,9 @@ public class DiceRollFragment extends Fragment {
         if (myShaker != null) {
             myShaker.resume();
         }
+        initView();
         super.onResume();
 
-        initView();
     }
 
     @Override
@@ -221,6 +253,11 @@ public class DiceRollFragment extends Fragment {
 
         if (myVibeAfterRoll) {
             myVibrator.vibrate(100);
+        }
+
+        if (myRingtone != null)
+        {
+            myRingtone.play();
         }
     }
 
