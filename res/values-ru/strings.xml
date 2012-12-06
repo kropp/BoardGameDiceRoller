@@ -9,7 +9,7 @@
     <string name="title_shake_preference">Потрясти для броска</string>
     <string name="title_vibe_preference">Вибрировать после броска</string>
     <string name="about_title">О программе</string>
-    <string name="about_text">Это приложения для бросков кубиков в настольных играх. Изначально разработано для игры Колонизаторы: Города и Рыцари.\n\n© 2012, Виктор Кропп.</string>
+    <string name="about_text">Это бесплатное приложение для бросков кубиков в настольных играх. Если приложение вам понравилось, поддержите его разработку небольшим пожертвованием.\n\n© 2012, Виктор Кропп.</string>
     <string name="tap_to_roll">Нажмите для броска</string>
     <string name="shake_or_tap_to_roll">Потрясите или нажмите для броска</string>
     <string name="rolldice_tab_name">Кубики</string>
@@ -34,4 +34,7 @@
     <string name="after_roll_preferences">После броска</string>
     <string name="title_keep_screen_on_preference">Не выключать экран</string>
     <string name="summary_keep_screen_on_preference">Не позволяет устройству засыпать. Внимание! Работающий экран быстрее сажает батарею!</string>
+    <string name="title_notification_preference">Звук после броска</string>
+    <string name="silent">Без звука</string>
+    <string name="donate">Поддержать</string>
 </resources>

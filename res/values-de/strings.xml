@@ -9,7 +9,7 @@
     <string name="title_shake_preference">Schütteln um zu werfen</string>
     <string name="title_vibe_preference">Vibrieren nach dem Wurf</string>
     <string name="about_title">Über die Würfel für die Brettspiele</string>
-    <string name="about_text">Das Program hilft die Würfel in verschiedene Brettspiele zu werfen.\n\n© 2012, Victor Kropp.</string>
+    <string name="about_text">Das Program hilft die Würfel in verschiedene Brettspiele zu werfen. Wenn das App Ihnen gefällt, unterschtützen Sie die Entwicklung durch eine Spende.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Berühren die Würfel</string>
     <string name="shake_or_tap_to_roll">Schütteln oder berühren die Würfel</string>
     <string name="rolldice_tab_name">Würfel</string>
@@ -48,4 +48,7 @@
     <string name="after_roll_preferences">Nach dem Wurf</string>
     <string name="title_keep_screen_on_preference">Ausschalten des Bildschirms verhindern</string>
     <string name="summary_keep_screen_on_preference">Lass das Gerät nicht schlafen. Achtung! Bildschirm braucht viel Energie!</string>
+    <string name="title_notification_preference">Ton nach dem Wurf</string>
+    <string name="silent">Kein Ton</string>
+    <string name="donate">Spenden</string>
 </resources>

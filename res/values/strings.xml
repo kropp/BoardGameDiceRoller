@@ -7,8 +7,8 @@
     <string name="about">About</string>
     <string name="title_shake_preference">Shake to roll</string>
     <string name="title_vibe_preference">Vibrate after roll</string>
-    <string name="about_title">About Board Game Dice Roller</string>
-    <string name="about_text">This is board game dice roller application. Initially designed for The Settlers of Catan: Cities &amp; Knights.\n\n© 2012, Victor Kropp.</string>
+    <string name="about_title">About the app</string>
+    <string name="about_text">This is dice rolling application for board games. If you like the app, please support the development by making a donation.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Tap dice to roll</string>
     <string name="shake_or_tap_to_roll">Shake or tap dice to roll</string>
     <string name="rolldice_tab_name">Roll dice!</string>
@@ -49,4 +49,8 @@
     <string name="after_roll_preferences">After roll</string>
     <string name="title_keep_screen_on_preference">Keep screen on</string>
     <string name="summary_keep_screen_on_preference">Don\'t let your device sleep. Warning! Active screen consumes more battery!</string>
+    <string name="title_notification_preference">Play sound after roll</string>
+    <string name="silent">No sound</string>
+    <string name="donate">Donate</string>
+    <string name="app_url">http://victor.kropp.name/diceroller/</string>
 </resources>
