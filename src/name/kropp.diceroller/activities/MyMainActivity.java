@@ -1,10 +1,14 @@
 package name.kropp.diceroller.activities;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.TabActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
@@ -69,6 +73,9 @@ public class MyMainActivity extends FragmentActivity {
                 }
                 return true;
 */
+            case R.id.donate:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_url))));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -100,11 +107,25 @@ public class MyMainActivity extends FragmentActivity {
     }
 
     private Dialog createAboutDialog() {
-        Dialog dialog = new Dialog(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        dialog.setContentView(R.layout.about);
-        dialog.setTitle(R.string.about_title);
-        dialog.setCancelable(true);
+        builder.setTitle(R.string.about_title);
+        builder.setMessage(R.string.about_text);
+
+        final Uri uri = Uri.parse(getString(R.string.app_url));
+
+        builder.setPositiveButton(R.string.donate, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            }
+        });
+
+        builder.setNegativeButton(android.R.string.cancel, null);
+
+        builder.setCancelable(true);
+
+        Dialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
 
         return dialog;
