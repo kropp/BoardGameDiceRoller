@@ -41,6 +41,7 @@ public interface Die {
      * Returns view displaying current die state.
      * @return View
      * @param context Current context
+     * @param selected
      */
-    public View getCurrentView(Context context);
+    public View getCurrentView(Context context, boolean selected);
 }

@@ -6,6 +6,7 @@ import android.content.res.XmlResourceParser;
 import name.kropp.diceroller.dice.DiceManager;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;
+import name.kropp.diceroller.dice.RethrowableDiceSet;
 import name.kropp.diceroller.settings.Version;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -58,7 +59,11 @@ public class GamesXmlParser {
         Resources resources = myContext.getResources();
         int resId = resources.getIdentifier("_" + id, "string", myContext.getPackageName());
         String name = resId != 0 ? resources.getString(resId) : "";
-        myDiceSet = new DiceSet(id, name);
+        int attempts = xml.getAttributeIntValue(null, "rethrow-attempts", 0);
+        if (attempts > 0)
+            myDiceSet = new RethrowableDiceSet(id, name, attempts);
+        else
+            myDiceSet = new DiceSet(id, name);
         myGame.addDiceSet(myDiceSet);
     }
 

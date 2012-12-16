@@ -9,5 +9,5 @@ import name.kropp.diceroller.dice.Die;
  * User: kropp
  */
 public interface DieDrawStrategy {
-    View draw(Die die, int width, int height, Context context);
+    View draw(Die die, int width, int height, boolean selected, Context context);
 }

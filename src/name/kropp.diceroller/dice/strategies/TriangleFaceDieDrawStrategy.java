@@ -13,7 +13,7 @@ import name.kropp.diceroller.dice.Die;
  */
 public class TriangleFaceDieDrawStrategy extends BaseDieDrawStrategy {
     @Override
-    protected Drawable getDieDrawable(Context context, Die die, int size) {
+    protected Drawable getDieDrawable(Context context, Die die, int size, boolean selected) {
         Path path = new Path();
         final float sin60 = 0.866025404f;
         float offset = size * (1 - sin60);

@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.*;
@@ -18,6 +17,7 @@ import android.widget.*;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;
+import name.kropp.diceroller.dice.RethrowableDiceSet;
 import name.kropp.diceroller.games.Game;
 import name.kropp.diceroller.games.GamesManager;
 import name.kropp.diceroller.games.StatsManager;
@@ -57,7 +57,6 @@ public class DiceRollFragment extends Fragment {
         }
 
 
-
         gamesManager.setSelectedGame(selectedGameId);
 
         if (myDiceSet == null) {
@@ -83,7 +82,8 @@ public class DiceRollFragment extends Fragment {
         final View main_area = getActivity().findViewById(R.id.dice_area);
         main_area.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                RollDice();
+                if (!(myDiceSet instanceof RethrowableDiceSet))
+                    RollDice();
             }
         });
 
@@ -176,12 +176,7 @@ public class DiceRollFragment extends Fragment {
 
         if (sets.size() > 1) {
             for (DiceSet set : sets) {
-                Button label = new Button(getActivity());
-                label.setText(set.getName());
-                label.setTag(set);
-
-                final DiceRollFragment context = this;
-                label.setOnClickListener(new View.OnClickListener() {
+                addButton(setsSelector, set.getName(), set, true, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         myDiceSet = (DiceSet) view.getTag();
@@ -195,12 +190,59 @@ public class DiceRollFragment extends Fragment {
                         displaySet();
                     }
                 });
-
-                setsSelector.addView(label, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
             }
         }
 
+        final TextView taptoroll = (TextView) getActivity().findViewById(R.id.taptoroll);
+
+        if (myDiceSet instanceof RethrowableDiceSet) {
+            final RethrowableDiceSet rethrowableDiceSet = (RethrowableDiceSet) myDiceSet;
+
+            taptoroll.setText(R.string.tap_to_hold);
+
+            final Button rethrowButton = addButton(setsSelector, getRethrowButtonName(rethrowableDiceSet), null, false, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rethrowableDiceSet.rethrow();
+                    ((Button) view).setText(getRethrowButtonName(rethrowableDiceSet));
+                    view.setEnabled(rethrowableDiceSet.canRethrow());
+                    displaySet();
+                    afterRoll();
+                }
+            });
+
+            addButton(setsSelector, getString(R.string.next_turn), null, false, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RollDice();
+                    rethrowButton.setEnabled(true);
+                    rethrowButton.setText(getRethrowButtonName(rethrowableDiceSet));
+                }
+            });
+        } else {
+            taptoroll.setText(R.string.tap_to_roll);
+        }
+
         displaySet();
+    }
+
+    private String getRethrowButtonName(RethrowableDiceSet rethrowableDiceSet) {
+        return getString(R.string.rethrow) + " (" + rethrowableDiceSet.getLeftAttempts() + ")";
+    }
+
+    private Button addButton(LinearLayout setsSelector, String name, Object tag, boolean append, View.OnClickListener onClickListener) {
+        Button label = new Button(getActivity());
+        label.setText(name);
+        label.setTag(tag);
+
+        label.setOnClickListener(onClickListener);
+
+        if (append)
+            setsSelector.addView(label, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        else
+            setsSelector.addView(label, 0, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+
+        return label;
     }
 
     private void listenShakeEvent() {
@@ -237,6 +279,10 @@ public class DiceRollFragment extends Fragment {
 
         StatsManager.getInstance(getActivity()).updateStats(myDiceSet);
 
+        afterRoll();
+    }
+
+    private void afterRoll() {
         int sum = myDiceSet.getSum();
 
         if (myDiceSet.getDice().size() > 1 && sum > 0) {
@@ -255,21 +301,19 @@ public class DiceRollFragment extends Fragment {
             myVibrator.vibrate(100);
         }
 
-        if (myRingtone != null)
-        {
+        if (myRingtone != null) {
             myRingtone.play();
         }
     }
 
     private void displaySet() {
-        FragmentActivity activity = getActivity();
+        final FragmentActivity activity = getActivity();
         if (activity == null)
             return;
 
         final TableLayout layout = (TableLayout) activity.findViewById(R.id.dice_area);
 
         Animation flash = AnimationUtils.loadAnimation(activity, R.anim.flash);
-        layout.setAnimation(flash);
 
         final View view = activity.findViewById(R.id.dicerollarea);
 
@@ -284,6 +328,7 @@ public class DiceRollFragment extends Fragment {
         layout.removeAllViews();
 
         List<Die> dice = myDiceSet.getDice();
+        final RethrowableDiceSet rethrowableDiceSet = myDiceSet instanceof RethrowableDiceSet ? (RethrowableDiceSet) myDiceSet : null;
 
         int size = dice.size();
         double distribution = Math.sqrt(1.0 * height / width * size);
@@ -295,7 +340,7 @@ public class DiceRollFragment extends Fragment {
         int columns = (int) Math.ceil(1.0 * size / rows);
 
         for (int i = 0; i < rows; i++) {
-            TableRow row = new TableRow(activity);
+            final TableRow row = new TableRow(activity);
             row.setWeightSum(1);
             row.setGravity(Gravity.CENTER);
 
@@ -304,11 +349,44 @@ public class DiceRollFragment extends Fragment {
                 if (number >= size)
                     break;
 
-                Die die = dice.get(number);
-                row.addView(die.getCurrentView(activity));
+                final int position = j;
+                final Die die = dice.get(number);
+                final boolean isSelected = rethrowableDiceSet != null ? rethrowableDiceSet.isSelected(die) : false;
+                final View dieView = die.getCurrentView(activity, isSelected);
+                if (rethrowableDiceSet != null) {
+                    dieView.setOnClickListener(new DieOnClickListener(rethrowableDiceSet, die, activity, row, position));
+                }
+                if (!isSelected)
+                    dieView.setAnimation(flash);
+                row.addView(dieView);
             }
 
             layout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        }
+    }
+
+    private static class DieOnClickListener implements View.OnClickListener {
+        private final RethrowableDiceSet rethrowableDiceSet;
+        private final Die die;
+        private final FragmentActivity activity;
+        private final TableRow row;
+        private final int position;
+
+        public DieOnClickListener(RethrowableDiceSet rethrowableDiceSet, Die die, FragmentActivity activity, TableRow row, int position) {
+            this.rethrowableDiceSet = rethrowableDiceSet;
+            this.die = die;
+            this.activity = activity;
+            this.row = row;
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View view) {
+            boolean sel = rethrowableDiceSet.toggle(die);
+            View newView = die.getCurrentView(activity, sel);
+            newView.setOnClickListener(new DieOnClickListener(rethrowableDiceSet, die, activity, row, position));
+            row.removeViewAt(position);
+            row.addView(newView, position);
         }
     }
 }

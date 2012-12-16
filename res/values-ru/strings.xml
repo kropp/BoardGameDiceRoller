@@ -11,6 +11,7 @@
     <string name="about_title">О программе</string>
     <string name="about_text">Это бесплатное приложение для бросков кубиков в настольных играх. Если приложение вам понравилось, поддержите его разработку небольшим пожертвованием.\n\n© 2012, Виктор Кропп.</string>
     <string name="tap_to_roll">Нажмите для броска</string>
+    <string name="tap_to_hold">Выберите кубики, чтобы их оставить</string>
     <string name="shake_or_tap_to_roll">Потрясите или нажмите для броска</string>
     <string name="rolldice_tab_name">Кубики</string>
     <string name="stats_tab_name">Статистика</string>
@@ -31,6 +32,8 @@
     <string name="_catan_cities_knights">Колонизаторы: Города и Рыцари</string>
     <string name="_stone_age">100000 лет до нашей эры</string>
     <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
+    <string name="_yatzy">Покер на костях (Yatzy)</string>
+
     <string name="after_roll_preferences">После броска</string>
     <string name="title_keep_screen_on_preference">Не выключать экран</string>
     <string name="summary_keep_screen_on_preference">Не позволяет устройству засыпать. Внимание! Работающий экран быстрее сажает батарею!</string>

@@ -12,8 +12,8 @@ import name.kropp.diceroller.R;
  */
 public class RectFaceDieDrawStrategy extends BaseDieDrawStrategy {
     @Override
-    protected Drawable getDieDrawable(Context context, Die die, int size) {
-        GradientDrawable drawable = (GradientDrawable) context.getResources().getDrawable(R.drawable.die6);
+    protected Drawable getDieDrawable(Context context, Die die, int size, boolean selected) {
+        GradientDrawable drawable = (GradientDrawable) context.getResources().getDrawable(selected ? R.drawable.die6selected : R.drawable.die6);
         drawable.setColor(die.getDieColor());
         return drawable;
     }

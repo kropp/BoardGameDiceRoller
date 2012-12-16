@@ -47,10 +47,10 @@ public class SimpleDie implements Die {
     }
 
     @Override
-    public View getCurrentView(Context context) {
+    public View getCurrentView(Context context, boolean selected) {
         final int size = (int) context.getResources().getDimension(R.dimen.diesize);
 
-        return myDrawStrategy.draw(this, size, size, context);
+        return myDrawStrategy.draw(this, size, size, selected, context);
 
 /*
         Drawable drawable = getDieDrawable(context);

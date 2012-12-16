@@ -1,10 +1,8 @@
 package name.kropp.diceroller.smallapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.Gravity;
@@ -204,7 +202,7 @@ public class BoardGameDiceRollerSmallApp extends SmallApplication {
                     break;
 
                 Die die = dice.get(number);
-                row.addView(die.getCurrentView(this));
+                row.addView(die.getCurrentView(this, false));
             }
 
             layout.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));

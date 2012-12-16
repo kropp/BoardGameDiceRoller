@@ -11,6 +11,7 @@
     <string name="about_title">Über die Würfel für die Brettspiele</string>
     <string name="about_text">Das Program hilft die Würfel in verschiedene Brettspiele zu werfen. Wenn das App Ihnen gefällt, unterschtützen Sie die Entwicklung durch eine Spende.\n\n© 2012, Victor Kropp.</string>
     <string name="tap_to_roll">Berühren die Würfel</string>
+    <string name="tap_to_hold">Berühren die Würfel um sie zu festhalten</string>
     <string name="shake_or_tap_to_roll">Schütteln oder berühren die Würfel</string>
     <string name="rolldice_tab_name">Würfel</string>
     <string name="stats_tab_name">Stats</string>

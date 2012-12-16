@@ -14,8 +14,8 @@ import name.kropp.diceroller.dice.Die;
  */
 public abstract class BaseDieDrawStrategy implements DieDrawStrategy {
     @Override
-    public View draw(Die die, int size, int height, Context context) {
-        Drawable drawable = getDieDrawable(context, die, size);
+    public View draw(Die die, int size, int height, boolean selected, Context context) {
+        Drawable drawable = getDieDrawable(context, die, size, selected);
 
         Bitmap canvasBitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(canvasBitmap);
@@ -31,7 +31,7 @@ public abstract class BaseDieDrawStrategy implements DieDrawStrategy {
         return image;
     }
 
-    protected abstract Drawable getDieDrawable(Context context, Die die, int size);
+    protected abstract Drawable getDieDrawable(Context context, Die die, int size, boolean selected);
 
     protected void drawFace(int width, int height, Canvas canvas, Die die, Context context) {
         Paint paint = new Paint();

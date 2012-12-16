@@ -147,4 +147,13 @@
             <die type="merchants_and_marauders_die" />
         </diceset>
     </game>
+    <game id="yatzy" version="full">
+        <diceset id="5d6" name="5" rethrow-attempts="2">
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+            <die type="d6" />
+        </diceset>
+    </game>
 </games>
