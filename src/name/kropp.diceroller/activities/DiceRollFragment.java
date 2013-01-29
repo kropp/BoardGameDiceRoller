@@ -303,6 +303,8 @@ public class DiceRollFragment extends SherlockFragment {
         }
 
         if (myRingtone != null) {
+            if (myRingtone.isPlaying())
+                myRingtone.stop();
             myRingtone.play();
         }
     }
