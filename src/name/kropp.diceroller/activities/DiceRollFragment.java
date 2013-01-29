@@ -14,6 +14,8 @@ import android.view.*;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragment;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;
@@ -29,7 +31,7 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class DiceRollFragment extends Fragment {
+public class DiceRollFragment extends SherlockFragment {
     private DiceSet myDiceSet;
     private ShakeListener myShaker;
     private boolean myVibeAfterRoll;
@@ -166,8 +168,7 @@ public class DiceRollFragment extends Fragment {
             gamesManager.setSelectedSet(myDiceSet.getId());
         }
 
-        final TextView nameLabel = (TextView) getActivity().findViewById(R.id.dicesetname);
-        nameLabel.setText(game.getName());
+        getSherlockActivity().getSupportActionBar().setSubtitle(game.getName());
 
         List<DiceSet> sets = game.getDiceSets();
 

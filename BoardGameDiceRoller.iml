@@ -36,6 +36,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android SDK" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="ActionBarSherlock" level="application" />
   </component>
 </module>
 

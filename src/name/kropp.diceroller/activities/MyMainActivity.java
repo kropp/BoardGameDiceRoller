@@ -1,27 +1,23 @@
 package name.kropp.diceroller.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TabHost;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.games.GamesManager;
+import name.kropp.diceroller.games.StatsManager;
 import name.kropp.diceroller.settings.VersionManager;
 
-public class MyMainActivity extends FragmentActivity {
+public class MyMainActivity extends SherlockFragmentActivity {
     static final int ABOUT_DIALOG_ID = 1;
     static final int GAMES_DIALOG_ID = 2;
 
@@ -36,49 +32,44 @@ public class MyMainActivity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE && isXLargeScreen())
-        {
-            menu.removeItem(R.id.choosegame);
-        }
+        if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE || !isXLargeScreen())
+            menu.add(R.string.choose_game).setIcon(android.R.drawable.ic_menu_agenda).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    showDialog(GAMES_DIALOG_ID);
+                    return true;
+                }
+            }).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+        menu.add(R.string.options).setIcon(android.R.drawable.ic_menu_preferences).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                openOptions();
+                return true;
+            }
+        }).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+        menu.add(R.string.donate).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_url))));
+                return true;
+            }
+        }).setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_WITH_TEXT | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
+        menu.add(R.string.about).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                showDialog(ABOUT_DIALOG_ID);
+                return true;
+            }
+        }).setShowAsAction(MenuItem.SHOW_AS_ACTION_WITH_TEXT | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
         return true;
     }
 
     private boolean isXLargeScreen() {
         return (getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) > Configuration.SCREENLAYOUT_SIZE_LARGE;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.choosegame:
-                showDialog(GAMES_DIALOG_ID);
-                return true;
-            case R.id.options:
-                openOptions();
-                return true;
-            case R.id.about:
-                showDialog(ABOUT_DIALOG_ID);
-                return true;
-/*
-            case R.id.clearhistory:
-                StatsManager.getInstance(this).clear();
-
-                if (getTabHost().getCurrentTab() == 1) { // reload stats view
-                    Intent intent = new Intent(this, MyMainActivity.class);
-                    intent.putExtra("tab", "stats");
-                    startActivity(intent);
-                }
-                return true;
-*/
-            case R.id.donate:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_url))));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
     private Dialog createGamesDialog() {

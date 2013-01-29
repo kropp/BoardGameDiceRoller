@@ -9,6 +9,8 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import com.actionbarsherlock.app.SherlockPreferenceActivity;
+import com.actionbarsherlock.view.MenuItem;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.settings.PreferenceNames;
 
@@ -16,11 +18,21 @@ import name.kropp.diceroller.settings.PreferenceNames;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class MyPreferencesActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
+public class MyPreferencesActivity extends SherlockPreferenceActivity implements Preference.OnPreferenceChangeListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         addPreferencesFromResource(R.xml.preferences);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
