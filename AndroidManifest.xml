@@ -16,10 +16,7 @@
         <activity android:name=".activities.MyPreferencesActivity" android:label="@string/options">
         </activity>
         <activity android:name=".activities.DiceRollActivity"/>
-        <!--
-                <activity android:name=".activities.StatsActivity"/>
-                <activity android:name=".activities.GamesFragment"/>
-        -->
+        <activity android:name=".activities.StatsActivity"/>
         <uses-library android:name="com.sony.smallapp.framework" android:required="false" />
         <service android:name="name.kropp.diceroller.smallapp.BoardGameDiceRollerSmallApp" android:exported="true">
             <intent-filter>

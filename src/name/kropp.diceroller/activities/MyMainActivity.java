@@ -41,6 +41,16 @@ public class MyMainActivity extends SherlockFragmentActivity {
                 }
             }).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
+        final SherlockFragmentActivity activity = this;
+
+        menu.add(R.string.history_header).setIcon(android.R.drawable.ic_menu_recent_history).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(activity, StatsActivity.class));
+                return true;
+            }
+        }).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+
         menu.add(R.string.options).setIcon(android.R.drawable.ic_menu_preferences).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

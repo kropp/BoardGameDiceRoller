@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
+import com.actionbarsherlock.app.SherlockActivity;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.games.GamesManager;
@@ -21,9 +22,12 @@ import java.util.Map;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class StatsActivity extends Activity {
+public class StatsActivity extends SherlockActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.stats);
     }
 
