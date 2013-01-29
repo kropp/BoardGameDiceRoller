@@ -67,7 +67,7 @@ public class StatsManager {
             first = false;
         }
 
-        if (diceSet.getDice().size() > 1)
+        if (diceSet.getDice().size() > 1 && diceSet.getSum() > 0)
             builder.append("= <b>").append(diceSet.getSum()).append("</b>");
         builder.append("<br>");
 

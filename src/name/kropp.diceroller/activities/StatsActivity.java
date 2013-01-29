@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.MenuItem;
 import name.kropp.diceroller.R;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.games.GamesManager;
@@ -27,8 +28,18 @@ public class StatsActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.history_header);
 
         setContentView(R.layout.stats);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -38,10 +49,14 @@ public class StatsActivity extends SherlockActivity {
         final TextView textView = (TextView) findViewById(R.id.historytext);
         textView.setText(StatsManager.getInstance(this).getHistoryText());
 
-        DiceSet set = GamesManager.getInstance(this).getSelectedSet();
+        GamesManager gamesManager = GamesManager.getInstance(this);
+        DiceSet set = gamesManager.getSelectedSet();
+
+        getSupportActionBar().setSubtitle(gamesManager.getSelectedGame().getName());
 
         Map<Integer, Integer> stats = StatsManager.getInstance(this).getStats(set);
 
+/*
         final TableLayout table = (TableLayout) findViewById(R.id.statslayout);
 
         if (VersionManager.getInstance().getVersion() == Version.FULL) {
@@ -99,6 +114,7 @@ public class StatsActivity extends SherlockActivity {
                 });
             }
         }
+*/
     }
 
     private int findMax(Collection<Integer> values) {

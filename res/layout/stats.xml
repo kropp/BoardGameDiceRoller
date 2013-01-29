@@ -3,6 +3,7 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical">
+<!--
     <TableLayout android:id="@+id/statslayout"
                  android:layout_weight="2"
                  android:layout_width="fill_parent"
@@ -39,15 +40,18 @@
             style="@android:style/TextAppearance.WindowTitle"
             android:background="@android:color/darker_gray"
             />
+-->
     <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
+            android:padding="10dp"
             >
         <TextView android:id="@+id/historytext"
                   android:textSize="10pt"
                   android:layout_width="fill_parent"
                   android:layout_height="fill_parent"
+                  android:gravity="center"
                 />
     </ScrollView>
 </LinearLayout>
