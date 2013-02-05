@@ -1,5 +1,7 @@
 package name.kropp.diceroller.dice;
 
+import name.kropp.diceroller.dice.sum.DiceSumNotificationMaker;
+
 import java.util.HashSet;
 
 /**
@@ -12,8 +14,8 @@ public class RethrowableDiceSet extends DiceSet {
 
     private int myCurrentAttempts = 0;
 
-    public RethrowableDiceSet(String id, String name, int attempts) {
-        super(id, name);
+    public RethrowableDiceSet(String id, String name, int attempts, DiceSumNotificationMaker notificationMaker) {
+        super(id, name, notificationMaker);
         myAttempts = attempts;
     }
 

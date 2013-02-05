@@ -286,8 +286,9 @@ public class DiceRollFragment extends SherlockFragment {
     private void afterRoll() {
         int sum = myDiceSet.getSum();
 
-        if (myDiceSet.getDice().size() > 1 && sum > 0) {
-            String notification = "" + sum;
+        String notification = myDiceSet.getNotification();
+
+        if (notification != null)
             if (myToast != null) {
                 myToast.setText(notification);
                 myToast.setDuration(Toast.LENGTH_LONG);
@@ -296,7 +297,6 @@ public class DiceRollFragment extends SherlockFragment {
                 myToast = Toast.makeText(getActivity(), notification, Toast.LENGTH_LONG);
                 myToast.show();
             }
-        }
 
         if (myVibeAfterRoll) {
             myVibrator.vibrate(100);

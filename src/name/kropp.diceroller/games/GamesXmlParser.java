@@ -7,11 +7,16 @@ import name.kropp.diceroller.dice.DiceManager;
 import name.kropp.diceroller.dice.DiceSet;
 import name.kropp.diceroller.dice.Die;
 import name.kropp.diceroller.dice.RethrowableDiceSet;
+import name.kropp.diceroller.dice.sum.DiceSumNotificationMaker;
+import name.kropp.diceroller.dice.sum.EvolutionContinentsDiceSumNotificationMaker;
+import name.kropp.diceroller.dice.sum.PlusTwoDiceSumNotificationMaker;
+import name.kropp.diceroller.dice.sum.SimpleDiceSumNotificationMaker;
 import name.kropp.diceroller.settings.Version;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,11 +28,16 @@ public class GamesXmlParser {
     private Context myContext;
     private Game myGame;
     private DiceSet myDiceSet;
+    private HashMap<String, DiceSumNotificationMaker> myNotifications = new HashMap<String, DiceSumNotificationMaker>();
 
     public GamesXmlParser(GamesManager gamesManager, DiceManager diceManager, Context context) {
         myGamesManager = gamesManager;
         myDiceManager = diceManager;
         myContext = context;
+
+        myNotifications.put("", new SimpleDiceSumNotificationMaker());
+        myNotifications.put("plus-two", new PlusTwoDiceSumNotificationMaker());
+        myNotifications.put("evolution-continents", new EvolutionContinentsDiceSumNotificationMaker());
     }
 
     public void parseXml(XmlResourceParser xml) throws IOException, XmlPullParserException {
@@ -60,10 +70,14 @@ public class GamesXmlParser {
         int resId = resources.getIdentifier("_" + id, "string", myContext.getPackageName());
         String name = resId != 0 ? resources.getString(resId) : "";
         int attempts = xml.getAttributeIntValue(null, "rethrow-attempts", 0);
+        String notification = xml.getAttributeValue(null, "notification");
+        if (notification == null)
+            notification = "";
+        DiceSumNotificationMaker notificationMaker = myNotifications.get(notification);
         if (attempts > 0)
-            myDiceSet = new RethrowableDiceSet(id, name, attempts);
+            myDiceSet = new RethrowableDiceSet(id, name, attempts, notificationMaker);
         else
-            myDiceSet = new DiceSet(id, name);
+            myDiceSet = new DiceSet(id, name, notificationMaker);
         myGame.addDiceSet(myDiceSet);
     }
 

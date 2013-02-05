@@ -1,5 +1,7 @@
 package name.kropp.diceroller.dice;
 
+import name.kropp.diceroller.dice.sum.DiceSumNotificationMaker;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,12 +12,14 @@ import java.util.List;
 public class DiceSet {
     private final List<Die> myDices = new LinkedList<Die>();
     
-    private String myId;
-    private String myName;
+    private final String myId;
+    private final String myName;
+    private final DiceSumNotificationMaker myNotificationMaker;
 
-    public DiceSet(String id, String name) {
+    public DiceSet(String id, String name, DiceSumNotificationMaker notificationMaker) {
         myId = id;
         myName = name;
+        myNotificationMaker = notificationMaker;
     }
 
     public String getId() {
@@ -49,5 +53,9 @@ public class DiceSet {
             }
         }
         return result;
+    }
+
+    public String getNotification() {
+        return myNotificationMaker.getNotification(this);
     }
 }
