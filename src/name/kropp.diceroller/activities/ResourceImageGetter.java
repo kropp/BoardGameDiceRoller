@@ -38,9 +38,9 @@ public class ResourceImageGetter implements Html.ImageGetter {
         Resources resources = myContext.getResources();
         int size = resources.getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         if (size >= Configuration.SCREENLAYOUT_SIZE_NORMAL)
-            return 42;
+            return 64;
         if (size >= Configuration.SCREENLAYOUT_SIZE_SMALL)
-            return 36;
+            return 42;
         return 24;
     }
 }
