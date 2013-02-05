@@ -33,7 +33,7 @@ public class MyMainActivity extends SherlockFragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE || !isXLargeScreen())
-            menu.add(R.string.choose_game).setIcon(android.R.drawable.ic_menu_agenda).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            menu.add(R.string.choose_game).setIcon(R.drawable.ic_action_games).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     showDialog(GAMES_DIALOG_ID);
@@ -43,7 +43,7 @@ public class MyMainActivity extends SherlockFragmentActivity {
 
         final SherlockFragmentActivity activity = this;
 
-        menu.add(R.string.history_header).setIcon(android.R.drawable.ic_menu_recent_history).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.add(R.string.history_header).setIcon(R.drawable.ic_action_history).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 startActivity(new Intent(activity, StatsActivity.class));
@@ -51,7 +51,7 @@ public class MyMainActivity extends SherlockFragmentActivity {
             }
         }).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
-        menu.add(R.string.options).setIcon(android.R.drawable.ic_menu_preferences).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.add(R.string.options).setIcon(R.drawable.ic_action_settings).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 openOptions();
