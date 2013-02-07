@@ -11,4 +11,5 @@ public final class PreferenceNames {
     public static final String Notification = "notification_preference";
     public static final String Shake = "shake_preference";
     public static final String KeepScreenOn = "keep_screen_on_preference";
+    public static final String ShowSummary = "show_summary_preference";
 }

@@ -33,6 +33,7 @@
     <string name="_stone_age">100000 лет до нашей эры</string>
     <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
     <string name="_evolution">Эволюция</string>
+    <string name="_evolution_continents">Эволюция: Континенты</string>
     <string name="_yatzy">Покер на костях (Yatzy)</string>
 
     <string name="after_roll_preferences">После броска</string>
@@ -41,4 +42,5 @@
     <string name="title_notification_preference">Звук после броска</string>
     <string name="silent">Без звука</string>
     <string name="donate">Поддержать</string>
+    <string name="show_summary_preference">Показывать результат</string>
 </resources>

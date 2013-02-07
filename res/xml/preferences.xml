@@ -8,6 +8,11 @@
             android:key="keep_screen_on_preference"
             android:title="@string/title_keep_screen_on_preference"
              />
+    <CheckBoxPreference
+            android:key="show_summary_preference"
+            android:title="@string/show_summary_preference"
+            android:defaultValue="true"
+             />
     <PreferenceCategory android:title="@string/after_roll_preferences">
         <CheckBoxPreference
                 android:key="vibe_preference"

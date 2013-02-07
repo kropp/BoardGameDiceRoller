@@ -35,6 +35,7 @@ public class DiceRollFragment extends SherlockFragment {
     private DiceSet myDiceSet;
     private ShakeListener myShaker;
     private boolean myVibeAfterRoll;
+    private boolean myShowSummaryAfterRoll;
     private Vibrator myVibrator;
     private Toast myToast;
     private Ringtone myRingtone;
@@ -94,6 +95,8 @@ public class DiceRollFragment extends SherlockFragment {
         myVibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
         myVibeAfterRoll = preferences.getBoolean(PreferenceNames.Vibe, false);
+        myShowSummaryAfterRoll = preferences.getBoolean(PreferenceNames.ShowSummary, true);
+
         String soundAfterRoll = preferences.getString(PreferenceNames.Notification, "");
         if (soundAfterRoll != null && soundAfterRoll.length() > 0) {
             myRingtone = RingtoneManager.getRingtone(getActivity(), Uri.parse(soundAfterRoll));
@@ -130,6 +133,9 @@ public class DiceRollFragment extends SherlockFragment {
                 }
                 if (s.equals(PreferenceNames.Vibe)) {
                     myVibeAfterRoll = sharedPreferences.getBoolean(s, false);
+                }
+                if (s.equals(PreferenceNames.ShowSummary)) {
+                    myShowSummaryAfterRoll = sharedPreferences.getBoolean(s, false);
                 }
                 if (s.equals(PreferenceNames.Notification)) {
                     String soundAfterRoll = sharedPreferences.getString(PreferenceNames.Notification, "");
@@ -284,19 +290,19 @@ public class DiceRollFragment extends SherlockFragment {
     }
 
     private void afterRoll() {
-        int sum = myDiceSet.getSum();
+        if (myShowSummaryAfterRoll) {
+            String notification = myDiceSet.getNotification();
 
-        String notification = myDiceSet.getNotification();
-
-        if (notification != null)
-            if (myToast != null) {
-                myToast.setText(notification);
-                myToast.setDuration(Toast.LENGTH_LONG);
-                myToast.show();
-            } else {
-                myToast = Toast.makeText(getActivity(), notification, Toast.LENGTH_LONG);
-                myToast.show();
-            }
+            if (notification != null)
+                if (myToast != null) {
+                    myToast.setText(notification);
+                    myToast.setDuration(Toast.LENGTH_LONG);
+                    myToast.show();
+                } else {
+                    myToast = Toast.makeText(getActivity(), notification, Toast.LENGTH_LONG);
+                    myToast.show();
+                }
+        }
 
         if (myVibeAfterRoll) {
             myVibrator.vibrate(100);

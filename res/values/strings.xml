@@ -49,6 +49,7 @@
     <string name="_merchants_and_marauders">Merchants &amp; Marauders</string>
     <string name="_formulad">Formula D</string>
     <string name="_evolution">Evolution</string>
+    <string name="_evolution_continents">Evolution: Continents</string>
     <string name="_yatzy">Dice Poker (Yatzy)</string>
 
     <string name="after_roll_preferences">After roll</string>
@@ -60,4 +61,5 @@
     <string name="app_url">http://victor.kropp.name/diceroller/</string>
     <string name="next_turn">Next turn</string>
     <string name="rethrow">Rethrow</string>
+    <string name="show_summary_preference">Show summary</string>
 </resources>
