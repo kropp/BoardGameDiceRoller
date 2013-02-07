@@ -58,4 +58,8 @@ public class DiceSet {
     public String getNotification() {
         return myNotificationMaker.getNotification(this);
     }
+
+    public String getHistoryString() {
+        return myNotificationMaker.getHistoryString(this);
+    }
 }

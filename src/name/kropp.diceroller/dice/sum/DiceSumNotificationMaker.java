@@ -8,4 +8,5 @@ import name.kropp.diceroller.dice.DiceSet;
  */
 public interface DiceSumNotificationMaker {
     String getNotification(DiceSet diceSet);
+    String getHistoryString(DiceSet diceSet);
 }

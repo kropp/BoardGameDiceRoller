@@ -56,22 +56,11 @@ public class StatsManager {
     }
 
     public void updateStats(DiceSet diceSet) {
-        StringBuilder builder = new StringBuilder();
-
-        boolean first = true;
         for (Die die : diceSet.getDice()) {
-            if (!first)
-                builder.append("+ ");
-            builder.append(die).append(' ');
             addHistoryValue(die);
-            first = false;
         }
 
-        if (diceSet.getDice().size() > 1 && diceSet.getSum() > 0)
-            builder.append("= <b>").append(diceSet.getSum()).append("</b>");
-        builder.append("<br>");
-
-        myHistoryText.insert(0, Html.fromHtml(builder.toString(), myResourceImageGetter, null));
+        myHistoryText.insert(0, Html.fromHtml(diceSet.getHistoryString(), myResourceImageGetter, null));
     }
 
     private void addHistoryValue(Die die) {
