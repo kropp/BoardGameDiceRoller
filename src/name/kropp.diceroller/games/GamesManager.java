@@ -9,6 +9,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,6 +43,7 @@ public class GamesManager {
 
     public void addGame(Game game) {
         myGames.add(game);
+        Collections.sort(myGames);
     }
 
     public List<Game> getGames() {

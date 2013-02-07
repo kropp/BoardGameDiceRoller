@@ -10,7 +10,7 @@ import java.util.List;
  * Created by IntelliJ IDEA.
  * User: kropp
  */
-public class Game {
+public class Game implements Comparable<Game> {
     private String myId;
     private String myName;
     private Version myVersion;
@@ -42,5 +42,10 @@ public class Game {
 
     public List<DiceSet> getDiceSets() {
         return myDiceSets;
+    }
+
+    @Override
+    public int compareTo(Game game) {
+        return myName.compareTo(game.myName);
     }
 }
