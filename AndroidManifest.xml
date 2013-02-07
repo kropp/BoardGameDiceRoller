@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="name.kropp.diceroller"
-      android:versionCode="6"
-      android:versionName="2.0"
+      android:versionCode="7"
+      android:versionName="2.5"
       android:installLocation="auto">
-    <application android:label="@string/app_name" android:icon="@drawable/icon">
+    <application android:label="@string/app_name" android:icon="@drawable/icon" android:theme="@style/Theme.Sherlock">
         <activity android:name=".activities.MyMainActivity"
                   android:label="@string/app_name"
                   android:launchMode="singleTask">

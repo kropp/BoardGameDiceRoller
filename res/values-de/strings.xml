@@ -47,7 +47,7 @@
     <string name="_stone_age">Stone Age</string>
     <string name="_merchants_and_marauders">Korsaren von Karibik</string>
     <string name="_evolution">Evolution</string>
-    <string name="_evolution_continents">Evolution: </string>
+    <string name="_evolution_continents">Evolution: Continents</string>
 
     <string name="after_roll_preferences">Nach dem Wurf</string>
     <string name="title_keep_screen_on_preference">Ausschalten des Bildschirms verhindern</string>
